@@ -5,6 +5,8 @@ import express from "express";
 import expressSession from "express-session";
 import expressSessionStore from "connect-mongo";
 import expressCookie from "cookie-parser";
+import expressCompression from "compression";
+
 
 import { User } from "./src/models/user.js";
 import { logger } from "./src/utils/logger.js";
@@ -12,7 +14,6 @@ import { logger } from "./src/utils/logger.js";
 import generalRoutes from "./src/routes/general.js";
 import authRoutes from "./src/routes/auth.js";
 import actionsRoutes from "./src/routes/actions.js";
-
 const PORT = process.env.PORT || 3000;
 
 logger.info("connecting to MongoDB..");
@@ -36,6 +37,7 @@ app.use(express.urlencoded({
     extended: false,
     limit: "4mb"
 }));
+app.use(expressCompression());
 app.use(express.static("assets"));
 
 app.use(async (req, res, next) => {
@@ -65,6 +67,7 @@ app.use(authRoutes);
 app.use(actionsRoutes);
 
 app.get("*", (req, res) => {
+    res.status(404);
     res.render("404");
 });
 

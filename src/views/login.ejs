@@ -15,11 +15,11 @@
         <form class="auth-form" method="post" action="/login">
             <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
 
-            <label for="name">Username <span style="color: green;">@your-username-here</span></label>
-            <input type="text" name="username" class="form-input" required />
+            <label for="username">Username <span style="color: green;">@your-username-here</span></label>
+            <input type="text" name="username" class="form-input" id="username" required>
 
             <label for="password">Password</label>
-            <input type="password" name="password" class="form-input" required>    
+            <input type="password" name="password" class="form-input" id="password" required>    
             
             <input type="submit" value="Login!">                    
         </form>
