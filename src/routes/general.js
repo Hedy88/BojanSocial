@@ -35,4 +35,14 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
     }
 });
 
+router.get("/about", ...middleware.any, async (req, res, next) => {
+    try {    
+        res.render("about", {
+            csrfToken: req.csrfToken(),
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default router;
