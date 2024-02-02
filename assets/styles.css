@@ -1,48 +1,52 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-    font-size: 15px;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #f2f2f2;
+  font-size: 15px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f2f2f2;
 }
 
 /* nav bar */
 
 .nav-bar {
-    display: inline-block;
-    
-    width: 100%;
-    height: 30px;
+  display: inline-block;
 
-    background: #eeeeee;
-    background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%);  
+  width: 100%;
+  height: 30px;
 
-    border-bottom: 2px ridge #eeeeee;
-    border-top: 1px solid #9A9A9A;    
-    box-shadow: 0px -20px 13px 18px rgba(0,0,0,0.75);
+  background: #eeeeee;
+  background: linear-gradient(to bottom, #eeeeee 0%, #cccccc 100%);
+
+  border-bottom: 2px ridge #eeeeee;
+  border-top: 1px solid #9a9a9a;
+  box-shadow: 0px -20px 13px 18px rgba(0, 0, 0, 0.75);
 }
 
 .nav-bar .box-container {
-    height: 100%;
+  height: 100%;
 }
 
 .nav-bar-button {
-    color: #212121;
-    display: inline-block; 
-    height: 100%;
+  color: #212121;
+  display: inline-block;
+  height: 100%;
 
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 
-    border-right: 2px ridge #eeeeee;
-    text-decoration: none; 
+  border-right: 2px ridge #eeeeee;
+  text-decoration: none;
 
-    padding: 5px;
+  padding: 5px;
 }
 
 .nav-bar-button:hover {
-    background: #ffffff; 
-    background: linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
+  background: #ffffff;
+  background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
 }
 
 /* nav bar end */
@@ -50,25 +54,30 @@ body {
 /* util classes */
 
 .box-container {
-    margin: 0 auto;
-    max-width: 750px;
+  margin: 0 auto;
+  max-width: 750px;
 }
 
 .float-left {
-    float: left;
+  float: left;
 }
 
 .float-right {
-    float: right;
+  float: right;
 }
 
-button, input[type="submit"] {
-    background: linear-gradient(to bottom, #2874c5 0%, #0d57a7 100%);
-    border: 1px solid #2262a6;
-    padding: 5px;
-    color: white;
-    float: right;
-    min-width: 60px;
+button,
+input[type="submit"] {
+  color: #ffffff;
+  border: 1px solid #124d77;
+  border-radius: 3px;
+
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  text-shadow: 1px 3px 4px rgba(0,0,0,0.33);
+
+  background: linear-gradient(#007dc1, #0061a7);
+  
+  padding: 5px;
 }
 
 /* util classes end */
@@ -76,22 +85,22 @@ button, input[type="submit"] {
 /* general layout */
 
 #content {
-    margin-top: 10px;
-    line-height: 1.6;
-    word-wrap: break-word;
-    color: #333;
+  margin-top: 10px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  color: #333;
 }
 
 #footer {
-    font-size: 12px;
-    display: block;
-    
-    text-align: center;
+  font-size: 12px;
+  display: block;
 
-    margin-top: 15px;
-    padding-top: 10px;
+  text-align: center;
 
-    border-top: 1px solid #cccccc;
+  margin-top: 15px;
+  padding-top: 10px;
+
+  border-top: 1px solid #cccccc;
 }
 
 /* general layout end */
@@ -99,16 +108,16 @@ button, input[type="submit"] {
 /* admin box */
 
 #admin-box {
-    background: white;
-    border: 1px solid black;
-    padding: 5px;
-    margin: 15px;
+  background: white;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 15px;
 
-    font-family: "Comic Sans MS", sans-serif;
+  font-family: "Comic Sans MS", sans-serif;
 
-    width: 300px;
-    position: fixed;
-    bottom: 0%;
+  width: 300px;
+  position: fixed;
+  bottom: 0%;
 }
 
 /* admin blox end */
@@ -116,117 +125,120 @@ button, input[type="submit"] {
 /* main page elements */
 
 .welcome {
-    font-size: 16px;
-    font-weight: 300;
+  font-size: 16px;
+  font-weight: 300;
 
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-    align-items: center;
+  align-items: center;
 }
 
 .features {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: 250px 250px;
-    
-    padding-left: 20px;
-    padding-right: 20px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 250px 250px;
 
-    justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
 
-    margin-top: 15px;
+  justify-content: center;
+
+  margin-top: 15px;
 }
 
 .feature {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
-    align-items: center;
+  align-items: center;
 }
 
 .feature-title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .new-users-box {
-    border: 1px solid #cccccc;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+  border: 1px solid #cccccc;
 
-    margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+
+  margin-top: 5px;
 }
 
 .new-users-box-title {
-    font-size: 15px;
-    
-    border-bottom: 1px solid #cccccc;
-    width: 100%;
+  font-size: 15px;
 
-    padding-top: 1.5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 1.5px;
+  border-bottom: 1px solid #cccccc;
+  width: 100%;
+
+  padding-top: 1.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 1.5px;
 }
 
 .new-users-box-content {
-    font-size: 16px;
-    width: 100%;
+  font-size: 16px;
+  width: 100%;
 
-    padding-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 5px;
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 5px;
 
-    display: grid;
-    grid-template-columns: 100px 100px 100px 100px 100px;
-    gap: 30px;
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  gap: 30px;
 }
 
 .new-user {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 
-    text-align: center;
+  text-align: center;
 }
 
 .new-users-box-extra-content {
-    font-size: 15px;
-    
-    border-top: 1px solid #cccccc;
-    width: 100%;
+  font-size: 15px;
 
-    padding-top: 1.5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 1.5px;
+  border-top: 1px solid #cccccc;
+  width: 100%;
 
-    display: block;
+  padding-top: 1.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 1.5px;
+
+  display: block;
 }
 
 /* end of main page elements */
 
 /* auth page elements */
 
-.auth-form { 
-    display: flex;
-    flex-direction: column;
-    
-    padding: 5px;
+.auth-form {
+  display: flex;
+  flex-direction: column;
 
-    width: 350px;
-    gap: 5px;
+  padding: 5px;
+
+  width: 350px;
+  gap: 5px;
 }
 
-.auth-form, input[type="text"], input[type="password"], input[type="email"] {
-    padding: 4px;
-    font-family: "Segoe UI", Arial, sans-serif;
-    font-size: 14px;
+.auth-form,
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  padding: 4px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
 }
 
 /* end of auth page elements */
@@ -234,17 +246,17 @@ button, input[type="submit"] {
 /* dialogs */
 
 .info-dialog {
-    padding: 5px;
-    background: #4fdaff42;
-    border: 1px solid rgb(0 126 125 / 15%);
-    margin-bottom: 10px;
+  padding: 5px;
+  background: #4fdaff42;
+  border: 1px solid rgb(0 126 125 / 15%);
+  margin-bottom: 10px;
 }
 
 .error-dialog {
-    padding: 5px;
-    background: #ff4f4f42;
-    border: 1px solid rgba(126, 0, 0, 0.15);
-    margin-bottom: 10px;
+  padding: 5px;
+  background: #ff4f4f42;
+  border: 1px solid rgba(126, 0, 0, 0.15);
+  margin-bottom: 10px;
 }
 
 /* end of dialogs */
@@ -252,181 +264,193 @@ button, input[type="submit"] {
 /* home page elements */
 
 .post-box {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .post-box-textarea {
-    width: 100%;
-    height: 70px;
+  width: 100%;
+  height: 70px;
 
-    padding: 5px;
+  padding: 5px;
 
-    resize: none;
-    font-family: "Segoe UI", Arial, sans-serif;
+  resize: none;
+  font-family: "Segoe UI", Arial, sans-serif;
 
-    border-radius: 6px;
-    border: 1px solid #cccccc;
+  border-radius: 6px;
+  border: 1px solid #cccccc;
 }
 
 .post-box-button {
-    background: linear-gradient(to bottom, #2874c5 0%, #0d57a7 100%);
-    border: 1px solid #2262a6;
-    padding: 5px;
-    color: white;
-    float: right;
-    min-width: 60px;
+  background: linear-gradient(to bottom, #2874c5 0%, #0d57a7 100%);
+  border: 1px solid #2262a6;
+  padding: 5px;
+  color: white;
+  float: right;
+  min-width: 60px;
 }
 
 .home-layout {
-    display: grid;
-    grid-template-areas: "info-box main-box";
-    grid-template-columns: 250px 500px;
-    gap: 10px;
+  display: grid;
+  grid-template-areas: "info-box main-box";
+  grid-template-columns: 30% 70%;
+  gap: 10px;
 }
 
 .info-box {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 
-    border: 2px ridge #eeeeee;
-    background: linear-gradient(to top,  #eeeeee 0%, #cccccc 50%);
+  border: 2px ridge #eeeeee;
+  background: linear-gradient(to top, #eeeeee 0%, #cccccc 50%);
+
+  max-height: 163px;
 }
 
 .user-info {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 
-    padding: 8px;
-    border-bottom: 2px ridge #eeeeee;
+  padding: 8px;
+  border-bottom: 2px ridge #eeeeee;
 
-    font-size: 12px;
-    background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 50%) !important;
+  font-size: 12px;
+  background: linear-gradient(to bottom, #eeeeee 0%, #cccccc 50%) !important;
 }
 
 .user-info-left > img {
-    margin-top: 2px;
-    border-radius: 4px;
+  margin-top: 2px;
+  border-radius: 4px;
 }
 
 .user-info-right {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .user-info-display-name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .info-box-tab {
-    padding: 5px;
+  padding: 5px;
 
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 
-    font-size: 14px;
+  font-size: 14px;
 
-    align-items: center;
-    border-bottom: 2px ridge #eeeeee;
-    background: linear-gradient(to bottom, #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%);
+  align-items: center;
+  border-bottom: 2px ridge #eeeeee;
+  background: linear-gradient(
+    to bottom,
+    #f2f6f8 0%,
+    #d8e1e7 50%,
+    #b5c6d0 51%,
+    #e0eff9 100%
+  );
 }
 
 .info-box-tab > span > a {
-    text-decoration: none;
-    color: #333;
+  text-decoration: none;
+  color: #333;
 }
 
 .posts {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
-    margin-top: 10px;
-    font-size: 12px;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 .post {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 
-    padding-top: 5px;
-    padding-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
-    margin-bottom: 10px;
-    border-bottom: 1px dotted #cccccc;
+  margin-bottom: 10px;
+  border-bottom: 1px dotted #cccccc;
 }
 
 .post-left > img {
-    border-radius: 4px;
+  border-radius: 4px;
 }
 
 .post-right {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .post-right-display-name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .post-right-bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
 .action-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .post-tabs {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 
-    border-bottom: 2px solid #ccc;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
-    justify-content: center;
+  justify-content: center;
 }
 
-.all-tab, .friends-tab, .trending-tab {
-    padding-left: 20px;
-    padding-right: 20px;
+.all-tab,
+.friends-tab,
+.trending-tab {
+  padding-left: 20px;
+  padding-right: 20px;
 
-    font-size: 14px;
+  font-size: 14px;
 
-    border-left: 2px solid #ccc;
-    border-right: 2px solid #ccc;
-    border-top: 2px solid #ccc;
+  border-left: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  border-top: 2px solid #ccc;
 
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 
-    color: #333;
-    background: #eeeeee;
+  color: #333;
+  background: #eeeeee;
 }
 
-.all-tab > a, .friends-tab > a, .trending-tab > a {
-    text-decoration: none;
+.all-tab > a,
+.friends-tab > a,
+.trending-tab > a {
+  text-decoration: none;
 }
 
 .active-tab {
-    background: #ffffff;
+  background: #ffffff;
 }
 
 /* end of home page elements */
