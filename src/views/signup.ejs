@@ -1,0 +1,40 @@
+<%- include("templates/base.ejs") %>
+<div id="content">
+    <div class="box-container">
+        <h1>Sign up</h1>
+        <% if (process.env.NODE_ENV != "production") { %>
+            <div class="info-dialog">
+                <span>hey, this is a development server! user data may be removed at any time</span>
+            </div>
+        <% } %>    
+        <% if (process.env.ENABLE_SIGNUPS == "true") { %>
+        <% if (error) { %>
+        <div class="error-dialog">
+            <span><%= error %></span>
+        </div>
+        <% } %>
+        <form class="auth-form" method="post" action="/signup">
+            <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+
+            <label for="name">Username <span style="color: green;">@your-username-here</span></label>
+            <input type="text" name="username" class="form-input" required />
+
+            <label for="email">E-mail</label>
+            <input type="email" name="email" class="form-input" required />
+            
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-input" required>    
+            
+            <label for="password">Confirm Password</label>
+            <input type="password" name="confirmPassword" class="form-input" required>
+            
+            <input type="submit" value="Sign up!">                    
+        </form>
+        <% } else { %> 
+        <p>seems like someone at the Eurocrem factory shut down signing up, sorry.</p>    
+        <% } %>
+    </div>
+</div>
+<%- include("templates/footer.ejs") %>
+</body>
+</html>

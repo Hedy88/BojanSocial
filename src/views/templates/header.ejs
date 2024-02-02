@@ -1,0 +1,31 @@
+<div class="nav-bar">
+    <div class="box-container">
+        <a href="/" class="nav-bar-button">
+            <img src="/img/icons/home.png" width="16" height="16">
+            home
+        </a>
+        <% if (!isLoggedIn) { %>
+            <a href="/login" class="nav-bar-button">
+                <img src="/img/icons/key.png" width="16" height="16">
+                login
+            </a>
+            <a href="/signup" class="nav-bar-button">
+                <img src="/img/icons/key-plus.png" width="16" height="16">
+                sign up
+            </a>
+        <% } else { %>
+            <a href="/@<%= currentUser.username %>" class="nav-bar-button">
+                <img src="/img/icons/user.png" width="16" height="16">
+                hi <%= currentUser.displayName %>!
+            </a>
+            <a href="/stocks" class="nav-bar-button">
+                <img src="/img/icons/store-market-stall.png" width="16" height="16">
+                stock market
+            </a>
+        <% } %>
+        <a href="/users" class="nav-bar-button">
+            <img src="/img/icons/users.png" width="16" height="16">
+            users
+        </a>
+    </div>
+</div>

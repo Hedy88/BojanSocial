@@ -1,0 +1,92 @@
+<%- include("templates/base.ejs") %>
+<div id="content">
+    <div class="box-container">
+        <% if (process.env.NODE_ENV != "production") { %>
+            <div class="info-dialog">
+                <span>hey, this is a development server! user data may be removed at any time</span>
+            </div>
+        <% } %>
+        <div class="home-layout">
+            <div class="info-box">
+                <div class="user-info">
+                    <div class="user-info-left">
+                        <img src="/pfp/default.png" width="32" height="32">
+                    </div>
+                    <div class="user-info-right">
+                        <span class="user-info-display-name"><%= currentUser.displayName %></span>
+                        <span class="user-info-username">@<%= currentUser.username %></span>
+                    </div>
+                </div>
+                <div class="info-box-tab">
+                    <img src="/img/icons/gear.png" width="16" height="16">
+                    <span><a href="/settings">Settings</a></span>
+                </div> 
+                <div class="info-box-tab">
+                    <img src="/img/icons/building.png" width="16" height="16">
+                    <span><a href="/stocks/companylistings">Company Listings</a></span>
+                </div>
+                <div class="info-box-tab">
+                    <img src="/img/icons/door-open-out.png" width="16" height="16">
+                    <span><a href="/logout">Logout</a></span>
+                </div>
+            </div>
+            <div class="main-box">
+                <h1>hi, <%= currentUser.displayName %>!</h1>
+                <form class="post-box" method="post" action="/actions/post">
+                    <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+
+                    <textarea class="post-box-textarea" name="content" placeholder="what are you doing today?"></textarea>
+                    <input type="submit" class="post-box-button" value="Post!"> 
+                </form>
+                <div class="post-tabs">
+                    <div class="all-tab active-tab">
+                        <a href="/home#all-posts">All</a>
+                    </div>
+                    <div class="friends-tab">
+                        <a href="/home#friends-posts">Friends</a>
+                    </div>
+                    <div class="trending-tab">
+                        <a href="/home#trending-posts">Trending</a>
+                    </div>
+                </div>
+                <div class="posts">    
+                <% if (posts.length == 0) { %>
+                    <span>it's lonely here. maybe be the first one to post?</span>
+                <% } %>
+                    <div class="post">
+                        <div class="post-left">
+                            <img src="/pfp/default.png" width="40" height="40">
+                        </div>
+                        <div class="post-right">
+                            <span class="post-right-display-name">rgb</span>
+                            <span class="post-right-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas vel quia autem, sint voluptas incidunt inventore, eaque assumenda amet consequuntur recusandae maiores ea. Praesentium rerum odit cupiditate, dolor et ipsum!</span>
+                            <span class="post-right-bottom">
+                                <div class="post-right-bottom-left">
+                                    sent <i>2 minutes ago</i> from web</span>
+                                </div>
+                                <div class="post-right-bottom-right">
+                                    <div class="action-buttons">
+                                        <div class="button-like">
+                                            <a href="/actions/posts/like?postId=1">
+                                                <img src="/img/icons/thumb-up.png" alt="Like" width="16" height="16">
+                                                <span>Like</span>
+                                            </a>
+                                        </div>
+                                        <div class="button-dislike">
+                                            <a href="/actions/posts/dislike?postId=1">
+                                                <img src="/img/icons/thumb.png" alt="Like" width="16" height="16">
+                                                <span>Dislike</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("templates/footer.ejs") %>
+</body>
+</html>

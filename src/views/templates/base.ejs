@@ -1,0 +1,29 @@
+<!--
+    bojan social
+    made by RGB and others :)
+-->
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8" />
+    <title>Bojan Social</title>
+    <meta name="description" content="the place where balkaners thrive." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:title" content="bojan social" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="bojan social" />
+    <meta property="og:image" content="" />
+
+    <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<% if(currentUser && currentUser.admin) { %>
+<div id="admin-box">
+    <h3>The admin box</h3>
+    <span>CPU Usage: work in progress</span>
+    <span>Users: work in progress</span>
+    <span>Node Version: work in progress</span>
+</div>
+<% } %> 
+<%- include("header.ejs") %>
