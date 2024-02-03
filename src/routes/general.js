@@ -84,4 +84,14 @@ router.get("/about", ...middleware.any, async (req, res, next) => {
     }
 });
 
+router.get("/tos", ...middleware.any, async (req, res, next) => {
+    try {
+        res.render("termsOfService", {
+            csrfToken: req.csrfToken(),
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
 export default router;
