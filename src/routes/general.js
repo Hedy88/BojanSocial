@@ -2,7 +2,6 @@ import express from "express";
 import * as middleware from "../utils/middleware.js";
 import { User } from "../models/user.js";
 import { Post } from "../models/post.js";
-import { logger } from "../utils/logger.js";
 
 const router = express.Router();
 
@@ -27,7 +26,7 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
 
         if (typeof req.query.postError != "undefined") {
             postErrorMessage = req.query.postError;
-        };
+        }
 
         const posts = await Post.find()
             .sort({ createdOn: -1 })
@@ -49,7 +48,7 @@ router.get("/linkProtection", ...middleware.any, async (req, res, next) => {
     try { 
         if (typeof req.query.link == "undefined") {
             res.redirect("/");
-        };
+        }
         
         res.render("linkProtection", {
             csrfToken: req.csrfToken(),

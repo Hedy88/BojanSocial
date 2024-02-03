@@ -2,6 +2,11 @@
 <div id="content">
     <div class="box-container">
         <h1>Settings</h1>
+        <% if (errorMessage != null) { %> 
+        <div class="dialog error-dialog">
+            <span><%= postErrorMessage %></span>
+        </div>
+        <% } %>
         <div class="settings-layout">
             <div class="settings-left">
                 <div class="settings-area">

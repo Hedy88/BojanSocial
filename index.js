@@ -66,18 +66,18 @@ app.use(async (req, res, next) => {
         req.currentUser = await User.findOne({
             _id: req.session.userObjectID
         });
-    } 
+    }
 
     res.locals.req = req;
     res.locals.res = res;
     res.locals.isLoggedIn = req.session.isLoggedIn;
-    
+
     if (req.session.isLoggedIn) {
         res.locals.currentUser = req.currentUser;
     } else {
         res.locals.currentUser = null;
     }
-    
+
     next();
 });
 
@@ -89,6 +89,16 @@ app.use(miscRoutes);
 app.get("*", (req, res) => {
     res.status(404);
     res.render("404");
+});
+
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+    if(err) {
+        logger.error(err);
+        res.status(500);
+
+        res.render("error");
+    }
 });
 
 app.listen(PORT, (err) => {

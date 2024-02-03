@@ -518,6 +518,14 @@ input[type="email"] {
   gap: 5px;
 }
 
+.setting-name {
+  margin-bottom: 5px;
+}
+
+.setting-name:not(:first-child) {
+  margin-top: 5px;
+}
+
 .setting-description {
   font-style: italic;  
   font-size: 12px;
