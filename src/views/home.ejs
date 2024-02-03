@@ -20,7 +20,7 @@
                 <div class="info-box-tab">
                     <img src="/img/icons/gear.png" alt="" width="16" height="16">
                     <span><a href="/settings">Settings</a></span>
-                </div> 
+                </div>
                 <div class="info-box-tab">
                     <img src="/img/icons/building.png" alt="" width="16" height="16">
                     <span><a href="/stocks/companylistings">Company Listings</a></span>
@@ -36,9 +36,9 @@
                     <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
 
                     <textarea class="post-box-textarea" name="content" placeholder="what are you doing today?"></textarea>
-                    <input type="submit" class="post-box-button" value="Post!"> 
+                    <input type="submit" class="post-box-button" value="Post!">
                 </form>
-                <% if (postErrorMessage != null) { %> 
+                <% if (postErrorMessage != null) { %>
                 <div class="dialog error-dialog">
                     <span><%= postErrorMessage %></span>
                 </div>
@@ -53,8 +53,8 @@
                     <div class="tab trending-tab">
                         <a href="/home#trending-posts">Trending</a>
                     </div>
-                </div>    
-                <div class="posts">    
+                </div>
+                <div class="posts">
                 <% if (posts.length == 0) { %>
                     <span>it's lonely here. maybe be the first one to post?</span>
                 <% } %>
@@ -64,7 +64,7 @@
                             <img src="/pfp/default.png" alt="Avatar" width="40" height="40">
                         </div>
                         <div class="post-right">
-                            <span class="post-right-display-name"><%= post.author.displayName %></span>
+                            <span class="post-right-display-name"><%= post.author.displayName %> <span class="post-right-username">@<%= post.author.username %></span></span>
                             <span class="post-right-content"><%- md.render(post.content) %></span>
                             <div class="post-right-bottom">
                                 <div class="post-right-bottom-left">

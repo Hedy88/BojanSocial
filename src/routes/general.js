@@ -1,12 +1,12 @@
 import express from "express";
 import * as middleware from "../utils/middleware.js";
-import { User } from "../models/user.js";
+import { User, getUserByUsername } from "../models/user.js";
 import { Post } from "../models/post.js";
 
 const router = express.Router();
 
 router.get("/", ...middleware.out, async (req, res, next) => {
-    try {    
+    try {
         const users = await User.find()
             .sort({ createdOn: 1 })
             .limit(5);
@@ -21,7 +21,7 @@ router.get("/", ...middleware.out, async (req, res, next) => {
 });
 
 router.get("/home", ...middleware.user, async (req, res, next) => {
-    try {    
+    try {
         let postErrorMessage;
 
         if (typeof req.query.postError != "undefined") {
@@ -44,12 +44,27 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
     }
 });
 
+router.get("/@:username/css", ...middleware.any, async (req, res, next) => {
+    try {
+        const user = await getUserByUsername(req.params.username);
+
+        if (user) {
+            res.set('Content-Type', 'text/css');
+            res.end(user.profile.css);
+        } else {
+            res.redirect("/");
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get("/linkProtection", ...middleware.any, async (req, res, next) => {
-    try { 
+    try {
         if (typeof req.query.link == "undefined") {
             res.redirect("/");
         }
-        
+
         res.render("linkProtection", {
             csrfToken: req.csrfToken(),
             link: req.query.link
@@ -60,7 +75,7 @@ router.get("/linkProtection", ...middleware.any, async (req, res, next) => {
 });
 
 router.get("/about", ...middleware.any, async (req, res, next) => {
-    try {    
+    try {
         res.render("about", {
             csrfToken: req.csrfToken(),
         });

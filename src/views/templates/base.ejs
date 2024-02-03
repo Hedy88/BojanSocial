@@ -16,7 +16,11 @@
     <meta property="og:image" content="" />
 
     <link rel="stylesheet" href="/styles.css" />
-</head>
+
+    <% if (isLoggedIn && typeof req.query.disableCustomCSS != "undefined") { %>
+    <style><%= currentUser.profile.css %></style>
+    <% } %>
+  </head>
 <body>
 <% if(currentUser && currentUser.admin) { %>
 <div id="admin-box">
@@ -25,5 +29,5 @@
     <span>Users: work in progress</span>
     <span>Node Version: work in progress</span>
 </div>
-<% } %> 
+<% } %>
 <%- include("header.ejs") %>

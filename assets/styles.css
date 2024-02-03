@@ -76,7 +76,7 @@ input[type="submit"] {
   text-shadow: 1px 3px 4px rgba(0,0,0,0.33);
 
   background: linear-gradient(#007dc1, #0061a7);
-  
+
   padding: 5px;
 }
 
@@ -414,6 +414,10 @@ input[type="email"] {
   gap: 0px;
 }
 
+.post-right-username {
+  font-weight: normal;
+}
+
 .post-right-display-name {
   font-weight: bold;
 }
@@ -527,7 +531,7 @@ input[type="email"] {
 }
 
 .setting-description {
-  font-style: italic;  
+  font-style: italic;
   font-size: 12px;
 }
 

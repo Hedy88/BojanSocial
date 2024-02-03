@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
     minLength: 3,
-    maxLength: 20,
+    maxLength: 60,
   },
 
   email: {
@@ -45,10 +45,12 @@ const UserSchema = new mongoose.Schema({
   lastLogin: { type: Date, default: 0 },
 
   profile: {
+    css: { type: String, trim: true, default: "" },
     bio: {
       type: String,
       trim: true,
       default: "I'm too lazy to change the default bio!",
+      maxLength: 255
     },
   },
 
@@ -60,7 +62,7 @@ const UserSchema = new mongoose.Schema({
 
 export const User = mongoose.model("User", UserSchema);
 
-export const getUserByEmail = async (email, populate = []) => {
+export const getUserByEmail = async (email) => {
   if (typeof email != "string") return null;
 
   email = email.trim().replace(/\.$/g, "");

@@ -2,9 +2,9 @@
 <div id="content">
     <div class="box-container">
         <h1>Settings</h1>
-        <% if (errorMessage != null) { %> 
+        <% if (errorMessage != null) { %>
         <div class="dialog error-dialog">
-            <span><%= postErrorMessage %></span>
+            <span><%= errorMessage %></span>
         </div>
         <% } %>
         <div class="settings-layout">
@@ -19,7 +19,7 @@
                     <form action="/actions/settings/changeDisplayName" method="post" class="settings-form">
                         <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
 
-                        <input type="text" name="displayName" class="form-input" required>
+                        <input type="text" name="displayName" value="<%= currentUser.displayName %>"  class="form-input">
                         <input type="submit" value="Change">
                     </form>
                     <span class="setting-description">This will be shown instead of your username on posts, your profile and other places.</span>
@@ -28,9 +28,9 @@
                     <h3 class="setting-name">Bio</h3>
                     <form action="/actions/settings/changeBio" method="post" class="settings-form">
                         <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
-                            
-                        <textarea class="post-box-textarea" name="content" placeholder="the bio"></textarea>
-                        <input type="submit" class="post-box-button" value="Update">         
+
+                        <textarea class="code-box" name="content" placeholder="bio"><%= currentUser.profile.bio %></textarea>
+                        <input type="submit" class="post-box-button" value="Update">
                     </form>
                     <span class="setting-description">Tell everyone more about you! (Markdown is enabled.)</span>
                 </div>
@@ -38,9 +38,9 @@
                     <h3 class="setting-name">Custom CSS</h3>
                     <form action="/actions/settings/changeCSS" method="post" class="settings-form">
                         <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
-                    
-                        <textarea class="code-box" name="content" placeholder="PLACEHOLDER WILL BE REPLACED WITH CODEMIRROR BOX"></textarea>
-                        <input type="submit" class="post-box-button" value="Update">    
+
+                        <textarea class="code-box" name="content" placeholder="PLACEHOLDER WILL BE REPLACED WITH CODEMIRROR BOX"><%= currentUser.profile.css %></textarea>
+                        <input type="submit" class="post-box-button" value="Update">
                     </form>
                     <span class="setting-description">Change your Bojan Social experience with custom CSS (<a href="https://developer.mozilla.org/en-US/">MDN</a> is a great reasource to learn basic CSS)</span>
                 </div>
@@ -55,7 +55,7 @@
                         <input type="submit" value="Update">
                     </form>
                     <span class="setting-description">Supported file formats are .png, .jpg and .gif</span>
-                </div> 
+                </div>
                 <div class="settings-area">
                     <h3 class="setting-name">Banner</h3>
                     <form action="/actions/settings/changeBanner" method="post" class="settings-form" enctype="multipart/form-data">
@@ -65,7 +65,7 @@
                         <input type="submit" value="Update">
                     </form>
                     <span class="setting-description">Supported file formats are also .png, .jpg and .gif</span>
-                </div> 
+                </div>
                 <div class="settings-area">
                     <h3 class="setting-name">Song upload</h3>
                     <form action="/actions/settings/changeSong" method="post" class="settings-form" enctype="multipart/form-data">
@@ -75,7 +75,7 @@
                         <input type="submit" value="Update">
                     </form>
                     <span class="setting-description">Supported audio formats are .mp4, .flac and .opus</span>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
