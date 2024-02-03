@@ -38,6 +38,11 @@
                     <textarea class="post-box-textarea" name="content" placeholder="what are you doing today?"></textarea>
                     <input type="submit" class="post-box-button" value="Post!"> 
                 </form>
+                <% if (postErrorMessage != null) { %> 
+                <div class="dialog error-dialog">
+                    <span><%= postErrorMessage %></span>
+                </div>
+                <% } %>
                 <div class="post-tabs">
                     <div class="tab all-tab active-tab">
                         <a href="/home#all-posts">All</a>
@@ -53,35 +58,22 @@
                 <% if (posts.length == 0) { %>
                     <span>it's lonely here. maybe be the first one to post?</span>
                 <% } %>
+                <% for (const post of posts) { %>
                     <div class="post">
                         <div class="post-left">
                             <img src="/pfp/default.png" alt="Avatar" width="40" height="40">
                         </div>
                         <div class="post-right">
-                            <span class="post-right-display-name">rgb</span>
-                            <span class="post-right-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas vel quia autem, sint voluptas incidunt inventore, eaque assumenda amet consequuntur recusandae maiores ea. Praesentium rerum odit cupiditate, dolor et ipsum!</span>
-                            <span class="post-right-bottom">
+                            <span class="post-right-display-name"><%= post.author.displayName %></span>
+                            <span class="post-right-content"><%- md.render(post.content) %></span>
+                            <div class="post-right-bottom">
                                 <div class="post-right-bottom-left">
-                                    sent <i>2 minutes ago</i> from web</span>
+                                    sent <i><%- formatDistanceToNow(post.createdOn, { includeSeconds: true }) %> ago</i> from web</span>
                                 </div>
-                                <div class="post-right-bottom-right">
-                                    <div class="action-buttons">
-                                        <div class="button-like">
-                                            <a href="/actions/posts/like?postId=1">
-                                                <img src="/img/icons/thumb-up.png" alt="" width="16" height="16">
-                                                <span>Like</span>
-                                            </a>
-                                        </div>
-                                        <div class="button-dislike">
-                                            <a href="/actions/posts/dislike?postId=1">
-                                                <img src="/img/icons/thumb.png" alt="" width="16" height="16">
-                                                <span>Dislike</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                     </div>
+                <% } %>
                 </div>
             </div>
         </div>

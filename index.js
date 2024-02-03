@@ -1,5 +1,9 @@
 import "dotenv/config";
-import mongoose from "mongoose";
+import mongoose from "mongoose"
+;
+import md from "markdown-it";
+import mdReplaceLink from "markdown-it-replace-link";
+import { full as mdEmoji } from "markdown-it-emoji";
 
 import express from "express";
 import expressSession from "express-session";
@@ -7,6 +11,7 @@ import expressSessionStore from "connect-mongo";
 import expressCookie from "cookie-parser";
 import expressCompression from "compression";
 
+import { formatDistanceToNow } from "date-fns";
 
 import { User } from "./src/models/user.js";
 import { logger } from "./src/utils/logger.js";
@@ -14,6 +19,8 @@ import { logger } from "./src/utils/logger.js";
 import generalRoutes from "./src/routes/general.js";
 import authRoutes from "./src/routes/auth.js";
 import actionsRoutes from "./src/routes/actions.js";
+import miscRoutes from "./src/routes/misc.js";
+
 const PORT = process.env.PORT || 3000;
 
 logger.info("connecting to MongoDB..");
@@ -40,6 +47,18 @@ app.use(express.urlencoded({
 app.use(expressCompression());
 app.use(express.static("assets"));
 
+app.locals.formatDistanceToNow = formatDistanceToNow;
+app.locals.md = md({
+    html: false,
+    breaks: false,
+    linkify: true,
+    typographer: false,
+    replaceLink: (link) => {
+        return `http://localhost:${PORT}/linkProtection?link=${link}`;
+    },
+}).use(mdReplaceLink)
+  .use(mdEmoji);
+
 app.use(async (req, res, next) => {
     res.setHeader("X-Powered-By", "GaySexEnterpriseWebFramework");
 
@@ -65,6 +84,7 @@ app.use(async (req, res, next) => {
 app.use(generalRoutes);
 app.use(authRoutes);
 app.use(actionsRoutes);
+app.use(miscRoutes);
 
 app.get("*", (req, res) => {
     res.status(404);

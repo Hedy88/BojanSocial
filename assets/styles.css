@@ -80,6 +80,17 @@ input[type="submit"] {
   padding: 5px;
 }
 
+pre {
+  padding: 5px;
+  background: #fff;
+  border: 2px ridge #ccc;
+  box-shadow: inset 0px 1px 0px 0px, rgba(0, 0, 0, 0.75);
+}
+
+code {
+  font-family: "MS PGothic", "MS Gothic", monospace;
+}
+
 /* util classes end */
 
 /* general layout */
@@ -415,6 +426,10 @@ input[type="email"] {
   margin-top: 5px;
 }
 
+.post-right-content {
+  line-height: 1.8;
+}
+
 .action-buttons {
   display: flex;
   flex-direction: row;
@@ -474,3 +489,56 @@ input[type="email"] {
 }
 
 /* end of about page elements */
+
+/* account settings page */
+
+.settings-layout {
+  display: grid;
+  grid-template-columns: 60% calc(40% - 10px);
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.settings-left {
+  padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.settings-right {
+  padding: 5px;
+}
+
+.settings-area {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.setting-description {
+  font-style: italic;  
+  font-size: 12px;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.code-box {
+  width: 100%;
+  height: 120px;
+
+  padding: 5px;
+
+  resize: none;
+  font-family: "MS PGothic", "MS Gothic", monospace;
+
+  border: 2px ridge #cccccc;
+}
+
+/* end of account setting page elements */

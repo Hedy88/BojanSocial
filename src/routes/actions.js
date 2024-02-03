@@ -10,34 +10,31 @@ const router = express.Router();
     error 2 = "you can't just post nothing!"
 */
 router.post("/actions/post", ...middleware.user, async (req, res, next) => {
-    try {    
-        let { content } = req.body;
-        content = content.trim();
+  try {
+    let { content } = req.body;
+    content = content.trim();
 
-        if (content.length > 255) {
-            res.redirect("/home?actionsPostError=1");
-        } 
-
-        if (content.length <= 0) {
-            res.redirect("/home?actionsPostError=2");
-        }
-
-        const post = new Post({
-            _id: new mongoose.Types.ObjectId(),
+    try {
+      const post = new Post({
+        _id: new mongoose.Types.ObjectId(),
+        author: req.currentUser._id,
+        content,
+        reactions: [
+          {
             author: req.currentUser._id,
-            content,
-            reactions: [{
-                author: req.currentUser._id,
-                reactionType: "like",
-            }]
-        });
+            reactionType: "like",
+          },
+        ],
+      });
 
-        await post.save();
-
-        res.redirect("/home");
+      await post.save();
+      res.redirect("/home");
     } catch (error) {
-        next(error);
+        res.redirect(`/home?postError=${Object.values(error.errors)[0].properties.message}`);
     }
+  } catch (error) {
+    next(error);
+  }
 });
 
 export default router;
