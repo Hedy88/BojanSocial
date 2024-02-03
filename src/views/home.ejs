@@ -2,7 +2,7 @@
 <div id="content">
     <div class="box-container">
         <% if (process.env.NODE_ENV != "production") { %>
-            <div class="info-dialog">
+            <div class="dialog warning-dialog">
                 <span>hey, this is a development server! user data may be removed at any time</span>
             </div>
         <% } %>
@@ -39,16 +39,16 @@
                     <input type="submit" class="post-box-button" value="Post!"> 
                 </form>
                 <div class="post-tabs">
-                    <div class="all-tab active-tab">
+                    <div class="tab all-tab active-tab">
                         <a href="/home#all-posts">All</a>
                     </div>
-                    <div class="friends-tab">
+                    <div class="tab friends-tab">
                         <a href="/home#friends-posts">Friends</a>
                     </div>
-                    <div class="trending-tab">
+                    <div class="tab trending-tab">
                         <a href="/home#trending-posts">Trending</a>
                     </div>
-                </div>
+                </div>    
                 <div class="posts">    
                 <% if (posts.length == 0) { %>
                     <span>it's lonely here. maybe be the first one to post?</span>

@@ -245,18 +245,27 @@ input[type="email"] {
 
 /* dialogs */
 
-.info-dialog {
-  padding: 5px;
-  background: #4fdaff42;
-  border: 1px solid rgb(0 126 125 / 15%);
+.dialog {
+  padding: 4px;
   margin-bottom: 10px;
+  text-align: center;
+  color: #000;
+  box-shadow: inset 0px 1px 0px 0px, rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+}
+
+.dialog:not(:first-child) {
+  margin-top: 10px;
+}
+
+.warning-dialog {
+  border: 1px solid #cccccc;
+  background: linear-gradient(to bottom, #fccd4d 50%,#f8b500 50%,#fbdf93 100%);
 }
 
 .error-dialog {
-  padding: 5px;
-  background: #ff4f4f42;
-  border: 1px solid rgba(126, 0, 0, 0.15);
-  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+  background: linear-gradient(to bottom, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%);
 }
 
 /* end of dialogs */
@@ -296,7 +305,7 @@ input[type="email"] {
 .home-layout {
   display: grid;
   grid-template-areas: "info-box main-box";
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 30% calc(70% - 10px);
   gap: 10px;
 }
 
@@ -415,42 +424,53 @@ input[type="email"] {
 .post-tabs {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 0px;
 
-  border-bottom: 2px solid #ccc;
   margin-top: 10px;
   margin-bottom: 10px;
 
   justify-content: center;
 }
 
-.all-tab,
-.friends-tab,
-.trending-tab {
-  padding-left: 20px;
-  padding-right: 20px;
+.tab {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+  padding-right: 30px;
 
-  font-size: 14px;
+  background: linear-gradient(to bottom #F6F6F6 25%, #DCDCDC 50%);
 
-  border-left: 2px solid #ccc;
-  border-right: 2px solid #ccc;
-  border-top: 2px solid #ccc;
-
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-
-  color: #333;
-  background: #eeeeee;
+  border: 1px solid #ccc;
 }
 
-.all-tab > a,
-.friends-tab > a,
-.trending-tab > a {
+.tab > a {
+  font-size: 14px;
   text-decoration: none;
+  color: #000;
+}
+
+.tab:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.tab:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .active-tab {
-  background: #ffffff;
+  background: linear-gradient(to bottom, #CCCFCC 25%, #D4D6D4 50%);
 }
 
 /* end of home page elements */
+
+/* about page elements */
+
+.about-description {
+  padding: 5px;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+/* end of about page elements */
