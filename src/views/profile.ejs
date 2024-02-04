@@ -59,6 +59,34 @@
           </div>
         </div>
       </div>
+      <div class="profile-layout">
+        <div class="profile-about window">
+          <div class="window-titlebar">
+            <span>Bio:</span>
+          </div>
+          <div class="window-content">
+            <% if (user.profile.bio.length == 0) { %>
+              <span>This user has nothing set as there bio.</span>
+            <% } else { %>
+              <span><%- md.render(user.profile.bio) %></span>
+            <% } %>
+          </div>
+        </div>
+        <div class="profile-song window">
+          <div class="window-titlebar">
+            <span>Song:</span>
+          </div>
+          <div class="window-content">
+            <span>placeholder</span>
+          </div>
+          <div class="window-footer">
+            <span><a href="#">Download Song</a></span>
+          </div>
+        </div>
+        <div class="window-posts">
+          <span>placeholder</span>
+        </div>
+      </div>
     </div>
 </div>
 <%- include("templates/footer.ejs") %>

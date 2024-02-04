@@ -211,6 +211,7 @@ code {
 
 .new-user-pfp {
   border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 .new-user {
@@ -298,8 +299,8 @@ input[type="email"] {
   flex-direction: column;
   gap: 0px;
 
-  border: 1px solid #1e5799;
-  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+  border: 1px solid #ccc;
+  box-shadow: 2px 1px 5px 0px rgba(168, 168, 168, 0.75);
 
   background: #fff;
   font-size: 14px;
@@ -307,11 +308,11 @@ input[type="email"] {
 
 .window-titlebar {
   padding: 3px;
-  background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#207cca 51%,#1e5799 100%);
-  border-bottom: 1px solid #1e5799;
+  background: linear-gradient(to bottom, #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+  border-bottom: 1px solid #ccc;
 
   font-weight: 501;
-  color: #fff;
+  color: #333;
 }
 
 .window-content {
@@ -320,7 +321,7 @@ input[type="email"] {
 
 .window-footer {
   padding: 4px;
-  border-top: 1px solid #1e5799;
+  border-top: 1px solid #ccc;
   text-align: center;
 }
 
@@ -706,6 +707,32 @@ input[type="email"] {
   gap: 2px;
 
   align-items: center;
+}
+
+.profile-layout {
+  margin-top: 10px;
+
+  display: grid;
+  grid-template-areas: "about about"
+                       "music posts";
+  grid-template-columns: 240px 500px;
+  gap: 10px;
+}
+
+.profile-about {
+  grid-area: about;
+}
+
+.profile-music {
+  grid-area: music;
+}
+
+.profile-posts {
+  grid-area: posts;
+}
+
+.profile-about > .window-content {
+  padding: 8px;
 }
 
 /* end of profile page elements */
