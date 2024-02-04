@@ -11,7 +11,7 @@ import expressSessionStore from "connect-mongo";
 import expressCookie from "cookie-parser";
 import expressCompression from "compression";
 
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, format } from "date-fns";
 
 import { User } from "./src/models/user.js";
 import { logger } from "./src/utils/logger.js";
@@ -53,6 +53,7 @@ app.use(expressCompression());
 app.use(express.static("assets"));
 
 app.locals.formatDistanceToNow = formatDistanceToNow;
+app.locals.format = format;
 app.locals.md = md({
     html: false,
     breaks: false,

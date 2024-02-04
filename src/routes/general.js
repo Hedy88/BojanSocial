@@ -89,7 +89,28 @@ router.get("/@:username/banner", ...middleware.any, async (req, res, next) => {
           res.sendFile(`${global.PROJECT_ROOT}/data/banners/default.png`)
         }
       } else {
+        res.redirect("/");
+      }
+  } catch (error) {
+      next(error);
+  }
+});
+
+router.get("/@:username", ...middleware.any, async (req, res, next) => {
+  try {
+      const user = await getUserByUsername(req.params.username);
+
+      if (user) {
+        if (user.isBanned) {
           res.redirect("/");
+        }
+
+        res.render("profile", {
+          csrfToken: req.csrfToken(),
+          user
+        });
+      } else {
+        res.redirect("/");
       }
   } catch (error) {
       next(error);

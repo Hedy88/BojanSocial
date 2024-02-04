@@ -1,0 +1,66 @@
+<%- include("templates/base.ejs") %>
+<div id="content">
+    <div class="box-container">
+      <div class="profile-banner-container">
+        <div class="profile-banner-image" style="background-image: url('/@<%= user.username %>/banner');"></div>
+        <div class="profile-banner-info">
+          <img src="/@<%= user.username %>/pfp" class="profile-banner-pfp"  alt="Avatar" width="128" height="128">
+          <div class="profile-banner-info-container">
+            <div class="profile-banner-info-top">
+              <span class="profile-banner-info-display-name"><%= user.displayName  %></span>
+              <% if (user.username == "rgb") { %>
+              <div class="profile-badge">
+                <img src="/img/icons/user-business-gray.png" alt="" width="16" height="16">
+                <span>Owner</span>
+              </div>
+              <% } %>
+
+              <% if (user.isAdmin) { %>
+              <div class="profile-badge">
+                <img src="/img/icons/user-black.png" alt="" width="16" height="16">
+                <span>Administrator</span>
+              </div>
+              <% } %>
+
+              <% if (isLoggedIn && currentUser.username == user.username) { %>
+              <span class="profile-button">
+                <a href="/settings">
+                  <img src="/img/icons/gear.png" alt="" width="16" height="16">
+                  Edit profile
+                </a>
+              </span>
+              <% } %>
+
+              <% if (isLoggedIn && currentUser.username != user.username) { %>
+              <span class="profile-button">
+                <a href="/report?user=<%= user.username %>">
+                  <img src="/img/icons/report.png" alt="" width="16" height="16">
+                  Report user
+                </a>
+              </span>
+              <% } else if (!isLoggedIn) { %>
+              <span class="profile-button">
+                <a href="#" onclick="alert('You must be signed in to report users.')">
+                  <img src="/img/icons/report.png" alt="" width="16" height="16">
+                  Report user
+                </a>
+              </span>
+              <% } %>
+            </div>
+            <div class="profile-banner-info-bottom">
+              <span class="profile-banner-info-username">@<%= user.username  %></span>
+              <span class="profile-banner-info-createdOn">joined on <%= format(user.createdOn, "MM/dd/yyyy") %></span>
+              <% if (user.lastLogin == 0) { %>
+              <span class="profile-banner-info-lastLogin">has never logged in</span>
+              <% } else { %>
+              <span class="profile-banner-info-lastLogin">last logged in on <%= format(user.lastLogin, "MM/dd/yyyy") %></span>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<%- include("templates/footer.ejs") %>
+</body>
+</html>
