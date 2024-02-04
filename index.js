@@ -21,7 +21,12 @@ import authRoutes from "./src/routes/auth.js";
 import actionsRoutes from "./src/routes/actions.js";
 import miscRoutes from "./src/routes/misc.js";
 
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 const PORT = process.env.PORT || 3000;
+
+global.PROJECT_ROOT = dirname(fileURLToPath(import.meta.url));
 
 logger.info("connecting to MongoDB..");
 await mongoose.connect(process.env.DB_URL, {});

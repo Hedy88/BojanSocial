@@ -17,8 +17,8 @@
 
     <link rel="stylesheet" href="/styles.css" />
 
-    <% if (isLoggedIn && typeof req.query.disableCustomCSS != "undefined") { %>
-    <style><%= currentUser.profile.css %></style>
+    <% if (isLoggedIn && req.query.disableCustomCSS != "true") { %>
+    <link rel="stylesheet" href="/@<%= currentUser.username  %>/css">
     <% } %>
   </head>
 <body>

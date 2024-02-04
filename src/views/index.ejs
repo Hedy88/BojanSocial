@@ -34,8 +34,7 @@
                   <% } %>
                   <% for (const user of users) { %>
                     <div class="new-user">
-                      <img src="/pfp/default.png" alt="Avatar" height="64" width="64" class="new-user-pfp">
-                      <!-- <img src="/@<%= user.username %>/pfp" alt="Avatar" height="89" class="user-pfp" alt="pfp"> -->
+                      <img src="/@<%= user.username %>/pfp" alt="Avatar" width="64" height="64" class="new-user-pfp">
                       <span class="new-user-display-name">
                           <a href="/@<%= user.username %>"><%= user.displayName %></a>
                       </span>
@@ -88,13 +87,10 @@
                 <div class="quote-content">"cant wait for the private beta release"</div>
                 <div class="quote-by">- cleber299</div>
               </div>
-
               <div class="quote">
                 <div class="quote-content">"it looks good"</div>
                 <div class="quote-by">- kylarz</div>
               </div>
-
-
               <div class="quote">
                 <div class="quote-content">"Epik"</div>
                 <div class="quote-by">- qzip</div>

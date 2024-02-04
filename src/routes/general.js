@@ -1,4 +1,5 @@
 import express from "express";
+import fs from "fs";
 import * as middleware from "../utils/middleware.js";
 import { User, getUserByUsername } from "../models/user.js";
 import { Post } from "../models/post.js";
@@ -57,6 +58,42 @@ router.get("/@:username/css", ...middleware.any, async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+});
+
+router.get("/@:username/pfp", ...middleware.any, async (req, res, next) => {
+  try {
+      const user = await getUserByUsername(req.params.username);
+
+      if (user) {
+        if (fs.existsSync(`${global.PROJECT_ROOT}/data/pfp/${user._id.toString()}.png`)) {
+          res.sendFile(`${global.PROJECT_ROOT}/data/pfp/${user._id.toString()}.png`);
+        } else {
+          res.sendFile(`${global.PROJECT_ROOT}/data/pfp/default.png`)
+        }
+      } else {
+          res.redirect("/");
+      }
+  } catch (error) {
+      next(error);
+  }
+});
+
+router.get("/@:username/banner", ...middleware.any, async (req, res, next) => {
+  try {
+      const user = await getUserByUsername(req.params.username);
+
+      if (user) {
+        if (fs.existsSync(`${global.PROJECT_ROOT}/data/banners/${user._id.toString()}.png`)) {
+          res.sendFile(`${global.PROJECT_ROOT}/data/banners/${user._id.toString()}.png`);
+        } else {
+          res.sendFile(`${global.PROJECT_ROOT}/data/banners/default.png`)
+        }
+      } else {
+          res.redirect("/");
+      }
+  } catch (error) {
+      next(error);
+  }
 });
 
 router.get("/linkProtection", ...middleware.any, async (req, res, next) => {

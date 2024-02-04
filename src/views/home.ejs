@@ -10,7 +10,7 @@
             <div class="info-box">
                 <div class="user-info">
                     <div class="user-info-left">
-                        <img src="/pfp/default.png" alt="Avatar" width="32" height="32">
+                        <img src="/@<%= currentUser.username %>/pfp" alt="Avatar" width="32" height="32">
                     </div>
                     <div class="user-info-right">
                         <span class="user-info-display-name"><%= currentUser.displayName %></span>
@@ -61,10 +61,12 @@
                 <% for (const post of posts) { %>
                     <div class="post">
                         <div class="post-left">
-                            <img src="/pfp/default.png" alt="Avatar" width="40" height="40">
+                            <img src="/@<%= post.author.username %>/pfp" alt="Avatar" width="40" height="40">
                         </div>
                         <div class="post-right">
+                          <a href="/@<%= post.author.username %>">
                             <span class="post-right-display-name"><%= post.author.displayName %> <span class="post-right-username">@<%= post.author.username %></span></span>
+                          </a>
                             <span class="post-right-content"><%- md.render(post.content) %></span>
                             <div class="post-right-bottom">
                                 <div class="post-right-bottom-left">
@@ -75,7 +77,6 @@
                     </div>
                 <% } %>
                 <span>
-                    <a href="/posts/all" class="float-left">more posts »</a>
                     <a href="/posts/all/rss" class="float-right">
                         <img src="/img/icons/feed.png" alt="RSS feed" width="16" height="16">
                     </a>

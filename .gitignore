@@ -1,5 +1,8 @@
 /.env
 /logs
 /node_modules
-/upload/*.*
+/upload/*
 /data/*/*.*
+
+!/data/*/default.png
+!/data/*/default.mp3

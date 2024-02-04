@@ -49,28 +49,22 @@
                 <div class="settings-area">
                     <h3 class="setting-name">Profile picture</h3>
                     <form action="/actions/settings/changeProfilePicture" method="post" class="settings-form" enctype="multipart/form-data">
-                        <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
-
                         <input type="file" name="profilePicture">
                         <input type="submit" value="Update">
                     </form>
-                    <span class="setting-description">Supported file formats are .png, .jpg and .gif</span>
+                    <span class="setting-description">Supported file formats are .png and .jpg</span>
                 </div>
                 <div class="settings-area">
                     <h3 class="setting-name">Banner</h3>
                     <form action="/actions/settings/changeBanner" method="post" class="settings-form" enctype="multipart/form-data">
-                        <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
-
                         <input type="file" name="bannerPicture">
                         <input type="submit" value="Update">
                     </form>
-                    <span class="setting-description">Supported file formats are also .png, .jpg and .gif</span>
+                    <span class="setting-description">Supported file formats are also .png and .jpg </span>
                 </div>
                 <div class="settings-area">
                     <h3 class="setting-name">Song upload</h3>
                     <form action="/actions/settings/changeSong" method="post" class="settings-form" enctype="multipart/form-data">
-                        <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
-
                         <input type="file" name="song">
                         <input type="submit" value="Update">
                     </form>

@@ -33,4 +33,5 @@ const loggedIn = (req, res, next) => {
 export const any = [csrfSynchronisedProtection];
 export const out = [csrfSynchronisedProtection, loggedOut];
 export const userNoBanCheck = [csrfSynchronisedProtection, loggedIn];
+export const userNoCSRF = [loggedIn, banCheck];
 export const user = [csrfSynchronisedProtection, loggedIn, banCheck];

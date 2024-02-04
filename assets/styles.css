@@ -459,6 +459,11 @@ input[type="email"] {
   gap: 0px;
 }
 
+.post-right > a {
+  color: #333;
+  text-decoration: none;
+}
+
 .post-right-username {
   font-weight: normal;
 }
