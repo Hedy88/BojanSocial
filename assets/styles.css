@@ -159,6 +159,12 @@ code {
   margin-top: 15px;
 }
 
+.second-area {
+  margin-top: 10px;
+  border-top: 1px solid #ccc;
+  padding: 5px;
+}
+
 .feature {
   display: flex;
   flex-direction: column;
