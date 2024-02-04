@@ -8,59 +8,60 @@
         <% } %>
         <div class="welcome">
             <img src="/img/BojanSocial.png" alt="Bojan Social" class="welcome-logo" width="350">
-            <span class="welcome-prompt">bojan social: the place where balkaners, baltic, kurdish and slavic people thrive. <a href="/signup">sign up now!</a></span>
+            <span class="welcome-prompt">bojan social: every bojan can thrive. <a href="/signup">sign up now!</a></span>
         </div>
-        <div class="new-users-box">
-            <div class="new-users-box-title">
-                <span>new users</span>
+        <div class="index-layout">
+          <div class="index-news-area">
+            <div class="window">
+              <div class="window-titlebar">
+                <span>news:</span>
+              </div>
+              <div class="window-content">
+                <span>News</span>
+              </div>
             </div>
-            <div class="new-users-box-content">
-                <% if (users.length == 0) { %>
-                    <span>huh? where did everyone go</span>
-                <% } %>
-                <% for (const user of users) { %>
-                    <div class="new-user">
-                        <img src="/@<%= user.username %>/pfp" alt="Avatar" height="89" class="user-pfp" alt="pfp">
-                        <span>
-                            <a href="/@<%= user.username %>"><%= user.displayName %></a>
-                        </span>
-                    </div>
-                <% } %>
+          </div>
+          <div class="index-site-about">
+            <div class="window">
+              <div class="window-titlebar">
+                <span>new users:</span>
+              </div>
+              <div class="window-content">
+                <span>users</span>
+              </div>
             </div>
-            <div class="new-users-box-extra-content">
-                <span class="float-right"><a href="/users">more users »</a></span>
-            </div>
+          </div>
         </div>
-        <div class="second-area">
+        <div class="index-misc-area">
             <h3>but why Bojan Social?</h3>
-        <div class="features">
-            <div class="feature">
+            <div class="features">
+              <div class="feature">
                 <img src="/img/features-icons/person.png" alt="Person" width="64" height="64">
                 <span class="feature-title">meet new people!</span>
                 <span class="feature-description">
                     bojan social allows people to meet and talk to each other!
                 </span>
+              </div>
+            <div class="feature">
+              <img src="/img/features-icons/brick.png" alt="Brick" width="64" height="64">
+              <span class="feature-title">customize your profile!</span>
+              <span class="feature-description">
+                your profile is yours! use CSS and Markdown to customize it to your liking.
+              </span>
             </div>
             <div class="feature">
-                <img src="/img/features-icons/brick.png" alt="Brick" width="64" height="64">
-                <span class="feature-title">customize your profile!</span>
-                <span class="feature-description">
-                    your profile is yours! use CSS and Markdown to customize it to your liking.
-                </span>
+              <img src="/img/features-icons/music.png" alt="Music" width="64" height="64">
+              <span class="feature-title">share your favourite music!</span>
+              <span class="feature-description">
+                  bojan social allows you to upload your favourite song to your profile, just like old MySpace!
+              </span>
             </div>
             <div class="feature">
-                <img src="/img/features-icons/music.png" alt="Music" width="64" height="64">
-                <span class="feature-title">share your favourite music!</span>
-                <span class="feature-description">
-                    bojan social allows you to upload your favourite song to your profile, just like old MySpace!
-                </span>
-            </div>
-            <div class="feature">
-                <img src="/img/features-icons/rss.png" alt="RSS" width="64" height="64">
-                <span class="feature-title">RSS / Atom support for Posts</span>
-                <span class="feature-description">
-                    don't worry old man, RSS and Atom feeds for posts are a thing so your PDA can be updated with the latest degenarate post.
-                </span>
+              <img src="/img/features-icons/rss.png" alt="RSS" width="64" height="64">
+              <span class="feature-title">RSS / Atom support for Posts</span>
+              <span class="feature-description">
+                  don't worry old man, RSS and Atom feeds for posts are a thing so your PDA can be updated with the latest degenarate post.
+              </span>
             </div>
         </div>
     </div>
