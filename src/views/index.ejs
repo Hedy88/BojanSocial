@@ -14,10 +14,11 @@
           <div class="index-news-area">
             <div class="window">
               <div class="window-titlebar">
-                <span>news:</span>
+                <span>Updates: Index page redesign!</span>
+                <span class="float-right">Feburary 4, 2024</span>
               </div>
               <div class="window-content">
-                <span>News</span>
+                <span>no more shitty boxes. <i>- rgb</i></span>
               </div>
             </div>
           </div>
@@ -27,7 +28,24 @@
                 <span>new users:</span>
               </div>
               <div class="window-content">
-                <span>users</span>
+                <div class="new-users-layout">
+                  <% if (users.length == 0 ) { %>
+                    <span>hey! there's no one here. why not <a href="/signup">signup</a> and be the first?</span>
+                  <% } %>
+                  <% for (const user of users) { %>
+                    <div class="new-user">
+                      <img src="/pfp/default.png" alt="Avatar" height="64" width="64" class="new-user-pfp">
+                      <!-- <img src="/@<%= user.username %>/pfp" alt="Avatar" height="89" class="user-pfp" alt="pfp"> -->
+                      <span class="new-user-display-name">
+                          <a href="/@<%= user.username %>"><%= user.displayName %></a>
+                      </span>
+                      <span>@<%= user.username %></span>
+                    </div>
+                  <% } %>
+                </div>
+              </div>
+              <div class="window-footer">
+                <span><a href="/users">more users »</a></span>
               </div>
             </div>
           </div>
@@ -42,28 +60,47 @@
                     bojan social allows people to meet and talk to each other!
                 </span>
               </div>
-            <div class="feature">
-              <img src="/img/features-icons/brick.png" alt="Brick" width="64" height="64">
-              <span class="feature-title">customize your profile!</span>
-              <span class="feature-description">
-                your profile is yours! use CSS and Markdown to customize it to your liking.
-              </span>
-            </div>
-            <div class="feature">
-              <img src="/img/features-icons/music.png" alt="Music" width="64" height="64">
-              <span class="feature-title">share your favourite music!</span>
-              <span class="feature-description">
+              <div class="feature">
+                <img src="/img/features-icons/brick.png" alt="Brick" width="64" height="64">
+                <span class="feature-title">customize your profile!</span>
+                <span class="feature-description">
+                  your profile is yours! use CSS and Markdown to customize it to your liking.
+                </span>
+              </div>
+              <div class="feature">
+                <img src="/img/features-icons/music.png" alt="Music" width="64" height="64">
+                <span class="feature-title">share your favourite music!</span>
+                <span class="feature-description">
                   bojan social allows you to upload your favourite song to your profile, just like old MySpace!
-              </span>
-            </div>
-            <div class="feature">
-              <img src="/img/features-icons/rss.png" alt="RSS" width="64" height="64">
-              <span class="feature-title">RSS / Atom support for Posts</span>
-              <span class="feature-description">
+                </span>
+              </div>
+              <div class="feature">
+                <img src="/img/features-icons/rss.png" alt="RSS" width="64" height="64">
+                <span class="feature-title">RSS / Atom support for Posts</span>
+                <span class="feature-description">
                   don't worry old man, RSS and Atom feeds for posts are a thing so your PDA can be updated with the latest degenarate post.
-              </span>
+                </span>
+              </div>
             </div>
-        </div>
+            <h3>and it's not just us..</h3>
+            <div class="quotes">
+              <div class="quote">
+                <div class="quote-content">"cant wait for the private beta release"</div>
+                <div class="quote-by">- cleber299</div>
+              </div>
+
+              <div class="quote">
+                <div class="quote-content">"it looks good"</div>
+                <div class="quote-by">- kylarz</div>
+              </div>
+
+
+              <div class="quote">
+                <div class="quote-content">"Epik"</div>
+                <div class="quote-by">- qzip</div>
+              </div>
+            </div>
+          </div>
     </div>
 </div>
 <%- include("templates/footer.ejs") %>

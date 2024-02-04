@@ -9,7 +9,7 @@ router.get("/", ...middleware.out, async (req, res, next) => {
     try {
         const users = await User.find()
             .sort({ createdOn: 1 })
-            .limit(5);
+            .limit(4);
 
         res.render("index", {
             csrfToken: req.csrfToken(),

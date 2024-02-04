@@ -174,7 +174,7 @@ code {
 .index-layout {
   display: grid;
   gap: 10px;
-  grid-template-columns: 250px 500px;
+  grid-template-columns: 320px 420px;
 
   margin-top: 10px;
   margin-bottom: 10px;
@@ -194,7 +194,49 @@ code {
 
 .index-misc-area {
   border-top: 1px solid #ccc;
+  margin-top: 5px;
   padding: 10px;
+}
+
+.new-users-layout {
+  display: grid;
+  grid-template-columns: 80px 80px 80px 80px;
+  gap: 10px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+  margin-top: 5px;
+}
+
+.new-user-pfp {
+  border-radius: 6px;
+}
+
+.new-user {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+
+  align-items: center;
+}
+
+.new-user-display-name {
+  font-weight: bold;
+}
+
+.quotes {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.quote-by {
+  font-style: italic;
+  text-align: center;
 }
 
 /* end of main page elements */
@@ -257,6 +299,8 @@ input[type="email"] {
   gap: 0px;
 
   border: 1px solid #1e5799;
+  box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+
   background: #fff;
   font-size: 14px;
 }
@@ -272,6 +316,12 @@ input[type="email"] {
 
 .window-content {
   padding: 4px;
+}
+
+.window-footer {
+  padding: 4px;
+  border-top: 1px solid #1e5799;
+  text-align: center;
 }
 
 /* end of window boxes */
