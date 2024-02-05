@@ -117,21 +117,6 @@ router.get("/@:username", ...middleware.any, async (req, res, next) => {
   }
 });
 
-router.get("/linkProtection", ...middleware.any, async (req, res, next) => {
-    try {
-        if (typeof req.query.link == "undefined") {
-            res.redirect("/");
-        }
-
-        res.render("linkProtection", {
-            csrfToken: req.csrfToken(),
-            link: req.query.link
-        });
-    } catch (error) {
-        next(error);
-    }
-});
-
 router.get("/about", ...middleware.any, async (req, res, next) => {
     try {
         res.render("about", {

@@ -20,6 +20,8 @@
     <% if (isLoggedIn && req.query.disableCustomCSS != "true") { %>
     <link rel="stylesheet" href="/@<%= currentUser.username  %>/css">
     <% } %>
+
+    <script src="/bojan.js?v=2" defer></script>
   </head>
 <body>
 <% if(currentUser && currentUser.admin) { %>

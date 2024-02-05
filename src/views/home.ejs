@@ -7,82 +7,82 @@
             </div>
         <% } %>
         <div class="home-layout">
-            <div class="info-box">
+          <div class="window info-box">
+              <div class="window-content info-box-content">
                 <div class="user-info">
-                    <div class="user-info-left">
-                        <img src="/@<%= currentUser.username %>/pfp" alt="Avatar" width="32" height="32">
-                    </div>
-                    <div class="user-info-right">
-                        <span class="user-info-display-name"><%= currentUser.displayName %></span>
-                        <span class="user-info-username">@<%= currentUser.username %></span>
-                    </div>
+                  <div class="user-info-left">
+                      <img src="/@<%= currentUser.username %>/pfp" alt="Avatar" width="32" height="32">
+                  </div>
+                  <div class="user-info-right">
+                      <span class="user-info-display-name"><%= currentUser.displayName %></span>
+                      <span class="user-info-username">@<%= currentUser.username %></span>
+                  </div>
                 </div>
                 <div class="info-box-tab">
-                    <img src="/img/icons/gear.png" alt="" width="16" height="16">
-                    <span><a href="/settings">Settings</a></span>
+                  <img src="/img/icons/gear.png" alt="" width="16" height="16">
+                  <span><a href="/settings">Settings</a></span>
                 </div>
                 <div class="info-box-tab">
-                    <img src="/img/icons/building.png" alt="" width="16" height="16">
-                    <span><a href="/stocks/companylistings">Company Listings</a></span>
+                  <img src="/img/icons/building.png" alt="" width="16" height="16">
+                  <span><a href="/stocks/companylistings">Company Listings</a></span>
                 </div>
                 <div class="info-box-tab">
-                    <img src="/img/icons/door-open-out.png" alt="" width="16" height="16">
-                    <span><a href="/logout">Logout</a></span>
+                  <img src="/img/icons/door-open-out.png" alt="" width="16" height="16">
+                  <span><a href="/logout">Logout</a></span>
                 </div>
+              </div>
             </div>
-            <div class="main-box">
-                <h1>hi, <%= currentUser.displayName %>!</h1>
-                <form class="post-box" method="post" action="/actions/post">
-                    <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+            <div class="window main-box">
+                <div class="window-content main-box-content">
+                  <div class="main-box-top">
+                    <div class="main-box-header">
+                      <h1>hi, <%= currentUser.displayName %>!</h1>
+                      <span class="post-box-counter">255</span>
+                    </div>
+                    <form class="post-box" method="post" action="/actions/post">
+                      <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
 
-                    <textarea class="post-box-textarea" name="content" placeholder="what are you doing today?"></textarea>
-                    <input type="submit" class="post-box-button" value="Post!">
-                </form>
-                <% if (postErrorMessage != null) { %>
-                <div class="dialog error-dialog">
-                    <span><%= postErrorMessage %></span>
-                </div>
-                <% } %>
-                <div class="post-tabs">
-                    <div class="tab all-tab active-tab">
-                        <a href="/home#all-posts">All</a>
+                      <textarea class="post-box-textarea" name="content" oninput="window.bojan.tools.countPost()"  placeholder="what are you doing today?"></textarea>
+                      <input type="submit" class="post-box-button" value="Post!">
+                    </form>
+                    <% if (postErrorMessage != null) { %>
+                    <div class="dialog error-dialog">
+                      <span><%= postErrorMessage %></span>
                     </div>
-                    <div class="tab friends-tab">
-                        <a href="/home#friends-posts">Friends</a>
-                    </div>
-                    <div class="tab trending-tab">
-                        <a href="/home#trending-posts">Trending</a>
-                    </div>
-                </div>
-                <div class="posts">
-                <% if (posts.length == 0) { %>
+                    <% } %>
+                  </div>
+                  <div class="posts">
+                  <% if (posts.length == 0) { %>
                     <span>it's lonely here. maybe be the first one to post?</span>
-                <% } %>
-                <% for (const post of posts) { %>
+                  <% } %>
+                  <% for (const post of posts) { %>
                     <div class="post">
-                        <div class="post-left">
-                            <img src="/@<%= post.author.username %>/pfp" alt="Avatar" width="40" height="40">
-                        </div>
-                        <div class="post-right">
+                      <div class="post-left">
+                          <img src="/@<%= post.author.username %>/pfp" alt="Avatar" width="48" height="48">
+                      </div>
+                      <div class="post-right">
+                        <div class="post-right-top">
                           <a href="/@<%= post.author.username %>">
                             <span class="post-right-display-name"><%= post.author.displayName %> <span class="post-right-username">@<%= post.author.username %></span></span>
                           </a>
-                            <span class="post-right-content"><%- md.render(post.content) %></span>
-                            <div class="post-right-bottom">
-                                <div class="post-right-bottom-left">
-                                    sent <i><%- formatDistanceToNow(post.createdOn, { includeSeconds: true }) %> ago</i> from web</span>
-                                </div>
-                            </div>
+                          <span class="post-right-posted-on"><%- format(post.createdOn, "MM/dd/yyyy") %></span>
+                        </div>
+                        <span class="post-right-content"><%= post.content %></span>
+                        <div class="post-right-bottom">
+                            <div class="post-right-bottom-left">
+                              </div>
+                          </div>
                         </div>
                     </div>
-                <% } %>
-                <span>
+                  <% } %>
+                  <span>
                     <a href="/posts/all/rss" class="float-right">
-                        <img src="/img/icons/feed.png" alt="RSS feed" width="16" height="16">
+                      <img src="/img/icons/feed.png" alt="RSS feed" width="16" height="16">
                     </a>
-                </span>
+                  </span>
                 </div>
             </div>
+          </div>
         </div>
     </div>
 </div>

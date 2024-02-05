@@ -3,6 +3,7 @@
 /node_modules
 /upload/*
 /data/*/*.*
+/assets/dist
 
 !/data/*/default.png
 !/data/*/default.mp3

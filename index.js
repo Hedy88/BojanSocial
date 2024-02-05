@@ -1,9 +1,6 @@
 import "dotenv/config";
-import mongoose from "mongoose"
-;
+import mongoose from "mongoose";
 import md from "markdown-it";
-import mdReplaceLink from "markdown-it-replace-link";
-import { full as mdEmoji } from "markdown-it-emoji";
 
 import express from "express";
 import expressSession from "express-session";
@@ -59,11 +56,7 @@ app.locals.md = md({
     breaks: false,
     linkify: true,
     typographer: false,
-    replaceLink: (link) => {
-        return `http://localhost:${PORT}/linkProtection?link=${link}`;
-    },
-}).use(mdReplaceLink)
-  .use(mdEmoji);
+});
 
 app.use(async (req, res, next) => {
     res.setHeader("X-Powered-By", "GaySexEnterpriseWebFramework");

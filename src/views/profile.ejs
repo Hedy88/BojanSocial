@@ -68,7 +68,9 @@
             <% if (user.profile.bio.length == 0) { %>
               <span>This user has nothing set as there bio.</span>
             <% } else { %>
-              <span><%- md.render(user.profile.bio) %></span>
+              <div class="bio-content">
+                <%- md.render(user.profile.bio) %>
+              </div>
             <% } %>
           </div>
         </div>
@@ -80,7 +82,7 @@
             <span>placeholder</span>
           </div>
           <div class="window-footer">
-            <span><a href="#">Download Song</a></span>
+            <span><a href="#">download</a></span>
           </div>
         </div>
         <div class="window-posts">

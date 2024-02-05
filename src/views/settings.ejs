@@ -48,6 +48,10 @@
             <div class="settings-right">
                 <div class="settings-area">
                     <h3 class="setting-name">Profile picture</h3>
+                    <div class="profile-picture-preview">
+                      <img src="/@<%= currentUser.username %>/pfp" alt="Avatar" width="48" height="48">
+                      <span class="setting-description">This is your current profile picture</span>
+                    </div>
                     <form action="/actions/settings/changeProfilePicture" method="post" class="settings-form" enctype="multipart/form-data">
                         <input type="file" name="profilePicture">
                         <input type="submit" value="Update">
