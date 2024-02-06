@@ -363,6 +363,8 @@ input[type="email"] {
   border: 1px solid #cccccc;
 
   box-shadow: 2px 1px 5px 0px rgba(168, 168, 168, 0.75);
+
+  font-size: 14px;
 }
 
 .post-box-button {
@@ -400,7 +402,6 @@ input[type="email"] {
 
 .post-box-counter {
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
   font-size: 30px;
   color: #ccc;
 
@@ -703,6 +704,8 @@ input[type="email"] {
 
   position: absolute;
   top: 170px;
+
+  cursor: zoom-in;
 }
 
 .profile-banner-info {
@@ -810,3 +813,32 @@ input[type="email"] {
 }
 
 /* end of profile page elements */
+
+/* picture preview */
+
+.picture-preview {
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  cursor: zoom-out;
+  background: rgba(0, 0, 0, 0.8);
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture-preview-picture {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* end of picture preview elements */

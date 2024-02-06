@@ -22,6 +22,12 @@
                 <img src="/img/icons/store-market-stall.png" alt="" width="16" height="16">
                 stock market
             </a>
+            <% if (currentUser.isAdmin) { %>
+            <a href="/admin" class="nav-bar-button">
+              <img src="/img/icons/user-black.png" alt="" width="16" height="16">
+              admin panel
+            </a>
+            <% } %>
         <% } %>
         <a href="/users" class="nav-bar-button">
             <img src="/img/icons/users.png" alt="" width="16" height="16">

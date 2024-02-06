@@ -22,6 +22,14 @@ const loggedOut = (req, res, next) => {
   next();
 };
 
+const admin = (req, res, next) => {
+  if (!req.currentUser.isAdmin) {
+    return res.redirect("/");
+  }
+
+  next();
+}
+
 const loggedIn = (req, res, next) => {
     if (!req.session.isLoggedIn) {
         return res.redirect("/login");
@@ -35,3 +43,4 @@ export const out = [csrfSynchronisedProtection, loggedOut];
 export const userNoBanCheck = [csrfSynchronisedProtection, loggedIn];
 export const userNoCSRF = [loggedIn, banCheck];
 export const user = [csrfSynchronisedProtection, loggedIn, banCheck];
+export const adminOnly = [csrfSynchronisedProtection, loggedIn, banCheck, admin];

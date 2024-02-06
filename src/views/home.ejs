@@ -42,7 +42,7 @@
                     <form class="post-box" method="post" action="/actions/post">
                       <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
 
-                      <textarea class="post-box-textarea" name="content" oninput="window.bojan.tools.countPost()"  placeholder="what are you doing today?"></textarea>
+                      <textarea class="post-box-textarea" name="content" autocomplete="off" placeholder="what are you doing today?"></textarea>
                       <input type="submit" class="post-box-button" value="Post!">
                     </form>
                     <% if (postErrorMessage != null) { %>

@@ -41,6 +41,7 @@ const UserSchema = new mongoose.Schema({
 
   isAdmin: { type: Boolean, default: false },
   isBanned: { type: Boolean, default: false },
+  isOwner: { type: Boolean, default: false },
   createdOn: { type: Date, default: Date.now },
   lastLogin: { type: Date, default: 0 },
 

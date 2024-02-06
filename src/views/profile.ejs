@@ -4,11 +4,11 @@
       <div class="profile-banner-container">
         <div class="profile-banner-image" style="background-image: url('/@<%= user.username %>/banner');"></div>
         <div class="profile-banner-info">
-          <img src="/@<%= user.username %>/pfp" class="profile-banner-pfp"  alt="Avatar" width="128" height="128">
+          <img src="/@<%= user.username %>/pfp" class="profile-banner-pfp" alt="Avatar" width="128" height="128">
           <div class="profile-banner-info-container">
             <div class="profile-banner-info-top">
               <span class="profile-banner-info-display-name"><%= user.displayName  %></span>
-              <% if (user.username == "rgb") { %>
+              <% if (user.isOwner) { %>
               <div class="profile-badge">
                 <img src="/img/icons/user-business-gray.png" alt="" width="16" height="16">
                 <span>Owner</span>
@@ -85,9 +85,14 @@
             <span><a href="#">download</a></span>
           </div>
         </div>
-        <div class="window-posts">
-          <span>placeholder</span>
+        <div class="window profile-posts">
+          <div class="window-content">
+            <span>placeholder</span>
+          </div>
         </div>
+      </div>
+      <div class="picture-preview">
+        <img src="/@<%= user.username %>/pfp" class="picture-preview-picture" alt="Avatar" width="400" height="400">
       </div>
     </div>
 </div>

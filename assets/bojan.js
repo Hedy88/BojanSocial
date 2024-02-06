@@ -4,16 +4,43 @@
     alert("js went boom lol: \n" + e + "\n" + f + ":" + l);
   };
 
-  const countPost = function () {
-    const postLength = document.querySelector(".post-box-textarea").value.trim().length;
-    const postLengthCounter = document.querySelector(".post-box-counter");
+  // profiles
+  if (document.querySelector(".profile-layout")) {
+    const picturePreview = document.querySelector(".picture-preview");
+    const profileBannerPfp = document.querySelector(".profile-banner-pfp");
 
-    postLengthCounter.innerHTML = 255 - postLength;
+    profileBannerPfp.addEventListener("click", function () {
+      picturePreview.style.display = "flex";
+    });
 
-    if (postLength >= 220) {
-      postLengthCounter.style.color = "#5c0002";
-    }
-  };
+    picturePreview.addEventListener("click", function () {
+      picturePreview.style.display = "none";
+    });
+  }
 
-  window.bojan = { tools: { countPost } };
+  // post box
+  if (document.querySelector(".post-box")) {
+    const postBoxTextarea = document.querySelector(".post-box-textarea");
+
+    postBoxTextarea.addEventListener("input", function () {
+      const postLength = postBoxTextarea.value.trim().length;
+      const postLengthCounter = document.querySelector(".post-box-counter");
+      const postButton = document.querySelector(".post-box-button");
+
+      postLengthCounter.innerHTML = 255 - postLength;
+
+      if (postLength > 255) {
+        postLengthCounter.style.color = "#c51e3a";
+        postButton.disabled = true;
+      } else if (postLength > 175) {
+        postLengthCounter.style.color = "#eed202";
+        postButton.disabled = false;
+      } else if (postLength < 175) {
+        postLengthCounter.style.color = "#ccc";
+        postButton.disabled = false;
+      } else if (postLength == 0) {
+        postButton.disabled = true;
+      }
+    });
+  }
 })();

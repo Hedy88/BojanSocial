@@ -17,6 +17,7 @@ import generalRoutes from "./src/routes/general.js";
 import authRoutes from "./src/routes/auth.js";
 import actionsRoutes from "./src/routes/actions.js";
 import miscRoutes from "./src/routes/misc.js";
+import adminRoutes from "./src/routes/admin.js";
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -82,6 +83,7 @@ app.use(async (req, res, next) => {
 
 app.use(generalRoutes);
 app.use(authRoutes);
+app.use(adminRoutes);
 app.use(actionsRoutes);
 app.use(miscRoutes);
 
