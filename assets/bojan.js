@@ -36,7 +36,7 @@
         postLengthCounter.style.color = "#eed202";
         postButton.disabled = false;
       } else if (postLength < 175) {
-        postLengthCounter.style.color = "#ccc";
+        postLengthCounter.style.color = "#545454";
         postButton.disabled = false;
       } else if (postLength == 0) {
         postButton.disabled = true;
