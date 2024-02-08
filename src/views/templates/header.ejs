@@ -1,37 +1,51 @@
 <div class="nav-bar">
-    <div class="box-container">
-        <a href="/" class="nav-bar-button">
-            <img src="/img/icons/home.png" alt="" width="16" height="16">
-            home
-        </a>
-        <% if (!isLoggedIn) { %>
-            <a href="/login" class="nav-bar-button">
-                <img src="/img/icons/key.png" alt=""  width="16" height="16">
-                login
-            </a>
-            <a href="/signup" class="nav-bar-button">
-                <img src="/img/icons/key-plus.png" alt="" width="16" height="16">
-                sign up
-            </a>
-        <% } else { %>
-            <a href="/@<%= currentUser.username %>" class="nav-bar-button">
-                <img src="/img/icons/user.png" alt=""  width="16" height="16">
-                hi <%= currentUser.displayName %>!
-            </a>
-            <a href="/stocks" class="nav-bar-button">
-                <img src="/img/icons/store-market-stall.png" alt="" width="16" height="16">
-                stock market
-            </a>
-            <% if (currentUser.isAdmin) { %>
-            <a href="/admin" class="nav-bar-button">
-              <img src="/img/icons/user-black.png" alt="" width="16" height="16">
-              admin panel
-            </a>
-            <% } %>
-        <% } %>
-        <a href="/users" class="nav-bar-button">
-            <img src="/img/icons/users.png" alt="" width="16" height="16">
-            users
-        </a>
+  <div class="nav-bar-container box-container">
+    <div class="nav-bar-button">
+      <a href="/">
+        <img src="/img/icons/home.png" alt="" width="16" height="16">
+        <span class="nav-bar-button-text">Home</span>
+      </a>
     </div>
+    <% if (!isLoggedIn) { %>
+    <div class="nav-bar-button">
+      <a href="/login">
+        <img src="/img/icons/key.png" alt="" width="16" height="16">
+        <span class="nav-bar-button-text">Login</span>
+      </a>
+    </div>
+    <div class="nav-bar-button">
+      <a href="/signup">
+        <img src="/img/icons/key-plus.png" alt="" width="16" height="16">
+        <span class="nav-bar-button-text">Sign up</span>
+      </a>
+    </div>
+    <% } else { %>
+    <div class="nav-bar-button">
+      <a href="/@<%= currentUser.username %>">
+        <img src="/img/icons/user.png" alt="" width="16" height="16">
+        <span class="nav-bar-button-text">Hi, <%= currentUser.displayName %>!</span>
+      </a>
+    </div>
+    <div class="nav-bar-button">
+      <a href="/stocks">
+        <img src="/img/icons/store-market-stall.png" alt="" width="16" height="16">
+        <span class="nav-bar-button-text">Stock market</span>
+      </a>
+    </div>
+    <% if (currentUser.isAdmin) { %>
+    <div class="nav-bar-button">
+      <a href="/admin">
+        <img src="/img/icons/user-black.png" alt="" width="16" height="16">
+        <span class="nav-bar-button-text">Admin panel</span>
+      </a>
+    </div>
+    <% } %>
+    <% } %>
+    <div class="nav-bar-button">
+      <a href="/users">
+        <img src="/img/icons/users.png" alt="" width="16" height="16">
+        <span class="nav-bar-button-text">Users</span>
+      </a>
+    </div>
+  </div>
 </div>

@@ -14,10 +14,8 @@ body {
 /* nav bar */
 
 .nav-bar {
-  display: inline-block;
-
   width: 100%;
-  height: 30px;
+  min-height: 30px;
 
   background: #eeeeee;
   background: linear-gradient(to bottom, #eeeeee 0%, #cccccc 100%);
@@ -27,27 +25,53 @@ body {
   box-shadow: 0px -20px 13px 18px rgba(0, 0, 0, 0.75);
 }
 
-.nav-bar .box-container {
-  height: 30px;
+.nav-bar-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
 }
 
 .nav-bar-button {
-  color: #212121;
-  display: inline-block;
-  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
 
-  text-align: center;
-  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
 
   border-right: 2px ridge #eeeeee;
-  text-decoration: none;
 
   padding: 5px;
 }
 
 .nav-bar-button:hover {
-  background: #ffffff;
+  background: #fff;
   background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+}
+
+.nav-bar-button > a {
+  text-decoration: none;
+  color: #212121;
+}
+
+@media (max-width: 750px) {
+  .nav-bar-container {
+      flex-direction: column;
+  }
+
+  .nav-bar-button {
+      border-right: none;
+      border-bottom: 2px ridge #eeeeee;
+
+      justify-content: left;
+  }
+
+  .nav-bar-button:last-child {
+      border: none;
+  }
 }
 
 /* nav bar end */
@@ -110,7 +134,7 @@ code {
 /* general layout */
 
 #content {
-  margin-top: 10px;
+  margin-top: 15px;
   line-height: 1.6;
   word-wrap: break-word;
   color: #333;
@@ -508,6 +532,8 @@ input[type="email"] {
   display: flex;
   flex-direction: column;
   gap: 0px;
+
+  word-break: break-word;
 
   width: 100%;
 }

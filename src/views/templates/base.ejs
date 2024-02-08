@@ -17,8 +17,8 @@
 
     <link rel="stylesheet" href="/styles.css" />
 
-    <% if (isLoggedIn && req.query.disableCustomCSS != "true") { %>
-    <link rel="stylesheet" href="/@<%= currentUser.username  %>/css">
+    <% if (typeof css != "undefined") { %>
+    <link rel="stylesheet" href="<%= css %>">
     <% } %>
 
     <script src="/bojan.js?v=2" defer></script>
