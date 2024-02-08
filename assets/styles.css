@@ -154,23 +154,6 @@ code {
 
 /* general layout end */
 
-/* admin box */
-
-#admin-box {
-  background: white;
-  border: 1px solid black;
-  padding: 5px;
-  margin: 15px;
-
-  font-family: "Comic Sans MS", sans-serif;
-
-  width: 300px;
-  position: fixed;
-  bottom: 0%;
-}
-
-/* admin blox end */
-
 /* main page elements */
 
 .welcome {
