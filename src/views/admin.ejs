@@ -1,8 +1,53 @@
 <%- include("templates/base.ejs") %>
 <div id="content">
     <div class="box-container">
-        <h1 class="admin-page-header">The admin panel</h1>
-        <p>The requested URL was not found on the server :(</p>
+      <h1>Admin panel</h1>
+      <div class="admin-site-info">
+        <div class="admin-site-info-card">
+          <span class="admin-site-info-card-title"><%= stats.registeredUsers %></span>
+          <span class="admin-site-info-card-description">registered users</span>
+        </div>
+        <div class="admin-site-info-card">
+          <span class="admin-site-info-card-title"><%= stats.postsCreated %></span>
+          <span class="admin-site-info-card-description">posts</span>
+        </div>
+        <div class="admin-site-info-card">
+          <span class="admin-site-info-card-title"><%= stats.administrators %></span>
+          <span class="admin-site-info-card-description">administrators</span>
+        </div>
+      </div>
+      <div class="admin-layout">
+        <div class="window admin-user-reports">
+          <div class="window-titlebar">
+            <span>User reports:</span>
+          </div>
+          <div class="window-content">
+            <div class="user-report">
+              <span>user: RGB</span>
+              <span>reported by: exampleUser</span>
+              <span>reported for: Tax evasion</span>
+              <span>
+                <a href="#">delete report</a> | <a href="#">mark as done</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="window">
+          <div class="window-titlebar">
+            <span>User actions:</span>
+          </div>
+          <div class="window-content">
+            <span>ban user, blah blah blah</span>
+          </div>
+        </div>
+        <div class="window">
+          <div class="window-titlebar">
+            <span>Emergency:</span>
+          </div>
+          <div class="window-content">
+            <span>button to shut down the site</span>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 <%- include("templates/footer.ejs") %>

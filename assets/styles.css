@@ -6,7 +6,8 @@
 
 body {
   font-size: 15px;
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", "Cantarell", Arial, sans-serif;
+  text-rendering: optimizeLegibility;
   background: #f2f2f2;
 }
 
@@ -27,7 +28,7 @@ body {
 }
 
 .nav-bar .box-container {
-  height: 100%;
+  height: 30px;
 }
 
 .nav-bar-button {
@@ -842,3 +843,75 @@ input[type="email"] {
 }
 
 /* end of picture preview elements */
+
+/* admin panel */
+
+.admin-site-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  padding: 8px;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.admin-site-info-card {
+  background: #fff;
+  box-shadow: 2px 1px 5px 0px rgba(168, 168, 168, 0.75);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Comic Sans MS", sans-serif;
+}
+
+.admin-site-info-card-title {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.admin-site-info-card-description {
+  font-size: 20px;
+}
+
+.admin-layout {
+  display: grid;
+  gap: 10px;
+
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.admin-user-reports > .window-content {
+  padding: 0px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.user-report {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  align-items: center;
+}
+
+/* end of admin panel */
