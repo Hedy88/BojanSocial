@@ -1,0 +1,42 @@
+<%- include("templates/base.ejs") %>
+<div id="content">
+    <div class="box-container">
+        <h1>Users</h1>
+        <div class="users-layout">
+          <% for (const user of users) { %>
+          <a href="/@<%= user.username %>">
+            <div class="user-card">
+              <div class="user-card-banner" style="background-image: url('/@<%= user.username %>/banner');"></div>
+              <div class="user-card-bottom">
+                <img src="/@<%= user.username %>/pfp" class="user-card-pfp" alt="Avatar" width="40" height="40">
+                <div class="user-card-info">
+                  <div class="user-card-info-top">
+                    <span class="user-card-info-display-name"><%= user.displayName  %></span>
+                   <% if (user.isOwner) { %>
+                    <div class="profile-badge">
+                      <img src="/img/icons/user-business-gray.png" alt="" width="16" height="16">
+                      <span>Owner</span>
+                    </div>
+                    <% } %>
+
+                    <% if (user.isAdmin) { %>
+                    <div class="profile-badge">
+                    <img src="/img/icons/user-black.png" alt="" width="16" height="16">
+                      <span>Administrator</span>
+                    </div>
+                    <% } %>
+                  </div>
+                  <div class="user-card-info-bottom">
+                   <span class="user-card-info-username">@<%= user.username  %></span>
+                  </div>
+                </div>
+             </div>
+            </div>
+          </a>
+          <% } %>
+        </div>
+    </div>
+</div>
+<%- include("templates/footer.ejs") %>
+</body>
+</html>

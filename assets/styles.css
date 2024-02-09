@@ -134,7 +134,7 @@ code {
 /* general layout */
 
 #content {
-  margin-top: 15px;
+  margin-top: 10px;
   line-height: 1.6;
   word-wrap: break-word;
   color: #333;
@@ -924,3 +924,75 @@ input[type="email"] {
 }
 
 /* end of admin panel */
+
+/* users page */
+
+.users-layout {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+
+  margin-top: 10px;
+}
+
+.users-layout > a {
+  text-decoration: none;
+  color: #000;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  box-shadow: 2px 1px 5px 0px rgba(168, 168, 168, 0.75);
+}
+
+.user-card-banner {
+  background-size: cover;
+  background-position: center center;
+
+  height: 70px;
+
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.user-card-pfp {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 2px 1px 5px 0px rgba(168, 168, 168, 0.75);
+}
+
+.user-card-bottom {
+  padding: 8px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+  font-size: 14px;
+}
+
+.user-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.user-card-info-top {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  font-size: 14px;
+}
+
+.user-card-info-display-name {
+  font-weight: bold;
+}
+
+/* end of users page */

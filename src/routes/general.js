@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/", ...middleware.out, async (req, res, next) => {
     try {
         const users = await User.find()
-            .sort({ createdOn: 1 })
+            .sort({ createdOn: -1 })
             .limit(4);
 
         res.render("index", {
@@ -43,6 +43,20 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+});
+
+router.get("/users", ...middleware.any, async (req, res, next) => {
+  try {
+    const users = await User.find()
+      .sort({ createdOn: -1 });
+
+    res.render("users", {
+      csrfToken: req.csrfToken(),
+      users
+    });
+  } catch (error) {
+      next(error);
+  }
 });
 
 router.get("/@:username/css", ...middleware.any, async (req, res, next) => {
