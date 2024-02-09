@@ -715,6 +715,9 @@ input[type="email"] {
 
   width: 749px;
   height: 200px;
+
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .profile-banner-pfp {
