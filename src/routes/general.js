@@ -33,6 +33,7 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
             .sort({ createdOn: -1 })
             .populate("reactions")
             .populate("author")
+            .populate("repost")
             .limit(15);
 
         res.render("home", {

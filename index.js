@@ -15,8 +15,8 @@ import { logger } from "./src/utils/logger.js";
 
 import generalRoutes from "./src/routes/general.js";
 import authRoutes from "./src/routes/auth.js";
-import actionsRoutes from "./src/routes/actions.js";
-import miscRoutes from "./src/routes/misc.js";
+import postsRoutes from "./src/routes/posts.js";
+import settingsRoutes from "./src/routes/settings.js";
 import adminRoutes from "./src/routes/admin.js";
 
 import { dirname } from 'path';
@@ -84,8 +84,8 @@ app.use(async (req, res, next) => {
 app.use(generalRoutes);
 app.use(authRoutes);
 app.use(adminRoutes);
-app.use(actionsRoutes);
-app.use(miscRoutes);
+app.use(postsRoutes);
+app.use(settingsRoutes);
 
 app.get("*", (req, res) => {
     res.status(404);

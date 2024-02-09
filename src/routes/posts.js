@@ -19,6 +19,7 @@ router.post("/actions/post", ...middleware.user, async (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         author: req.currentUser._id,
         content,
+        postType: "normal",
         reactions: [
           {
             author: req.currentUser._id,

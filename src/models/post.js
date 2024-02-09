@@ -6,14 +6,25 @@ const PostSchema = new mongoose.Schema({
     _id: ObjectId,
 
     author: {
-        type: ObjectId, 
-        ref: "User", 
+        type: ObjectId,
+        ref: "User",
     },
 
     content: {
         type: String,
-        required: "you can't just post nothing",   
+        required: "you can't just post nothing",
         maxLength: 255
+    },
+
+    postType: {
+      type: String,
+      default: "normal",
+      // "normal", "repost"
+    },
+
+    repost: {
+      type: ObjectId,
+      ref: "Post",
     },
 
     reactions: [
@@ -23,7 +34,7 @@ const PostSchema = new mongoose.Schema({
                 ref: "User",
             },
 
-            // "like", "dislike"
+            // "like"
             reactionType: String,
         }
     ],

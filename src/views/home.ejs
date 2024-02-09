@@ -69,10 +69,20 @@
                         </div>
                         <span class="post-right-content"><%= post.content %></span>
                         <div class="post-right-bottom">
-                            <div class="post-right-bottom-left">
-                              </div>
-                          </div>
+                          <button class="action-button like-button">
+                            <img src="/img/icons/thumb-up.png" alt="" width="16" height="16">
+                            <% if (post.reactions.some(reaction => reaction.author._id.toString() == req.currentUser._id)) { %>
+                            <span>Liked (<%= post.reactions.length %>)</span>
+                            <% } else { %>
+                            <span>Like (<%= post.reactions.length %>)</span>
+                            <% } %>
+                          </button>
+                          <button class="action-button like-button">
+                            <img src="/img/icons/arrow-circle.png" alt="" width="16" height="16">
+                            <span>Repost (0)</span>
+                          </button>
                         </div>
+                      </div>
                     </div>
                   <% } %>
                 </div>

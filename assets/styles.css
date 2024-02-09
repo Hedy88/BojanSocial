@@ -554,19 +554,24 @@ input[type="email"] {
 .post-right-bottom {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 5px;
+
+  padding: 5px;
 
   margin-top: 5px;
+  border-top: 1px solid #ccc;
 }
 
 .post-right-content {
   line-height: 1.8;
 }
 
-.action-buttons {
+.action-button {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 2px;
+
+  align-items: center;
 }
 
 .post-tabs {
