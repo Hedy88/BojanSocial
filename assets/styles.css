@@ -221,7 +221,7 @@ code {
 
 .new-users-layout {
   display: grid;
-  grid-template-columns: 80px 80px 80px 80px;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
 
   padding-left: 20px;
