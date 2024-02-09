@@ -40,13 +40,13 @@ router.post("/actions/settings/changeDisplayName", ...middleware.user, async (re
 
           await user.save();
 
-          res.redirect("/settings");
+          return res.redirect("/settings");
         } catch (error) {
-          res.redirect(`/settings?error=${Object.values(error.errors)[0].properties.message}`);
+          return res.redirect(`/settings?error=${Object.values(error.errors)[0].properties.message}`);
         }
       }
     } else {
-      res.redirect("/settings");
+      return res.redirect("/settings");
     }
   } catch (error) {
     next(error);
@@ -59,7 +59,7 @@ router.post("/actions/settings/changeBio", ...middleware.user, async (req, res, 
       const user = await getUserByUsername(req.currentUser.username);
 
       if (req.body["content"].trim().length > 255) {
-        res.redirect("/settings?error=Your bio must be less then 255 characters");
+        return res.redirect("/settings?error=Your bio must be less then 255 characters");
       }
 
       if (user) {
@@ -67,13 +67,13 @@ router.post("/actions/settings/changeBio", ...middleware.user, async (req, res, 
           user.profile.bio = req.body["content"].trim();
           await user.save();
 
-          res.redirect("/settings");
+          return res.redirect("/settings");
         } catch (error) {
-          res.redirect(`/settings?error=${Object.values(error.errors)[0].properties.message}`);
+          return res.redirect(`/settings?error=${Object.values(error.errors)[0].properties.message}`);
         }
       }
     } else {
-      res.redirect("/settings");
+      return res.redirect("/settings");
     }
   } catch (error) {
     next(error);
@@ -90,13 +90,13 @@ router.post("/actions/settings/changeCSS", ...middleware.user, async (req, res, 
           user.profile.css = req.body["content"];
           await user.save();
 
-          res.redirect("/settings");
+          return res.redirect("/settings");
         } catch (error) {
-          res.redirect(`/settings?error=${Object.values(error.errors)[0].properties.message}`);
+          return res.redirect(`/settings?error=${Object.values(error.errors)[0].properties.message}`);
         }
       }
     } else {
-      res.redirect("/settings");
+      return res.redirect("/settings");
     }
   } catch (error) {
     next(error);
@@ -110,7 +110,7 @@ router.post("/actions/settings/changeProfilePicture", ...middleware.userNoCSRF, 
 
       if (req.file.mimetype !== "image/png" && req.file.mimetype !== "image/jpeg") {
         await fs.unlink(req.file.path);
-        res.redirect("/settings?error=This image format is not supported by the server.");
+        return res.redirect("/settings?error=This image format is not supported by the server.");
       } else {
         sharp(data)
           .resize({ width: 512, height: 512 })
@@ -124,11 +124,11 @@ router.post("/actions/settings/changeProfilePicture", ...middleware.userNoCSRF, 
           .catch(async (err) => {
             logger.error(`Failed to process @${req.currentUser.username}'s profile picture. Error: ${err}`);
             await fs.unlink(req.file.path);
-            res.redirect("/settings?error=Failed to process your image");
+            return res.redirect("/settings?error=Failed to process your image");
           });
       }
     } else {
-      res.redirect("/settings");
+      return res.redirect("/settings");
     }
   } catch (error) {
     next(error);
@@ -142,7 +142,7 @@ router.post("/actions/settings/changeBanner", ...middleware.userNoCSRF, upload.s
 
       if (req.file.mimetype !== "image/png" && req.file.mimetype !== "image/jpeg") {
         await fs.unlink(req.file.path);
-        res.redirect("/settings?error=This image format is not supported by the server.");
+        return res.redirect("/settings?error=This image format is not supported by the server.");
       } else {
         sharp(data)
           .resize({ width: 750, height: 200 })
@@ -151,16 +151,16 @@ router.post("/actions/settings/changeBanner", ...middleware.userNoCSRF, upload.s
           .toFile(`${global.PROJECT_ROOT}/data/banners/${req.currentUser._id.toString()}.png`)
           .then(async () => {
             await fs.unlink(req.file.path);
-            res.redirect("/settings");
+            return res.redirect("/settings");
           })
           .catch(async (err) => {
             logger.error(`Failed to process @${req.currentUser.username}'s profile picture. Error: ${err}`);
             await fs.unlink(req.file.path);
-            res.redirect("/settings?error=Failed to process your image");
+            return res.redirect("/settings?error=Failed to process your image");
           });
       }
     } else {
-      res.redirect("/settings");
+      return res.redirect("/settings");
     }
   } catch (error) {
     next(error);

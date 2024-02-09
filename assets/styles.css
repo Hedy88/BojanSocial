@@ -408,6 +408,11 @@ input[type="email"] {
   width: 100%;
 }
 
+.main-box-footer {
+  width: 100%;
+  padding: 8px;
+}
+
 .post-box-counter {
   font-weight: bold;
   font-size: 30px;
@@ -820,6 +825,14 @@ input[type="email"] {
 
 .profile-about > .window-content {
   padding: 8px;
+}
+
+.bio-content {
+  word-wrap: break-word;
+}
+
+.bio-content > ul {
+  list-style-position: inside;
 }
 
 /* end of profile page elements */

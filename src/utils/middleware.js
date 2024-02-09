@@ -8,7 +8,7 @@ const { csrfSynchronisedProtection } = csrfSync({
 
 const banCheck = (req, res, next) => {
     if (req.currentUser.isBanned) {
-        return res.redirect("/logout");
+      return res.redirect("/logout");
     }
 
     next();

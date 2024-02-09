@@ -46,8 +46,8 @@ router.all("/signup", ...middleware.out, async (req, res, next) => {
                 });
 
                 await user.save();
-                
-                res.redirect("/login");
+
+                return res.redirect("/login");
               } catch (err) {
                 error = Object.values(err.errors)[0].properties.message;
               }
@@ -69,7 +69,7 @@ router.all("/signup", ...middleware.out, async (req, res, next) => {
 router.all("/login", ...middleware.out, async (req, res, next) => {
     try {
       let error;
-  
+
       if (req.method == "POST") {
         let { username, password } = req.body;
 
@@ -94,11 +94,11 @@ router.all("/login", ...middleware.out, async (req, res, next) => {
                     req.session.isLoggedIn = true;
                     req.session.userObjectID = user._id.toString();
 
-                    res.redirect("/home");
+                    return res.redirect("/home");
                 } else error = "wrong username or password";
             } else error = "this account has been banned. touch grass";
         } else error = "wrong username or password";
-      } 
+      }
 
       res.render("login", {
         error,
@@ -110,9 +110,9 @@ router.all("/login", ...middleware.out, async (req, res, next) => {
 });
 
 router.get("/logout", ...middleware.userNoBanCheck, async (req, res, next) => {
-  try {    
+  try {
     req.session.destroy(() => {
-      res.redirect("/");
+      return res.redirect("/");
     });
   } catch (error) {
       next(error);

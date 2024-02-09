@@ -67,7 +67,7 @@ router.get("/@:username/css", ...middleware.any, async (req, res, next) => {
             res.set('Content-Type', 'text/css');
             res.end(user.profile.css);
         } else {
-            res.redirect("/");
+            return res.redirect("/");
         }
     } catch (error) {
         next(error);
@@ -85,7 +85,7 @@ router.get("/@:username/pfp", ...middleware.any, async (req, res, next) => {
           res.sendFile(`${global.PROJECT_ROOT}/data/pfp/default.png`)
         }
       } else {
-          res.redirect("/");
+        return res.redirect("/");
       }
   } catch (error) {
       next(error);
@@ -103,7 +103,7 @@ router.get("/@:username/banner", ...middleware.any, async (req, res, next) => {
           res.sendFile(`${global.PROJECT_ROOT}/data/banners/default.png`)
         }
       } else {
-        res.redirect("/");
+        return res.redirect("/");
       }
   } catch (error) {
       next(error);
@@ -116,7 +116,7 @@ router.get("/@:username", ...middleware.any, async (req, res, next) => {
 
       if (user) {
         if (user.isBanned) {
-          res.redirect("/");
+          return res.redirect("/");
         }
 
         res.render("profile", {
@@ -124,7 +124,7 @@ router.get("/@:username", ...middleware.any, async (req, res, next) => {
           user
         });
       } else {
-        res.redirect("/");
+        return res.redirect("/");
       }
   } catch (error) {
       next(error);

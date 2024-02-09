@@ -28,9 +28,9 @@ router.post("/actions/post", ...middleware.user, async (req, res, next) => {
       });
 
       await post.save();
-      res.redirect("/home");
+      return res.redirect("/home");
     } catch (error) {
-        res.redirect(`/home?postError=${Object.values(error.errors)[0].properties.message}`);
+        return res.redirect(`/home?postError=${Object.values(error.errors)[0].properties.message}`);
     }
   } catch (error) {
     next(error);
