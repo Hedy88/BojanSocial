@@ -53,6 +53,11 @@ const UserSchema = new mongoose.Schema({
       default: "I'm too lazy to change the default bio!",
       maxLength: 255
     },
+    song: {
+      enabled: { type: Boolean, default: false },
+      name: { type: String, trim: true },
+      mime: { type: String, trim: true, default: "audio/mp3" }
+    }
   },
 
   // Serbian stock market

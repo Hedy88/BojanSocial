@@ -118,6 +118,10 @@ input[type="file"]::file-selector-button {
   padding: 5px;
 }
 
+audio {
+  max-width: 100%;
+}
+
 pre {
   padding: 5px;
   background: #fff;
@@ -170,7 +174,7 @@ code {
 .features {
   display: grid;
   gap: 30px;
-  grid-template-columns: 250px 250px;
+  grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr);
 
   padding-left: 20px;
   padding-right: 20px;
@@ -195,10 +199,16 @@ code {
 .index-layout {
   display: grid;
   gap: 10px;
-  grid-template-columns: 320px 420px;
+  grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
 
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+@media (max-width: 750px) {
+  .index-layout {
+    grid-template-columns: minmax(300px, 1fr);
+  }
 }
 
 .index-news-area {
@@ -221,7 +231,7 @@ code {
 
 .new-users-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: minmax(64px, 1fr) minmax(64px, 1fr) minmax(64px, 1fr);
   gap: 10px;
 
   padding-left: 20px;
@@ -392,12 +402,19 @@ input[type="email"] {
   align-items: flex-start;
 }
 
+@media (max-width: 750px) {
+  .home-layout {
+    flex-direction: column;
+    align-items: normal;
+  }
+}
+
 .info-box {
-  width: 30%;
+  min-width: 30%;
 }
 
 .main-box {
-  width: calc(70% - 10px);
+  min-width: calc(70% - 10px);
 }
 
 .main-box-header {
@@ -713,7 +730,7 @@ input[type="email"] {
   background-size: cover;
   background-position: center center;
 
-  width: 749px;
+  width: 100%;
   height: 200px;
 
   border-top-left-radius: 6px;
@@ -815,7 +832,8 @@ input[type="email"] {
   display: grid;
   grid-template-areas: "about about"
                        "music posts";
-  grid-template-columns: 240px 500px;
+  grid-template-columns: minmax(100px, 1fr) minmax(250px, 2fr);
+  align-items: flex-start;
   gap: 10px;
 }
 
@@ -833,6 +851,10 @@ input[type="email"] {
 
 .profile-about > .window-content {
   padding: 8px;
+}
+
+.profile-posts > .window-content {
+  padding: 0px;
 }
 
 .bio-content {
@@ -951,9 +973,15 @@ input[type="email"] {
 .users-layout {
   display: grid;
   gap: 10px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(50px, 1fr) minmax(50px, 1fr);
 
   margin-top: 10px;
+}
+
+@media (max-width: 750px) {
+  .users-layout {
+    grid-template-columns: minmax(50px, 1fr);
+  }
 }
 
 .users-layout > a {
@@ -970,6 +998,7 @@ input[type="email"] {
   border-radius: 6px;
 
   box-shadow: 2px 1px 5px 0px rgba(168, 168, 168, 0.75);
+  word-wrap: break-word;
 }
 
 .user-card-banner {

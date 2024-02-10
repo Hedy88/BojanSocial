@@ -65,11 +65,11 @@
                           <a href="/@<%= post.author.username %>">
                             <span class="post-right-display-name"><%= post.author.displayName %> <span class="post-right-username">@<%= post.author.username %></span></span>
                           </a>
-                          <span class="post-right-posted-on"><%- format(post.createdOn, "MM/dd/yyyy") %></span>
+                          <span class="post-right-posted-on timestamp" data-timestamp="<%- Math.floor(post.createdOn / 1000) %>"><%- format(post.createdOn, "MM/dd/yyyy") %></span>
                         </div>
                         <span class="post-right-content"><%= post.content %></span>
                         <div class="post-right-bottom">
-                          <button class="action-button like-button">
+                          <button class="action-button like-button" data-id="<%= post._id.toString() %>">
                             <img src="/img/icons/thumb-up.png" alt="" width="16" height="16">
                             <% if (post.reactions.some(reaction => reaction.author._id.toString() == req.currentUser._id)) { %>
                             <span>Liked (<%= post.reactions.length %>)</span>

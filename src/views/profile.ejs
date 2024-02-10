@@ -79,15 +79,54 @@
             <span>Song:</span>
           </div>
           <div class="window-content">
-            <span>placeholder</span>
+            <% if (user.profile.song.enabled) { %>
+            <audio controls autoplay="true">
+              <source src="/@<%= user.username %>/song" type="<%= user.profile.song.mime %>">
+            </audio>
+            <% } else { %>
+            <span>This user has not uploaded a song</span>
+            <% } %>
           </div>
+          <% if (user.profile.song.enabled) { %>
           <div class="window-footer">
-            <span><a href="#">download</a></span>
+            <span><a href="/@<%= user.username %>/song">download</a></span>
           </div>
+          <% } %>
         </div>
         <div class="window profile-posts">
           <div class="window-content">
-            <span>placeholder</span>
+            <% for (const post of posts) { %>
+              <div class="post">
+                <div class="post-left">
+                    <img src="/@<%= post.author.username %>/pfp" alt="Avatar" width="48" height="48">
+                </div>
+                <div class="post-right">
+                  <div class="post-right-top">
+                    <a href="/@<%= post.author.username %>">
+                      <span class="post-right-display-name"><%= post.author.displayName %> <span class="post-right-username">@<%= post.author.username %></span></span>
+                    </a>
+                    <span class="post-right-posted-on timestamp" data-timestamp="<%- Math.floor(post.createdOn / 1000) %>"><%- format(post.createdOn, "MM/dd/yyyy") %></span>
+                  </div>
+                  <span class="post-right-content"><%= post.content %></span>
+                  <% if (req.currentUser) { %>
+                  <div class="post-right-bottom">
+                    <button class="action-button like-button" data-id="<%= post._id.toString() %>">
+                      <img src="/img/icons/thumb-up.png" alt="" width="16" height="16">
+                      <% if (post.reactions.some(reaction => reaction.author._id.toString() == req.currentUser._id)) { %>
+                      <span>Liked (<%= post.reactions.length %>)</span>
+                      <% } else { %>
+                      <span>Like (<%= post.reactions.length %>)</span>
+                      <% } %>
+                    </button>
+                    <button class="action-button like-button">
+                      <img src="/img/icons/arrow-circle.png" alt="" width="16" height="16">
+                      <span>Repost (0)</span>
+                    </button>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+            <% } %>
           </div>
         </div>
       </div>

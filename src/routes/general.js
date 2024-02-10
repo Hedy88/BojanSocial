@@ -120,10 +120,31 @@ router.get("/@:username", ...middleware.any, async (req, res, next) => {
           return res.redirect("/");
         }
 
+        const posts = await Post.find({ author: user._id })
+          .populate("author")
+          .sort({ createdOn: -1 });
+
         res.render("profile", {
           csrfToken: req.csrfToken(),
-          user
+          user,
+          posts
         });
+      } else {
+        return res.redirect("/");
+      }
+  } catch (error) {
+      next(error);
+  }
+});
+
+router.get("/@:username/song", ...middleware.any, async (req, res, next) => {
+  try {
+      const user = await getUserByUsername(req.params.username);
+
+      if (user && user.profile.song.enabled) {
+        res.status(200);
+        res.set("Content-Type", user.profile.song.mime);
+        res.sendFile(`${global.PROJECT_ROOT}/data/songs/${user._id.toString()}.bin`);
       } else {
         return res.redirect("/");
       }

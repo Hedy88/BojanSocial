@@ -1,11 +1,13 @@
 import express from "express";
 import multer from "multer";
 import { promises as fs } from "fs";
+import fsSync from "fs";
 import sharp from "sharp";
 
 import * as middleware from "../utils/middleware.js";
 import { getUserByUsername } from "../models/user.js";
 import { logger } from "../utils/logger.js";
+import { parse } from "path";
 
 const upload = multer({ dest: "upload/" });
 const router = express.Router();
@@ -166,5 +168,41 @@ router.post("/actions/settings/changeBanner", ...middleware.userNoCSRF, upload.s
     next(error);
   }
 });
+
+router.post("/actions/settings/changeSong", ...middleware.userNoCSRF, upload.single("song"), async (req, res, next) => {
+  try {
+    if (req.file) {
+      const data = await fs.readFile(req.file.path);
+
+      if (!req.file.mimetype.startsWith("audio/")) {
+        return res.redirect("/settings?errorThis audio format isn't supported by the server,");
+      }
+
+      const user = await getUserByUsername(req.currentUser.username);
+
+      if (user) {
+        user.profile.song.enabled = true;
+        user.profile.song.mime = req.file.mimetype;
+        user.profile.song.name = parse(req.file.originalname).name;
+
+        if (!(fsSync.existsSync(`${global.PROJECT_ROOT}/data/songs/${req.currentUser._id.toString()}.bin`))) {
+          await fs.writeFile(`${global.PROJECT_ROOT}/data/songs/${req.currentUser._id.toString()}.bin`, data);
+        } else {
+          await fs.unlink(`${global.PROJECT_ROOT}/data/songs/${req.currentUser._id.toString()}.bin`);
+          await fs.writeFile(`${global.PROJECT_ROOT}/data/songs/${req.currentUser._id.toString()}.bin`, data);
+        }
+
+        await user.save();
+        await fs.unlink(req.file.path);
+        return res.redirect("/settings");
+      }
+    } else {
+      return res.redirect("/settings");
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 export default router;
