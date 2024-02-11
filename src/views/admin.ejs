@@ -33,18 +33,33 @@
         </div>
         <div class="window">
           <div class="window-titlebar">
-            <span>User actions:</span>
+            <span>Stuff:</span>
           </div>
           <div class="window-content">
-            <span>ban user, blah blah blah</span>
+            <div class="user-actions-layout">
+              <form action="/actions/admin/banUser" method="post" class="settings-form">
+                <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+
+                <input type="text" name="username">
+                <input type="submit" value="Ban user">
+              </form>
+
+              <form action="/actions/admin/giveAdminPerms" method="post" class="settings-form">
+                <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+
+                <input type="text" name="username">
+                <input type="submit" value="Give admin permissions">
+              </form>
+            </div>
           </div>
         </div>
         <div class="window">
           <div class="window-titlebar">
-            <span>Emergency:</span>
+            <span>About:</span>
           </div>
           <div class="window-content">
-            <span>button to shut down the site</span>
+            <span>git hash: aaa,</span>
+            <span>node.js version: v21</span>
           </div>
         </div>
       </div>

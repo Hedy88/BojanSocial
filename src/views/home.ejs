@@ -51,6 +51,17 @@
                     </div>
                     <% } %>
                   </div>
+                  <div class="main-box-tabs">
+                    <div class="tab all-tab active-tab">
+                      <span>All</span>
+                    </div>
+                    <div class="tab friends-tab">
+                      <span>Friends</span>
+                    </div>
+                    <div class="tab popular-tab">
+                      <span>Popular</span>
+                    </div>
+                  </div>
                   <div class="posts">
                   <% if (posts.length == 0) { %>
                     <span>it's lonely here. maybe be the first one to post?</span>
@@ -76,10 +87,6 @@
                             <% } else { %>
                             <span>Like (<%= post.reactions.length %>)</span>
                             <% } %>
-                          </button>
-                          <button class="action-button like-button">
-                            <img src="/img/icons/arrow-circle.png" alt="" width="16" height="16">
-                            <span>Repost (0)</span>
                           </button>
                         </div>
                       </div>

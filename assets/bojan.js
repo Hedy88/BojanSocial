@@ -4,20 +4,19 @@
     alert("js went boom lol: \n" + e + "\n" + f + ":" + l);
   };
 
-  // convert timestamps
   Array.from(document.getElementsByClassName("timestamp")).forEach(function (el) {
     const date = new Date(el.getAttribute("data-timestamp") * 1000);
 
     // use switch statements, they said :troll:
     if (navigator.language == "en-US") {
-      el.textContent = date.toLocaleDateString("en-US")
+      el.textContent = date.toLocaleDateString("en-US");
     } else if (navigator.language == "en-GB") {
-      el.textContent = date.toLocaleDateString("en-GB")
+      el.textContent = date.toLocaleDateString("en-GB");
     } else if (navigator.language == "ja-JP") {
-      el.textContent = date.toLocaleDateString("ja-JP")
+      el.textContent = date.toLocaleDateString("ja-JP");
     } else if (navigator.language == "de-DE") {
       el.textContent = date.toLocaleDateString("de-DE");
-    } else if (navigator.language == "tr-TR")  {
+    } else if (navigator.language == "tr-TR") {
       el.textContent = date.toLocaleDateString("tr-TR");
     } else if (navigator.language == "el-GR") {
       el.textContent = date.toLocaleDateString("el-GR");
@@ -36,7 +35,7 @@
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
         callback(this.response);
       }
-    }
+    };
 
     xhr.send();
   };
@@ -95,4 +94,80 @@
       });
     });
   });
+
+  if (document.querySelector(".main-box-tabs")) {
+    const posts = document.querySelector(".posts");
+    let activeTab = "";
+
+    // get tabs
+    Array.from(document.getElementsByClassName("tab")).forEach(function (el) {
+      let thisTab = "";
+
+      if (el.classList.contains("all-tab")) thisTab = "all";
+      if (el.classList.contains("friends-tab")) thisTab = "friends";
+      if (el.classList.contains("popular-tab")) thisTab = "popular";
+
+      if (el.classList.contains("active-tab")) {
+        if (el.classList.contains("all-tab")) activeTab = "all";
+        if (el.classList.contains("friends-tab")) activeTab = "friends";
+        if (el.classList.contains("popular-tab")) activeTab = "popular";
+      }
+
+      el.addEventListener("click", function () {
+        if (activeTab == thisTab) {
+          // do nothing
+        } else {
+          const activeTabElement = document.querySelector(`.${activeTab}-tab`);
+
+          activeTabElement.classList.remove("active-tab");
+          el.classList.add("active-tab");
+          activeTab = thisTab;
+
+          posts.innerHTML = `
+            <div class="fetching-alert">
+              <span>fetching posts...</span>
+            </div>`;
+
+          ajax("GET", `http://${window.location.host}/posts/${thisTab}.json`, function (data) {
+            data = JSON.parse(data);
+
+            if (!data.ok) {
+              posts.innerHTML = `
+              <div class="fetching-alert">
+                <img src="/img/icons/exclamation-red.png" alt="Error" width="16" height="16">
+                <span>${data.error}</span>
+              </div>`;
+
+              return;
+            }
+
+            posts.innerHTML = ``;
+
+            data.posts.forEach(function (post) {
+              const postElement = document.createElement("div");
+              postElement.classList.add("post");
+
+              // who needs dates anyway :trolley:
+              postElement.innerHTML = `
+                <div class="post-left">
+                  <img src="/@${post.author.username}/pfp" alt="Avatar" width="48" height="48">
+                </div>
+                <div class="post-right">
+                  <div class="post-right-top">
+                    <a href="/@${post.author.username}">
+                      <span class="post-right-display-name">${post.author.displayName} <span class="post-right-username">@${post.author.username}</span></span>
+                    </a>
+                    <span class="post-right-posted-on timestamp" data-timestamp="${post.postedOn}"></span>
+                  </div>
+                  <span class="post-right-content">${post.content}</span>
+                </div>
+              `;
+
+              posts.appendChild(postElement);
+            });
+          });
+        }
+      });
+    });
+  }
 })();

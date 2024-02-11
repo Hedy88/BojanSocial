@@ -48,7 +48,7 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
 
 router.get("/users", ...middleware.any, async (req, res, next) => {
   try {
-    const users = await User.find()
+    const users = await User.find({ isBanned: false })
       .sort({ createdOn: -1 });
 
     res.render("users", {
