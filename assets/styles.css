@@ -409,7 +409,11 @@ input[type="email"] {
   }
 }
 
-.info-box {
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
   min-width: 30%;
 }
 
@@ -525,7 +529,6 @@ input[type="email"] {
 .posts {
   display: flex;
   flex-direction: column;
-  gap: 5px;
 
   font-size: 14px;
 
@@ -546,77 +549,114 @@ input[type="email"] {
   border-bottom: 1px solid #ccc;
 }
 
-.post {
-  display: flex;
-  flex-direction: row;
 
-  gap: 10px;
+.post {
+  border-bottom: 1px solid #ccc;
+  min-height: 60px;
+
   padding: 10px;
 
-  border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+  font-size: 14px;
 }
 
-.post-left > img {
-  border-radius: 4px;
+.post:hover {
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+.post a:hover {
+  text-decoration: underline;
+}
+
+.post-pfp > img {
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.post-right {
+.post-content {
   display: flex;
   flex-direction: column;
   gap: 0px;
 
-  word-break: break-word;
-
   width: 100%;
 }
 
-.post-right-top {
+.post-row {
   display: flex;
   flex-direction: row;
   gap: 5px;
 }
 
-.post-right-posted-on {
-  margin-left: auto;
-  font-size: 14px;
-  font-style: italic;
+.post-about {
+  border-top: 1px solid #ccc;
+  margin-top: 5px;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
-.post-right-top > a {
+.post-likes {
+  border-top: 1px solid #ccc;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  gap: 6px;
+  flex-wrap: wrap;
+
+  align-items: center;
+}
+
+.post-likes > img {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.post-author > a {
+  text-decoration: none;
   color: #333;
+}
+
+.post-author > a:hover {
   text-decoration: none;
 }
 
-.post-right-username {
-  font-weight: normal;
+.post-author-displayname:hover {
+  color: #2574ad;
 }
 
-.post-right-display-name {
+.post-author-displayname {
   font-weight: 700;
 }
 
-.post-right-bottom {
+.post-author-username {
+  color: #999;
+  font-size: 12px;
+}
+
+.post-text {
+  line-height: 1.8;
+  word-break: break-word;
+}
+
+.post-created-on {
+  font-style: italic;
+  font-size: 13px;
+}
+
+.reaction {
+  font-size: 13px;
+
   display: flex;
   flex-direction: row;
   gap: 5px;
 
-  padding: 5px;
-
-  margin-top: 5px;
-  border-top: 1px solid #ccc;
-}
-
-.post-right-content {
-  line-height: 1.8;
-}
-
-.action-button {
-  display: flex;
-  flex-direction: row;
-  gap: 2px;
-
   align-items: center;
+  justify-content: center;
 }
 
 .tab {

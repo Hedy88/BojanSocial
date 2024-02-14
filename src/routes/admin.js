@@ -1,7 +1,7 @@
 import express from "express";
 import * as middleware from "../utils/middleware.js";
 import { User, getUserByUsername } from "../models/user.js";
-import { Post } from "../models/post.js"
+import { Post } from "../models/post.js";
 
 const router = express.Router();
 
@@ -41,6 +41,10 @@ router.post("/actions/admin/banUser", ...middleware.adminOnly, async (req, res, 
     } else {
       user.isBanned = !user.isBanned;
       await user.save();
+
+      if (user.isBanned == true) {
+        await Post.deleteMany({ author: user._id });
+      }
 
       return res.redirect("/admin");
     }

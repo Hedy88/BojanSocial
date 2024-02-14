@@ -1,0 +1,27 @@
+<div class="side-bar">
+  <div class="window info-box">
+    <div class="window-content info-box-content">
+      <div class="user-info">
+        <div class="user-info-left">
+          <img src="/@<%= currentUser.username %>/pfp" alt="Avatar" width="32" height="32" />
+        </div>
+        <div class="user-info-right">
+          <span class="user-info-display-name"><%= currentUser.displayName %></span>
+          <span class="user-info-username">@<%= currentUser.username %></span>
+        </div>
+      </div>
+      <div class="info-box-tab">
+        <img src="/img/icons/gear.png" alt="" width="16" height="16" />
+        <span><a href="/settings">Settings</a></span>
+      </div>
+      <div class="info-box-tab">
+        <img src="/img/icons/building.png" alt="" width="16" height="16" />
+        <span><a href="/stocks/companylistings">Company Listings</a></span>
+      </div>
+      <div class="info-box-tab">
+        <img src="/img/icons/door-open-out.png" alt="" width="16" height="16" />
+        <span><a href="/logout">Logout</a></span>
+      </div>
+    </div>
+  </div>
+</div>

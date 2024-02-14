@@ -7,31 +7,7 @@
             </div>
         <% } %>
         <div class="home-layout">
-          <div class="window info-box">
-              <div class="window-content info-box-content">
-                <div class="user-info">
-                  <div class="user-info-left">
-                      <img src="/@<%= currentUser.username %>/pfp" alt="Avatar" width="32" height="32">
-                  </div>
-                  <div class="user-info-right">
-                      <span class="user-info-display-name"><%= currentUser.displayName %></span>
-                      <span class="user-info-username">@<%= currentUser.username %></span>
-                  </div>
-                </div>
-                <div class="info-box-tab">
-                  <img src="/img/icons/gear.png" alt="" width="16" height="16">
-                  <span><a href="/settings">Settings</a></span>
-                </div>
-                <div class="info-box-tab">
-                  <img src="/img/icons/building.png" alt="" width="16" height="16">
-                  <span><a href="/stocks/companylistings">Company Listings</a></span>
-                </div>
-                <div class="info-box-tab">
-                  <img src="/img/icons/door-open-out.png" alt="" width="16" height="16">
-                  <span><a href="/logout">Logout</a></span>
-                </div>
-              </div>
-            </div>
+            <%- include("templates/sidebar.ejs") %>
             <div class="window main-box">
                 <div class="window-content main-box-content">
                   <div class="main-box-top">
@@ -68,29 +44,46 @@
                   <% } %>
                   <% for (const post of posts) { %>
                     <div class="post">
-                      <div class="post-left">
+                      <div class="post-pfp">
                           <img src="/@<%= post.author.username %>/pfp" alt="Avatar" width="48" height="48">
                       </div>
-                      <div class="post-right">
-                        <div class="post-right-top">
-                          <a href="/@<%= post.author.username %>">
-                            <span class="post-right-display-name"><%= post.author.displayName %> <span class="post-right-username">@<%= post.author.username %></span></span>
-                          </a>
-                          <span class="post-right-posted-on timestamp" data-timestamp="<%- Math.floor(post.createdOn / 1000) %>"><%- format(post.createdOn, "MM/dd/yyyy") %></span>
-                        </div>
-                        <span class="post-right-content"><%= post.content %></span>
-                        <div class="post-right-bottom">
-                          <button class="action-button like-button" data-id="<%= post._id.toString() %>">
-                            <img src="/img/icons/thumb-up.png" alt="" width="16" height="16">
-                            <% if (post.reactions.some(reaction => reaction.author._id.toString() == req.currentUser._id)) { %>
-                            <span>Liked (<%= post.reactions.length %>)</span>
-                            <% } else { %>
-                            <span>Like (<%= post.reactions.length %>)</span>
-                            <% } %>
-                          </button>
-                        </div>
+                      <div class="post-content">
+                          <div class="post-row">
+                              <div class="post-author">
+                                  <a href="/@<%= post.author.username %>"><span class="post-author-displayname"><%= post.author.displayName %></span></a>
+                                  <a href="/@<%= post.author.username %>"><span class="post-author-username">@<%= post.author.username %></span></a>
+                              </div>
+                          </div>
+                          <div class="post-row">
+                              <div class="post-text">
+                                <%= post.content %>
+                              </div>
+                          </div>
+                          <div class="post-row post-about">
+                              <div class="post-created-on"><%- formatDistanceToNow(post.createdOn, { includeSeconds: true }) %> ago...</div>
+                              <div class="reaction like-button" data-id="<%= post._id.toString() %>">
+                                <img src="/img/icons/thumb-up.png" alt="" width="16" height="16">
+                                <% if (post.reactions.some(reaction => reaction.author._id.toString() == req.currentUser._id)) { %>
+                                <span>Liked (<%= post.reactions.length %>)</span>
+                                <% } else { %>
+                                <span>Like (<%= post.reactions.length %>)</span>
+                                <% } %>
+                              </div>
+                              <div class="reaction reply-button">
+                                  <img src="/img/icons/reply.png" alt="" width="16" height="16">
+                                  <span>Reply (WIP)</span>
+                              </div>
+                          </div>
+                          <% if (post.reactions.length > 0) { %>
+                          <div class="post-row post-likes">
+                              <% post.reactions.forEach((reaction) => { %>
+                              <img src="/@<%= reaction.author.username %>/pfp" alt="Avatar" width="24" height="24">
+                              <% } )%>
+                              <div class="post-likes-text"> liked this post.</div>
+                          </div>
+                          <% } %>
                       </div>
-                    </div>
+                      </div>
                   <% } %>
                 </div>
                 <div class="main-box-footer">

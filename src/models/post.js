@@ -16,17 +16,6 @@ const PostSchema = new mongoose.Schema({
         maxLength: 255
     },
 
-    postType: {
-      type: String,
-      default: "normal",
-      // "normal", "repost"
-    },
-
-    repost: {
-      type: ObjectId,
-      ref: "Post",
-    },
-
     reactions: [
         {
             author: {

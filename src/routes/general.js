@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", ...middleware.out, async (req, res, next) => {
     try {
-        const users = await User.find()
+        const users = await User.find({ isBanned: false })
             .sort({ createdOn: -1 })
             .limit(6);
 
@@ -31,9 +31,8 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
 
         const posts = await Post.find()
             .sort({ createdOn: -1 })
-            .populate("reactions")
+            .populate("reactions.author")
             .populate("author")
-            .populate("repost")
             .limit(15);
 
         res.render("home", {

@@ -80,7 +80,7 @@
           </div>
           <div class="window-content">
             <% if (user.profile.song.enabled) { %>
-            <audio controls autoplay="true">
+            <audio controls>
               <source src="/@<%= user.username %>/song" type="<%= user.profile.song.mime %>">
             </audio>
             <% } else { %>
