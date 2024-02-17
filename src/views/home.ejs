@@ -60,11 +60,11 @@
                               </div>
                           </div>
                           <div class="post-row post-about">
-                              <div class="post-created-on"><%- formatDistanceToNow(post.createdOn, { includeSeconds: true }) %> ago...</div>
+                              <div class="post-created-on" data-timestamp="<%- Math.floor(post.createdOn / 1000) %>"><%- formatDistanceToNow(post.createdOn, { includeSeconds: true }) %> ago...</div>
                               <div class="reaction like-button" data-id="<%= post._id.toString() %>">
                                 <img src="/img/icons/thumb-up.png" alt="" width="16" height="16">
                                 <% if (post.reactions.some(reaction => reaction.author._id.toString() == req.currentUser._id)) { %>
-                                <span>Liked (<%= post.reactions.length %>)</span>
+                                <span>Unlike (<%= post.reactions.length %>)</span>
                                 <% } else { %>
                                 <span>Like (<%= post.reactions.length %>)</span>
                                 <% } %>
@@ -77,7 +77,7 @@
                           <% if (post.reactions.length > 0) { %>
                           <div class="post-row post-likes">
                               <% post.reactions.forEach((reaction) => { %>
-                              <img src="/@<%= reaction.author.username %>/pfp" alt="Avatar" width="24" height="24">
+                              <img src="/@<%= reaction.author.username %>/pfp" class="post-likes-pfp" alt="Avatar" width="24" height="24" onclick="window.location.href = '/@<%= reaction.author.username %>'">
                               <% } )%>
                               <div class="post-likes-text"> liked this post.</div>
                           </div>

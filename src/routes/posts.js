@@ -3,7 +3,6 @@ import * as middleware from "../utils/middleware.js";
 import mongoose from "mongoose";
 import { Post } from "../models/post.js";
 import xml from "xml";
-import sanitizeHtml from "sanitize-html";
 
 const router = express.Router();
 
@@ -110,7 +109,7 @@ router.get("/posts/all.rss", ...middleware.any, async (req, res, next) => {
 
             ...(await posts).map((post) => {
               return {
-                item: [{ title: `@${post.author.username} just posted!` }, { pubDate: post.createdOn.toUTCString() }, { link: `http://${req.get("host")}/post/${post._id.toString()}` }, { description: { _cdata: `${post.content}` } }],
+                item: [{ title: `@${post.author.username} just posted!` }, { pubDate: post.createdOn.toUTCString() }, { link: `http://${req.get("host")}/post/${post._id.toString()}` }, { guid: `http://${req.get("host")}/post/${post._id.toString()}` }, { description: { _cdata: `${post.content}` } }],
               };
             }),
           ],
@@ -128,93 +127,16 @@ router.get("/posts/all.rss", ...middleware.any, async (req, res, next) => {
   }
 });
 
-router.get("/posts/all.json", ...middleware.any, async (req, res, next) => {
+
+router.post("/posts/ajax/get_all_posts", ...middleware.userNoCSRF, async (req, res, next) => {
   try {
-    const posts = Post.find().sort({ createdOn: -1 }).populate("author").populate("reactions.author").limit(15);
-
-    const apiJson = {
-      ok: true,
-      posts: [
-        ...(await posts).map((post) => {
-          return {
-            author: {
-              username: `${post.author.username}`,
-              displayName: `${sanitizeHtml(post.author.displayName, { allowedTags: [], allowedAttributes: {}, disallowedTagsMode: "escape" })}`,
-            },
-            content: `${sanitizeHtml(post.content, { allowedTags: [], allowedAttributes: {}, disallowedTagsMode: "escape" })}`,
-            postedOn: `${Math.floor(post.createdOn / 1000)}`,
-            reactions: [
-              ...post.reactions.map((reaction) => {
-                return {
-                  author: {
-                    username: `${reaction.author.username}`,
-                    displayName: `${sanitizeHtml(reaction.author.displayName, { allowedTags: [], allowedAttributes: {}, disallowedTagsMode: "escape" })}`,
-                  },
-                  reactionType: reaction.reactionType,
-                };
-              }),
-            ],
-          };
-        }),
-      ],
-    };
-
-    res.json(apiJson);
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get("/posts/friends.json", ...middleware.any, async (req, res, next) => {
-  try {
-    const apiJson = {
-      ok: false,
-      error: "this is still a work in progress!",
-    };
-
-    res.json(apiJson);
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.get("/posts/popular.json", ...middleware.any, async (req, res, next) => {
-  try {
-    const today = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-    const posts = await Post.find({ createdOn: { $gte: today }, $where: "this.reactions.length > 2" })
+    const posts = await Post.find()
       .sort({ createdOn: -1 })
-      .populate("author")
       .populate("reactions.author")
+      .populate("author")
       .limit(15);
 
-    const apiJson = {
-      ok: true,
-      posts: [
-        ...(await posts).map((post) => {
-          return {
-            author: {
-              username: `${post.author.username}`,
-              displayName: `${sanitizeHtml(post.author.displayName, { allowedTags: [], allowedAttributes: {}, disallowedTagsMode: "escape" })}`,
-            },
-            content: `${sanitizeHtml(post.content, { allowedTags: [], allowedAttributes: {}, disallowedTagsMode: "escape" })}`,
-            postedOn: `${Math.floor(post.createdOn / 1000)}`,
-            reactions: [
-              ...post.reactions.map((reaction) => {
-                return {
-                  author: {
-                    username: `${reaction.author.username}`,
-                    displayName: `${sanitizeHtml(reaction.author.displayName, { allowedTags: [], allowedAttributes: {}, disallowedTagsMode: "escape" })}`,
-                  },
-                  reactionType: reaction.reactionType,
-                };
-              }),
-            ],
-          };
-        }),
-      ],
-    };
-
-    res.json(apiJson);
+    res.render("ajax/get_posts", { posts });
   } catch (error) {
     next(error);
   }

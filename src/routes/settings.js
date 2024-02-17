@@ -156,7 +156,7 @@ router.post("/actions/settings/changeBanner", ...middleware.userNoCSRF, upload.s
             return res.redirect("/settings");
           })
           .catch(async (err) => {
-            logger.error(`Failed to process @${req.currentUser.username}'s profile picture. Error: ${err}`);
+            logger.error(`Failed to process @${req.currentUser.username}'s banner. ${err}`);
             await fs.unlink(req.file.path);
             return res.redirect("/settings?error=Failed to process your image");
           });
@@ -175,7 +175,7 @@ router.post("/actions/settings/changeSong", ...middleware.userNoCSRF, upload.sin
       const data = await fs.readFile(req.file.path);
 
       if (!req.file.mimetype.startsWith("audio/")) {
-        return res.redirect("/settings?errorThis audio format isn't supported by the server,");
+        return res.redirect("/settings?error=This audio format isn't supported by the server,");
       }
 
       const user = await getUserByUsername(req.currentUser.username);
