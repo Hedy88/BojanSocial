@@ -1,4 +1,5 @@
 import { csrfSync } from "csrf-sync";
+import { Friend } from "../models/friend.js";
 
 const { csrfSynchronisedProtection } = csrfSync({
   getTokenFromRequest: (req) => {
@@ -30,10 +31,13 @@ const admin = (req, res, next) => {
   next();
 }
 
-const loggedIn = (req, res, next) => {
+const loggedIn = async (req, res, next) => {
     if (!req.session.isLoggedIn) {
         return res.redirect("/login");
     }
+
+    req.pendingFriendRequests = await Friend.find({ status: "pending", sentTo: req.currentUser._id })
+      .populate("user").populate("sentTo");
 
     next();
 };

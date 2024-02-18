@@ -62,8 +62,6 @@ const UserSchema = new mongoose.Schema({
 
   // Serbian stock market
   money: { type: Number, default: 1000 },
-
-  lastIP: { type: String, default: "" }
 });
 
 export const User = mongoose.model("User", UserSchema);

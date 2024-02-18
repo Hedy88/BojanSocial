@@ -99,7 +99,7 @@ button,
 input[type="submit"] {
   color: #ffffff;
   border: 1px solid #124d77;
-  border-radius: 3px;
+  border-radius: 4px;
 
   box-shadow: inset 0px 1px 0px 0px #54a3f7;
   text-shadow: 1px 3px 4px rgba(0,0,0,0.33);
@@ -109,10 +109,30 @@ input[type="submit"] {
   padding: 5px;
 }
 
+button:active, input[type="submit"]:active {
+  text-shadow: none;
+  outline: none;
+}
+
+.gray-button {
+  color: #333;
+  border: 1px solid #bbb;
+
+  box-shadow: inset 0px 1px 0px 0px #E8EBEB;
+  text-shadow: 1px 2px 4px #F0F0F0;
+
+  background: linear-gradient(#FBFBFB, #E3E3E3);
+}
+
+.gray-button:hover {
+  background: linear-gradient(#F4F4F4, #E3E3E3);
+  border-color: #999;
+}
+
 input[type="file"]::file-selector-button {
   color: #ffffff;
   border: 1px solid #025309;
-  border-radius: 3px;
+  border-radius: 4px;
 
   box-shadow: inset 0px 1px 0px 0px #299a0b;
   text-shadow: 1px 3px 4px rgba(0,0,0,0.33);
@@ -418,11 +438,11 @@ input[type="email"] {
   flex-direction: column;
   gap: 5px;
 
-  min-width: 30%;
+  min-width: 35%;
 }
 
 .main-box {
-  min-width: calc(70% - 10px);
+  min-width: calc(65% - 10px);
 }
 
 .main-box-header {
@@ -503,6 +523,78 @@ input[type="email"] {
 
 .user-info-display-name {
   font-weight: bold;
+}
+
+.friend-requests {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.friend-request-row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.friend-request-row > button {
+  font-size: 12px;
+  min-width: 65px;
+}
+
+.friend-request-row > a {
+  text-decoration: none;
+  color: #333;
+}
+
+.friend-request-row > a:hover {
+  text-decoration: none;
+}
+
+.friend-request {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+  border-bottom: 1px solid #ccc;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  font-size: 14px;
+}
+
+.friend-request > img {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.friend-request-right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.friend-request-header {
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.friend-request-displayname:hover {
+  color: #2574ad;
+  text-decoration: underline;
+}
+
+.friend-request-displayname {
+  font-weight: 700;
+}
+
+.friend-request-username {
+  color: #999;
+  font-size: 12px;
 }
 
 .info-box-tab {

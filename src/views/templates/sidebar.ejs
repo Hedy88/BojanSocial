@@ -15,10 +15,6 @@
         <span><a href="/settings">Settings</a></span>
       </div>
       <div class="info-box-tab">
-        <img src="/img/icons/building.png" alt="" width="16" height="16" />
-        <span><a href="/stocks/companylistings">Company Listings</a></span>
-      </div>
-      <div class="info-box-tab">
         <img src="/img/icons/door-open-out.png" alt="" width="16" height="16" />
         <span><a href="/logout">Logout</a></span>
       </div>
@@ -26,7 +22,29 @@
   </div>
   <div class="window">
     <div class="window-content">
-      <h4 class="featured-box-header">Featured!</h4>
+      <div class="friend-request-header">
+        <span>Friend Requests</span>
+      </div>
+      <% if (req.pendingFriendRequests.length == 0) { %>
+      <span>seems like nobody wants to be your friend :(</span>
+      <% } %>
+      <div class="friend-requests">
+        <% for (const pendingFriendRequest of req.pendingFriendRequests) { %>
+        <div class="friend-request">
+          <img src="/@<%= pendingFriendRequest.user.username %>/pfp" alt="Avatar" width="53" height="53" />
+          <div class="friend-request-right">
+            <div class="friend-request-row">
+                <a href="/@<%= pendingFriendRequest.user.displayName %>"><span class="friend-request-displayname"><%= pendingFriendRequest.user.displayName %></span></a>
+                <a href="/@<%= pendingFriendRequest.user.username %>"><span class="friend-request-username">@<%= pendingFriendRequest.user.username %></span></a>
+            </div>
+            <div class="friend-request-row">
+              <button id="accept-friend-request" data-friendId="<%= pendingFriendRequest.user._id %>">Accept</button>
+              <button class="gray-button" data-friendId="<%= pendingFriendRequest.user._id %>">Deny</button>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
     </div>
   </div>
 </div>

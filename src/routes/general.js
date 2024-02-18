@@ -121,6 +121,7 @@ router.get("/@:username", ...middleware.any, async (req, res, next) => {
 
         const posts = await Post.find({ author: user._id })
           .populate("author")
+          .populate("reactions.author")
           .sort({ createdOn: -1 });
 
         res.render("profile", {
