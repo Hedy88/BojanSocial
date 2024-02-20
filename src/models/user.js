@@ -87,3 +87,13 @@ export const getUserByUsername = async (username) => {
 
   return user;
 };
+
+export const getNewUsers = async () => {
+  const users = await User.find({ isBanned: false })
+    .sort({ createdOn: -1 })
+    .limit(11);
+
+  if (!users) return null;
+
+  return users;
+};

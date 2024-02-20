@@ -1,7 +1,7 @@
 import express from "express";
 import * as middleware from "../utils/middleware.js";
 import mongoose from "mongoose";
-import { Post } from "../models/post.js";
+import { createPost, fetchPost, getLatestPosts } from "../models/post.js";
 import xml from "xml";
 
 const router = express.Router();
@@ -16,15 +16,8 @@ router.post("/actions/post", ...middleware.user, async (req, res, next) => {
     content = content.trim();
 
     try {
-      const post = new Post({
-        _id: new mongoose.Types.ObjectId(),
-        author: req.currentUser._id,
-        content,
-        postType: "normal",
-        reactions: [],
-      });
+      await createPost(req.currentUser._id, content);
 
-      await post.save();
       return res.redirect("/home");
     } catch (error) {
       return res.redirect(`/home?postError=${Object.values(error.errors)[0].properties.message}`);
@@ -45,7 +38,7 @@ router.post("/actions/posts/like", ...middleware.userNoCSRF, async (req, res, ne
       });
     }
 
-    const post = await Post.findOne({ _id: new mongoose.Types.ObjectId(postId) });
+    const post = await fetchPost(new mongoose.Types.ObjectId(postId));
 
     if (!post) {
       return res.json({
@@ -78,7 +71,7 @@ router.post("/actions/posts/like", ...middleware.userNoCSRF, async (req, res, ne
 // rss feed
 router.get("/posts/all.rss", ...middleware.any, async (req, res, next) => {
   try {
-    const posts = Post.find().sort({ createdOn: -1 }).populate("author").limit(15);
+    const posts = getLatestPosts();
 
     const feedObject = {
       rss: [
@@ -130,11 +123,7 @@ router.get("/posts/all.rss", ...middleware.any, async (req, res, next) => {
 
 router.post("/posts/ajax/get_all_posts", ...middleware.userNoCSRF, async (req, res, next) => {
   try {
-    const posts = await Post.find()
-      .sort({ createdOn: -1 })
-      .populate("reactions.author")
-      .populate("author")
-      .limit(15);
+    const posts = await getLatestPosts();
 
     res.render("ajax/get_posts", { posts });
   } catch (error) {

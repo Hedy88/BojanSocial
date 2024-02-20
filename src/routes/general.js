@@ -2,7 +2,7 @@ import express from "express";
 import fs from "fs";
 import * as middleware from "../utils/middleware.js";
 import { User, getUserByUsername } from "../models/user.js";
-import { Post } from "../models/post.js";
+import { Post, getLatestPosts } from "../models/post.js";
 
 const router = express.Router();
 
@@ -29,11 +29,7 @@ router.get("/home", ...middleware.user, async (req, res, next) => {
             postErrorMessage = req.query.postError;
         }
 
-        const posts = await Post.find()
-            .sort({ createdOn: -1 })
-            .populate("reactions.author")
-            .populate("author")
-            .limit(15);
+        const posts = await getLatestPosts();
 
         res.render("home", {
             csrfToken: req.csrfToken(),

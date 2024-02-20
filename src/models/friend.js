@@ -17,7 +17,7 @@ const FriendSchema = new mongoose.Schema({
 
     status: {
       type: String,
-      // "pending", "confirmed", "denied"
+      // "pending", "confirmed"
       default: "pending"
     },
 
@@ -25,3 +25,23 @@ const FriendSchema = new mongoose.Schema({
 });
 
 export const Friend = mongoose.model("Friend", FriendSchema);
+
+export const getAUserFriends = async (userObjectId) => {
+  const friends = await Friend.find({ sentTo: userObjectId, status: "confirmed" })
+    .populate("sentTo")
+    .populate("user");
+
+  if (!friends) return null;
+
+  return friends;
+};
+
+export const getAUserFriendRequests = async (userObjectId) => {
+  const friends = await Friend.find({ sentTo: userObjectId, status: "pending" })
+    .populate("sentTo")
+    .populate("user");
+
+  if (!friends) return null;
+
+  return friends;
+};

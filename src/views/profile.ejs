@@ -114,6 +114,7 @@
                   </div>
                   <div class="post-row post-about">
                     <div class="post-created-on" data-timestamp="<%- Math.floor(post.createdOn / 1000) %>"><%- formatDistanceToNow(post.createdOn, { includeSeconds: true }) %> ago...</div>
+                    <% if (isLoggedIn) { %>
                     <div class="reaction like-button" data-id="<%= post._id.toString() %>">
                       <img src="/img/icons/thumb-up.png" alt="" width="16" height="16" />
                       <% if (post.reactions.some(reaction => reaction.author._id.toString() == req.currentUser._id)) { %>
@@ -126,6 +127,7 @@
                       <img src="/img/icons/reply.png" alt="" width="16" height="16" />
                       <span>Reply (WIP)</span>
                     </div>
+                    <% } %>
                   </div>
                   <% if (post.reactions.length > 0) { %>
                   <div class="post-row post-likes">

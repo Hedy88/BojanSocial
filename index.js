@@ -19,6 +19,7 @@ import postsRoutes from "./src/routes/posts.js";
 import stocksRoutes from "./src/routes/stocks.js";
 import settingsRoutes from "./src/routes/settings.js";
 import adminRoutes from "./src/routes/admin.js";
+import clientAPIv1Routes from "./src/routes/api/v1/client.js";
 
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -88,6 +89,7 @@ app.use(adminRoutes);
 app.use(stocksRoutes);
 app.use(postsRoutes);
 app.use(settingsRoutes);
+app.use("/api/v1", clientAPIv1Routes);
 
 app.get("*", (req, res) => {
     res.status(404);

@@ -1,5 +1,5 @@
 import { csrfSync } from "csrf-sync";
-import { Friend } from "../models/friend.js";
+import { getAUserFriendRequests } from "../models/friend.js";
 
 const { csrfSynchronisedProtection } = csrfSync({
   getTokenFromRequest: (req) => {
@@ -8,11 +8,11 @@ const { csrfSynchronisedProtection } = csrfSync({
 });
 
 const banCheck = (req, res, next) => {
-    if (req.currentUser.isBanned) {
-      return res.redirect("/logout");
-    }
+  if (req.currentUser.isBanned) {
+    return res.redirect("/logout");
+  }
 
-    next();
+  next();
 };
 
 const loggedOut = (req, res, next) => {
@@ -29,19 +29,19 @@ const admin = (req, res, next) => {
   }
 
   next();
-}
-
-const loggedIn = async (req, res, next) => {
-    if (!req.session.isLoggedIn) {
-        return res.redirect("/login");
-    }
-
-    req.pendingFriendRequests = await Friend.find({ status: "pending", sentTo: req.currentUser._id })
-      .populate("user").populate("sentTo");
-
-    next();
 };
 
+const loggedIn = async (req, res, next) => {
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
+  }
+
+  req.pendingFriendRequests = await getAUserFriendRequests(req.session.userObjectID);
+
+  next();
+};
+
+export const api = [];
 export const any = [csrfSynchronisedProtection];
 export const out = [csrfSynchronisedProtection, loggedOut];
 export const userNoBanCheck = [csrfSynchronisedProtection, loggedIn];
