@@ -1,0 +1,361 @@
+.site-content {
+    display: flex;
+    gap: 15px;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.homepage-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    flex-basis: 238px;
+}
+
+.signup-panel-mobile-container {
+  display: none;
+}
+
+.main-panel {
+    flex: 1;
+}
+
+.signup-panel-container {
+    position: relative;
+    flex-basis: 238px;
+}
+
+.signup-panel {
+    border-radius: 3px;
+    border: 1px solid rgb(0 0 0 / 50%);
+    background-color: #FFF;
+    background-clip: padding-box;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 50%);
+    margin-top: 10px;
+    position: absolute;
+    z-index: 1;
+    padding: 15px;
+    top: -110px;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid rgb(0 0 0 / 50%);
+        position: absolute;
+        top: -10px;
+        right: 15px;
+        z-index: 0;
+    }
+
+    &::after {
+        content: '';
+        display: inline-block;
+        border-left: 9px solid transparent;
+        border-right: 9px solid transparent;
+        border-bottom: 9px solid #FFF;
+        position: absolute;
+        top: -9px;
+        right: 16px;
+        z-index: 2;
+    }
+}
+
+.panel-header {
+    text-transform: lowercase;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.sign-up-desc {
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 8px;
+}
+
+.panel {
+    border-radius: 3px;
+    border: 1px solid rgb(0 0 0 / 25%);
+    background-color: #FFF;
+    background-clip: padding-box;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    .panel-header {
+        color: #5C6066;
+        text-shadow: 0 1px 0 rgb(255 255 255);
+        border-bottom: 1px solid rgb(0 0 0 / 25%);
+        padding: 8px 10px;
+        margin: 0;
+    }
+
+    .panel-content {
+        font-size: 11px;
+        padding: 10px;
+    }
+
+    .site-update-by {
+        padding: 6px 13px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #F9F9F9;
+        border-top: 1px solid #DFDFDF;
+        text-shadow: 0 1px 0 rgb(255 255 255);
+        font-size: 10px;
+
+        &::before,
+        &::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: -1px;
+        }
+
+        &::before {
+            left: 16px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #FFFFFF;
+            z-index: 1;
+        }
+
+        &::after {
+            left: 15px;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #DFDFDF;
+        }
+
+        .made-by {
+            text-transform: lowercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+
+            .pfp {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                margin-right: 8px;
+            }
+        }
+
+        .site-update-date {
+            color: rgb(0 0 0 / 45%);
+        }
+    }
+}
+
+.site-updates-header {
+    font-size: 13px;
+    color: #575757;
+    margin-bottom: 3px;
+}
+
+#new-users-panel .panel-footer {
+    padding: 15px;
+    padding-top: 0;
+    font-size: 11px;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.new-users-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 8px;
+
+    .new-user-container {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #565656;
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background-image: url('/img/pfp-gloss.svg');
+            background-size: cover;
+            position: absolute;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .post-preview {
+        display: flex;
+        gap: 7px;
+        position: relative;
+        min-height: 70px;
+
+        .pfp-container {
+            width: 48px;
+            height: 48px;
+
+            border: 1px solid #353535;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                background-image: url('/img/pfp-gloss.svg');
+                background-size: cover;
+                position: absolute;
+            }
+
+            .pfp {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .post-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            gap: 4px;
+        }
+
+        .post-text {
+            line-height: 1.7;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .post-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .post-username {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                color: #000;
+
+                &:hover {
+                    text-decoration: none;
+
+                    .nickname {
+                        text-decoration: underline;
+                    }
+                }
+
+                .nickname {
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+
+                .username {
+                    font-size: 11px;
+                    color: #727272;
+                }
+            }
+
+            .post-timestamp {
+                font-size: 11px;
+                color: #727272;
+            }
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 8px;
+
+            .post-action {
+                display: flex;
+                align-items: center;
+                padding: 2px;
+                cursor: pointer;
+                user-select: none;
+
+                .post-actions-icon {
+                    width: 14px;
+                    height: 14px;
+                    background-image: url('/img/post-actions.png');
+                    margin-right: 8px;
+                }
+
+                .post-actions-label {
+                    font-size: 11px;
+                    font-weight: 600;
+                    color: #727272;
+                }
+            }
+
+            .like-post {
+                &:hover {
+                    .post-actions-icon {
+                        background-position-x: -14px;
+                    }
+
+                    .post-actions-label {
+                        color: #960000;
+                    }
+
+                    &:active {
+                        .post-actions-icon {
+                            background-position-x: -28px;
+                        }
+
+                        .post-actions-label {
+                            color: #500000;
+                        }
+                    }
+                }
+            }
+
+            .reply-post {
+                .post-actions-icon {
+                    background-position-y: -14px;
+                }
+
+                &:hover {
+                    .post-actions-icon {
+                        background-position-x: -14px;
+                    }
+
+                    .post-actions-label {
+                        color: #2164C0;
+                    }
+
+                    &:active {
+                        .post-actions-icon {
+                            background-position-x: -28px;
+                        }
+
+                        .post-actions-label {
+                            color: #0055A0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

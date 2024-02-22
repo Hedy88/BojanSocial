@@ -1,0 +1,87 @@
+<%- include("templates/base.ejs") %>
+  <div class="site-content">
+      <div class="side-panel homepage-panel">
+          <div id="site-updates-panel" class="panel">
+              <h2 class="panel-header">
+                  Site Updates
+              </h2>
+              <div class="panel-content">
+                  <h3 class="site-updates-header">Mobile layout</h3>
+                  <p>site is much better to use on mobile lmao</p>
+              </div>
+              <div class="panel-footer site-update-by">
+                  <div class="made-by">
+                      <img class="pfp" src="/@rgb/pfp">
+                      <span>rgb</span>
+                  </div>
+                  <span class="site-update-date">Feburary 21, 2024</span>
+              </div>
+          </div>
+          <div id="new-users-panel" class="panel">
+              <h2 class="panel-header">
+                  See New Users
+              </h2>
+              <div class="panel-content">
+                  <div class="new-users-grid">
+                    <% for (const user of users) { %>
+                      <a href="/@<%= user.username %>" class="new-user-container">
+                          <img src="/@<%= user.username %>/pfp" alt="Avatar" width="32" height="32">
+                      </a>
+                    <% } %>
+                  </div>
+              </div>
+              <div class="panel-footer">
+                  <span>These people are talking on bojanSocial. Join in the fun by <a href="/signup">Signing Up!</a></span>
+              </div>
+          </div>
+      </div>
+      <div class="main-panel">
+          <div class="posts-container">
+            <% for (const post of posts) { %>
+              <div class="post-preview">
+                  <div class="pfp-container">
+                      <img class="pfp" src="/@<%= post.author.username %>/pfp" alt="Avatar" width="48" height="48">
+                  </div>
+                  <div class="post-container">
+                      <div class="post-info">
+                          <a href="/@<%= post.author.username %>" class="post-username">
+                              <span class="nickname"><%= post.author.displayName %></span>
+                              <span class="username"><%= post.author.username %></span>
+                          </a>
+                          <span class="post-timestamp">wip</span>
+                      </div>
+                      <div class="post-text">
+                          <p><%= post.content %></p>
+                      </div>
+                      <div class="post-actions">
+                          <div class="post-action like-post">
+                              <div class="post-actions-icon"></div>
+                              <div class="post-actions-label"><%= post.reactions.length %></div>
+                          </div>
+                          <div class="post-action reply-post">
+                              <div class="post-actions-icon"></div>
+                              <div class="post-actions-label">WIP</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            <% } %>
+          </div>
+      </div>
+      <div class="side-panel signup-panel-container">
+          <div class="signup-panel">
+              <h2 class="panel-header">
+                  New to bojanSocial?
+              </h2>
+              <p class="sign-up-desc">
+                  bojanSocial is a social media site that brings the 2010's experience right back into your palms.
+              </p>
+              <a href="/signup" class="button button-yellow large sign-up">
+                  Sign Up
+              </a>
+          </div>
+      </div>
+    </div>
+      <%- include("./templates/footer.ejs") %>
+</body>
+</html>

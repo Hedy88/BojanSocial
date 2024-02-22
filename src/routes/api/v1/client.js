@@ -1,6 +1,6 @@
 import express from "express";
 import * as middleware from "../../../utils/middleware.js";
-import { getNewUsers, getUserByUsername } from "../../../models/user.js";
+import { User, getNewUsers, getUserByUsername } from "../../../models/user.js";
 import { getAUserFriends } from "../../../models/friend.js";
 import { getAUserPosts } from "../../../models/post.js";
 
@@ -15,11 +15,11 @@ router.get("/client/get_new_users", ...middleware.api, async (req, res, next) =>
 
         res.json({
           ok: true,
-          users: {
-            ...(await users).map((user) => {
+          users: [
+            ...users.map((user) => {
               return { username: user.username };
             }),
-          }
+          ]
         });
       } else {
         res.status(500);
@@ -33,6 +33,36 @@ router.get("/client/get_new_users", ...middleware.api, async (req, res, next) =>
         next(error);
     }
 });
+
+router.get("/client/get_all_users", ...middleware.api, async (req, res, next) => {
+  try {
+    const users = await User.find({ isBanned: false })
+      .sort({ createdOn: -1 });
+
+    if (users) {
+      res.status(200);
+
+      res.json({
+        ok: true,
+        users: [
+          ...users.map((user) => {
+            return { username: user.username };
+          }),
+        ]
+      });
+    } else {
+      res.status(500);
+
+      res.json({
+        ok: false,
+        error: "Something went wrong..."
+      });
+    }
+  } catch (error) {
+      next(error);
+  }
+});
+
 
 router.get("/client/@:username/get_user_info", ...middleware.api, async (req, res, next) => {
   try {
@@ -99,5 +129,7 @@ router.get("/client/@:username/get_user_info", ...middleware.api, async (req, re
       next(error);
   }
 });
+
+
 
 export default router;

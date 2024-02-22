@@ -60,6 +60,10 @@ const UserSchema = new mongoose.Schema({
     }
   },
 
+  ratelimits: {
+    lastPostCreation: { type: Date }
+  },
+
   // Serbian stock market
   money: { type: Number, default: 1000 },
 });
@@ -91,7 +95,7 @@ export const getUserByUsername = async (username) => {
 export const getNewUsers = async () => {
   const users = await User.find({ isBanned: false })
     .sort({ createdOn: -1 })
-    .limit(11);
+    .limit(10);
 
   if (!users) return null;
 

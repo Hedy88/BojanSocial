@@ -1,20 +1,20 @@
 import express from "express";
 import fs from "fs";
 import * as middleware from "../utils/middleware.js";
-import { User, getUserByUsername } from "../models/user.js";
+import { User, getNewUsers, getUserByUsername } from "../models/user.js";
 import { Post, getLatestPosts } from "../models/post.js";
 
 const router = express.Router();
 
 router.get("/", ...middleware.out, async (req, res, next) => {
     try {
-        const users = await User.find({ isBanned: false })
-            .sort({ createdOn: -1 })
-            .limit(6);
+        const users = await getNewUsers();
+        const posts = await getLatestPosts();
 
-        res.render("index", {
+        res.render("new/index", {
             csrfToken: req.csrfToken(),
-            users
+            users,
+            posts
         });
     } catch (error) {
         next(error);

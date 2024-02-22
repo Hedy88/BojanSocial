@@ -58,7 +58,7 @@ export const getLatestPosts = async () => {
 
 export const createPost = async (author, content) => {
   const post = new Post({
-    _id: new ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     author,
     content,
     reactions: []
@@ -76,4 +76,3 @@ export const fetchPost = async (postObjectId) => {
 
   return post;
 };
-

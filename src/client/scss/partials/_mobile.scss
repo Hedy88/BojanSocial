@@ -1,0 +1,85 @@
+// tablet and mobile
+@media (max-width: 730px) {
+  .site-content {
+    flex-direction: column;
+  }
+
+  .homepage-panel {
+    flex-direction: row;
+    flex-basis: auto;
+
+    width: 100%;
+  }
+
+  .main-panel {
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  .panel {
+    flex-grow: 1;
+
+    .panel-footer {
+      margin-top: auto;
+    }
+  }
+
+  #new-users-panel {
+    .panel-footer {
+      padding: 10px;
+    }
+  }
+
+  .signup-panel {
+    display: none;
+  }
+
+  .signup-panel-mobile-container {
+    display: initial;
+    padding: 15px;
+    background-color: #fff;
+    background-clip: padding-box;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+
+    .signup-panel-mobile-content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .footer-container {
+    .footer-content {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+}
+
+// mobile
+@media (max-width: 600px) {
+  .homepage-panel {
+    flex-direction: column;
+  }
+
+  .header {
+    .header-section {
+      .header-top-left {
+        flex-direction: column;
+        gap: 0px;
+      }
+    }
+
+    .header-top-section {
+      margin-top: 20px;
+    }
+
+    .header-bottom-section {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

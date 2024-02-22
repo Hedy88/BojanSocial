@@ -99,7 +99,7 @@ app.get("*", (req, res) => {
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     if(err) {
-        logger.error(err);
+        logger.error(err + err.stack);
         res.status(500);
 
         res.render("error");

@@ -1,0 +1,32 @@
+.footer-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+
+    .footer-content {
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+        align-items: center;
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            color: #727272;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+
+            a {
+                color: #2874c5;
+            }
+        }
+    }
+}

@@ -53,7 +53,7 @@
                       <span class="setting-description">This is your current profile picture</span>
                     </div>
                     <form action="/actions/settings/changeProfilePicture" method="post" class="settings-form" enctype="multipart/form-data">
-                        <input type="file" name="profilePicture">
+                        <input type="file" name="profilePicture" accept="image/jpeg image/png">
                         <input type="submit" value="Update">
                     </form>
                     <span class="setting-description">Supported file formats are .png and .jpg</span>
@@ -61,7 +61,7 @@
                 <div class="settings-area">
                     <h3 class="setting-name">Banner</h3>
                     <form action="/actions/settings/changeBanner" method="post" class="settings-form" enctype="multipart/form-data">
-                        <input type="file" name="bannerPicture">
+                        <input type="file" name="bannerPicture" accept="image/jpeg image/png">
                         <input type="submit" value="Update">
                     </form>
                     <span class="setting-description">Supported file formats are also .png and .jpg </span>

@@ -17,7 +17,7 @@ router.all("/signup", ...middleware.out, async (req, res, next) => {
       password = password.trim();
       confirmPassword = confirmPassword.trim();
 
-      if (/[\n\r]/.test(username)) error = "invalid username";
+      if (/[^a-z0-9_]/i.test(username)) error = "invalid username";
 
       if (!password || password.toLowerCase() == "password")
         error = "a valid password is required";

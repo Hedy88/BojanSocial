@@ -1,0 +1,27 @@
+.alert-container {
+    height: 30px;
+    text-shadow: 0px -1px #000;
+
+    border-bottom: 1px solid rgb(0 0 0 / 25%);
+    box-shadow: inset 0 -1px 0 rgb(255 255 255 / 25%);
+
+    .alert-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        height: 100%;
+        padding: 0 15px;
+        font-weight: 600;
+    }
+}
+
+.alert-error {
+    background-image: linear-gradient(to bottom, #BB2719, #8A1E12);
+    color: #fff;
+}
+
+.alert-info {
+    background-image: linear-gradient(to bottom, #5E86E0, #3756BC);
+    color: #fff;
+}

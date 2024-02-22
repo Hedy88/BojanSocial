@@ -3,6 +3,8 @@ import * as middleware from "../utils/middleware.js";
 import mongoose from "mongoose";
 import { createPost, fetchPost, getLatestPosts } from "../models/post.js";
 import xml from "xml";
+import { isLessThen10SecondsAgo } from "../utils/time.js";
+import { logger } from "../utils/logger.js";
 
 const router = express.Router();
 
@@ -16,10 +18,23 @@ router.post("/actions/post", ...middleware.user, async (req, res, next) => {
     content = content.trim();
 
     try {
+      if (req.currentUser.ratelimits.lastPostCreation != null) {
+        const ratelimitCheck = isLessThen10SecondsAgo(req.currentUser.ratelimits.lastPostCreation);
+
+        if (ratelimitCheck) {
+          return res.redirect(`/home?postError=Please wait 10 seconds before posting again.`);
+        }
+      }
+
       await createPost(req.currentUser._id, content);
+
+      req.currentUser.ratelimits.lastPostCreation = new Date();
+      await req.currentUser.save();
 
       return res.redirect("/home");
     } catch (error) {
+      logger.error(error);
+
       return res.redirect(`/home?postError=${Object.values(error.errors)[0].properties.message}`);
     }
   } catch (error) {

@@ -1,0 +1,43 @@
+@import "partials/buttons";
+@import "partials/header";
+@import "partials/home";
+@import "partials/footer";
+@import "partials/alerts";
+@import "partials/mobile";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: rgb(0, 0, 0);
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: #0096dd;
+  text-decoration: none;
+
+  &:hover {
+    color: #0073aa;
+    text-decoration: underline;
+  }
+}
+
+img,
+picture,
+svg,
+video,
+audio {
+  display: block;
+  max-width: 100%;
+}
