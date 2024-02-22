@@ -27,4 +27,8 @@
 
 <body>
   <div class="site-container">
+    <% if (typeof normalHeader != "undefined") { %>
+    <%- include("normal-header.ejs") %>
+    <% } else { %>
     <%- include("header.ejs") %>
+    <% } %>
