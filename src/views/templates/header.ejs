@@ -1,51 +1,49 @@
-<div class="nav-bar">
-  <div class="nav-bar-container box-container">
-    <div class="nav-bar-button">
-      <a href="/">
-        <img src="/img/icons/home.png" alt="" width="16" height="16">
-        <span class="nav-bar-button-text">Home</span>
-      </a>
+<div class="masthead-container">
+  <div class="masthead">
+    <div class="header-container">
+      <div class="header">
+        <div class="header-section header-top-section">
+          <div class="header-top-left">
+            <div class="header-logo-container">
+              <a href="/" class="header-logo" alt="BojanSocial"></a>
+            </div>
+            <form action="/search" method="get" class="search-box">
+              <input class="search-box-input" type="text" placeholder="Search..." value="" />
+              <button class="button button-blue search-button">
+                <div class="search-box-icon"></div>
+              </button>
+            </form>
+          </div>
+          <% if (!isLoggedIn) { %>
+          <div class="header-top-right unsigned">
+            <p class="unsigned-header-text">Have an account?</p>
+            <a href="/login" class="sign-in button button-blue">Sign In</a>
+          </div>
+          <% } %>
+        </div>
+        <div class="header-section header-bottom-section">
+          <h2 class="header-slogan">the social media site designed for fellow bojans</h2>
+        </div>
+      </div>
     </div>
-    <% if (!isLoggedIn) { %>
-    <div class="nav-bar-button">
-      <a href="/login">
-        <img src="/img/icons/key.png" alt="" width="16" height="16">
-        <span class="nav-bar-button-text">Login</span>
-      </a>
+    <div class="nav-header-container">
+      <div class="nav-header">
+        <ul class="nav-header-links">
+          <li class="nav-header-link-container">
+            <a href="/" class="nav-header-link">Home</a>
+          </li>
+          <li class="nav-header-link-container">
+            <a href="/users" class="nav-header-link">Users</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="nav-bar-button">
-      <a href="/signup">
-        <img src="/img/icons/key-plus.png" alt="" width="16" height="16">
-        <span class="nav-bar-button-text">Sign up</span>
-      </a>
-    </div>
-    <% } else { %>
-    <div class="nav-bar-button">
-      <a href="/@<%= currentUser.username %>">
-        <img src="/img/icons/user.png" alt="" width="16" height="16">
-        <span class="nav-bar-button-text">Hi, <%= currentUser.displayName %>!</span>
-      </a>
-    </div>
-    <div class="nav-bar-button">
-      <a href="/stocks">
-        <img src="/img/icons/store-market-stall.png" alt="" width="16" height="16">
-        <span class="nav-bar-button-text">Stock market</span>
-      </a>
-    </div>
-    <% if (currentUser.isAdmin) { %>
-    <div class="nav-bar-button">
-      <a href="/admin">
-        <img src="/img/icons/user-black.png" alt="" width="16" height="16">
-        <span class="nav-bar-button-text">Admin panel</span>
-      </a>
-    </div>
-    <% } %>
-    <% } %>
-    <div class="nav-bar-button">
-      <a href="/users">
-        <img src="/img/icons/users.png" alt="" width="16" height="16">
-        <span class="nav-bar-button-text">Users</span>
-      </a>
+    <div class="signup-panel-mobile-container">
+      <div class="signup-panel-mobile-content">
+        <h2 class="panel-header">New to bojanSocial?</h2>
+        <p class="sign-up-desc">bojanSocial is a social media site that brings the 2010's experience right back into your palms.</p>
+        <a href="/signup" class="button button-yellow large sign-up">Sign Up</a>
+      </div>
     </div>
   </div>
 </div>

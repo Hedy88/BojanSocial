@@ -1,104 +1,87 @@
 <%- include("templates/base.ejs") %>
-<div id="content">
-    <div class="box-container">
-        <% if (process.env.NODE_ENV != "production") { %>
-            <div class="dialog warning-dialog">
-                <span>hey, this is a development server! user data may be removed at any time</span>
-            </div>
-        <% } %>
-        <div class="welcome">
-            <img src="/img/BojanSocial.png" alt="Bojan Social" class="welcome-logo" width="458" height="100">
-            <span class="welcome-prompt">bojan social: every bojan can thrive. <a href="/signup">sign up now!</a></span>
-        </div>
-        <div class="index-layout">
-          <div class="index-news-area">
-            <div class="window">
-              <div class="window-titlebar">
-                <span>Updates: Index page redesign!</span>
-                <span class="float-right">Feburary 4, 2024</span>
+  <div class="site-content">
+      <div class="side-panel homepage-panel">
+          <div id="site-updates-panel" class="panel">
+              <h2 class="panel-header">
+                  Site Updates
+              </h2>
+              <div class="panel-content">
+                  <h3 class="site-updates-header">Mobile layout</h3>
+                  <p>site is much better to use on mobile lmao</p>
               </div>
-              <div class="window-content">
-                <span>no more shitty boxes. <i>- rgb</i></span>
+              <div class="panel-footer site-update-by">
+                  <div class="made-by">
+                      <img class="pfp" src="/@rgb/pfp">
+                      <span>rgb</span>
+                  </div>
+                  <span class="site-update-date">Feburary 21, 2024</span>
               </div>
-            </div>
           </div>
-          <div class="index-site-about">
-            <div class="window">
-              <div class="window-titlebar">
-                <span>new users:</span>
+          <div id="new-users-panel" class="panel">
+              <h2 class="panel-header">
+                  See New Users
+              </h2>
+              <div class="panel-content">
+                  <div class="new-users-grid">
+                    <% for (const user of users) { %>
+                      <a href="/@<%= user.username %>" class="new-user-container">
+                          <img src="/@<%= user.username %>/pfp" alt="Avatar" width="32" height="32">
+                      </a>
+                    <% } %>
+                  </div>
               </div>
-              <div class="window-content">
-                <div class="new-users-layout">
-                  <% if (users.length == 0 ) { %>
-                    <span>hey! there's no one here. why not <a href="/signup">signup</a> and be the first?</span>
-                  <% } %>
-                  <% for (const user of users) { %>
-                    <div class="new-user">
-                      <img src="/@<%= user.username %>/pfp" alt="Avatar" width="64" height="64" class="new-user-pfp">
-                      <span class="new-user-display-name">
-                          <a href="/@<%= user.username %>"><%= user.displayName %></a>
-                      </span>
-                      <span>@<%= user.username %></span>
-                    </div>
-                  <% } %>
-                </div>
+              <div class="panel-footer">
+                  <span>These people are talking on bojanSocial. Join in the fun by <a href="/signup">Signing Up!</a></span>
               </div>
-              <div class="window-footer">
-                <span><a href="/users">more users »</a></span>
-              </div>
-            </div>
           </div>
-        </div>
-        <div class="index-misc-area">
-            <h3>but why Bojan Social?</h3>
-            <div class="features">
-              <div class="feature">
-                <img src="/img/features-icons/person.png" alt="Person" width="64" height="64">
-                <span class="feature-title">meet new people!</span>
-                <span class="feature-description">
-                    bojan social allows people to meet and talk to each other!
-                </span>
+      </div>
+      <div class="main-panel">
+          <div class="posts-container">
+            <% for (const post of posts) { %>
+              <div class="post-preview">
+                  <div class="pfp-container">
+                      <img class="pfp" src="/@<%= post.author.username %>/pfp" alt="Avatar" width="48" height="48">
+                  </div>
+                  <div class="post-container">
+                      <div class="post-info">
+                          <a href="/@<%= post.author.username %>" class="post-username">
+                              <span class="nickname"><%= post.author.displayName %></span>
+                              <span class="username"><%= post.author.username %></span>
+                          </a>
+                          <span class="post-timestamp">wip</span>
+                      </div>
+                      <div class="post-text">
+                          <p><%= post.content %></p>
+                      </div>
+                      <div class="post-actions">
+                          <div class="post-action like-post">
+                              <div class="post-actions-icon"></div>
+                              <div class="post-actions-label"><%= post.reactions.length %></div>
+                          </div>
+                          <div class="post-action reply-post">
+                              <div class="post-actions-icon"></div>
+                              <div class="post-actions-label">WIP</div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <div class="feature">
-                <img src="/img/features-icons/brick.png" alt="Brick" width="64" height="64">
-                <span class="feature-title">customize your profile!</span>
-                <span class="feature-description">
-                  your profile is yours! use CSS and Markdown to customize it to your liking.
-                </span>
-              </div>
-              <div class="feature">
-                <img src="/img/features-icons/music.png" alt="Music" width="64" height="64">
-                <span class="feature-title">share your favourite music!</span>
-                <span class="feature-description">
-                  bojan social allows you to upload your favourite song to your profile, just like old MySpace!
-                </span>
-              </div>
-              <div class="feature">
-                <img src="/img/features-icons/rss.png" alt="RSS" width="64" height="64">
-                <span class="feature-title">RSS / Atom support for Posts</span>
-                <span class="feature-description">
-                  don't worry old man, RSS and Atom feeds for posts are a thing so your PDA can be updated with the latest degenarate post.
-                </span>
-              </div>
-            </div>
-            <h3>and it's not just us..</h3>
-            <div class="quotes">
-              <div class="quote">
-                <div class="quote-content">"cant wait for the private beta release"</div>
-                <div class="quote-by">- cleber299</div>
-              </div>
-              <div class="quote">
-                <div class="quote-content">"it looks good"</div>
-                <div class="quote-by">- kylarz</div>
-              </div>
-              <div class="quote">
-                <div class="quote-content">"Epik"</div>
-                <div class="quote-by">- qzip</div>
-              </div>
-            </div>
+            <% } %>
           </div>
+      </div>
+      <div class="side-panel signup-panel-container">
+          <div class="signup-panel">
+              <h2 class="panel-header">
+                  New to bojanSocial?
+              </h2>
+              <p class="sign-up-desc">
+                  bojanSocial is a social media site that brings the 2010's experience right back into your palms.
+              </p>
+              <a href="/signup" class="button button-yellow large sign-up">
+                  Sign Up
+              </a>
+          </div>
+      </div>
     </div>
-</div>
-<%- include("templates/footer.ejs") %>
+      <%- include("./templates/footer.ejs") %>
 </body>
 </html>

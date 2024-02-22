@@ -1,15 +1,11 @@
-<!--
-    bojan social
-    made by RGB and others :)
--->
 <!DOCTYPE html>
-<html lang="en" prefix="og: https://ogp.me/ns#">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Bojan Social</title>
-    <meta name="description" content="the place where balkaners thrive.">
-    <meta name="theme-color" content="#FFF">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <title>bojanSocial</title>
 
     <meta property="og:title" content="bojan social">
     <meta property="og:description" content="the social media site designed for fellow bojans.">
@@ -20,13 +16,15 @@
 
     <meta name="twitter:card" content="http://<%- req.get('host') %>/img/BojanSocialBanner.png">
 
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/dist/new-web.css?v=?v=<%= new Date().getDate() % 4 %>">
 
     <% if (typeof css != "undefined") { %>
     <link rel="stylesheet" href="<%= css %>">
     <% } %>
 
     <script src="/dist/bojan.min.js?v=<%= new Date().getDate() % 4 %>"></script>
-  </head>
+</head>
+
 <body>
-<%- include("header.ejs") %>
+  <div class="site-container">
+    <%- include("header.ejs") %>
