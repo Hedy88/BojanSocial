@@ -11,7 +11,7 @@ router.get("/", ...middleware.out, async (req, res, next) => {
         const users = await getNewUsers();
         const posts = await getLatestPosts();
 
-        res.render("new/index", {
+        res.render("index", {
             csrfToken: req.csrfToken(),
             users,
             posts
