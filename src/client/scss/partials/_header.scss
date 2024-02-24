@@ -5,6 +5,7 @@
 
 .header,
 .normal-header,
+.ataturk-cocksucker-header,
 .nav-header,
 .site-content,
 .footer-content,
@@ -269,4 +270,29 @@
       text-shadow: 0 -1px 0 #000;
     }
   }
+}
+
+// ataturk cocksucker header
+.ataturk-cocksucker-header-container {
+  background-color: rgb(204, 0, 0);
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  min-height: 44px;
+}
+
+.ataturk-cocksucker-header {
+  display: flex;
+  gap: 8px;
+  flex-direction: row-reverse;
+
+  .ataturk-cocksucker-header-nav-item {
+    padding: 15px 0;
+
+    &::after {
+      content: '🐺';
+      font-size: inherit;
+      margin-left: 10px;
+    }
+  }
+
 }
