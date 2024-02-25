@@ -49,7 +49,7 @@ export const getLatestPosts = async () => {
     .sort({ createdOn: -1 })
     .populate("reactions.author")
     .populate("author")
-    .limit(15);
+    .limit(8);
 
   if (!posts) return null;
 

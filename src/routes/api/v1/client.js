@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import * as middleware from "../../../utils/middleware.js";
 import { User, getNewUsers, getUserByUsername } from "../../../models/user.js";
 import { getAUserFriends } from "../../../models/friend.js";
-import { getAUserPosts, getLatestPosts, fetchPost } from "../../../models/post.js";
+import { getAUserPosts, Post, fetchPost } from "../../../models/post.js";
 
 const router = express.Router();
 
@@ -133,13 +133,34 @@ router.get("/client/@:username/get_user_info", ...middleware.api, async (req, re
 
 router.get("/client/get_all_posts", ...middleware.api, async (req, res, next) => {
   try {
-    const posts = await getLatestPosts();
+    let page = 0;
+
+    if (typeof req.query.page != "undefined") {
+      page = parseInt(req.query.page);
+
+      if (isNaN(page)) {
+        res.status(500);
+
+        return res.json({
+          ok: false,
+          error: "Malformed request."
+        });
+      }
+    }
+
+    const posts = await Post.find()
+      .sort({ createdOn: -1 })
+      .populate("reactions.author")
+      .populate("author")
+      .limit(8)
+      .skip(8 * page);
 
     if (posts) {
       res.status(200);
 
       res.json({
         ok: true,
+        pages: (Math.round((await Post.countDocuments()) / 8)),
         posts: [
           ...posts.map((post) => {
             return {
@@ -163,7 +184,7 @@ router.get("/client/get_all_posts", ...middleware.api, async (req, res, next) =>
     } else {
       res.status(500);
 
-      res.json({
+      return res.json({
         ok: false,
         error: "Something went wrong..."
       });

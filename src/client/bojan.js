@@ -2,8 +2,10 @@
 import { errorHandler } from "./errorHandler.js";
 import { addAlert } from "./alerts.js";
 
+// WebComponents
 import { PostPreview } from "./components/PostPreview.js";
 import { PostBox } from "./components/PostBox.js";
+import { Posts } from "./components/Posts.js";
 
 window.addEventListener("load", () => {
   // anti asshole design
@@ -15,6 +17,7 @@ window.addEventListener("load", () => {
   } else {
     customElements.define("post-preview", PostPreview);
     customElements.define("post-box", PostBox);
+    customElements.define("bs-posts", Posts);
   }
 });
 

@@ -19,7 +19,8 @@
 }
 
 .main-panel {
-    flex: 1;
+  flex: 1;
+  max-width: 475px;
 }
 
 .signup-panel-container {
@@ -442,5 +443,25 @@
         min-width: 80px;
       }
     }
+  }
+}
+
+.posts-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 100%;
+
+  .paginator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .posts-footer-extra {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 }
