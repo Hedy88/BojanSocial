@@ -1,8 +1,13 @@
+<!--
+    bojan social
+    made by RGB and others :)
+-->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="the place where balkaners thrive.">
+    <meta name="theme-color" content="#FFF">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
     <title>bojanSocial</title>
@@ -16,7 +21,7 @@
 
     <meta name="twitter:card" content="http://<%- req.get('host') %>/img/BojanSocialBanner.png">
 
-    <link rel="stylesheet" href="/dist/new-web.css?v=?v=<%= new Date().getDate() % 4 %>">
+    <link rel="stylesheet" href="/dist/new-web.css?v=<%= new Date().getDate() % 4 %>">
 
     <% if (typeof css != "undefined") { %>
     <link rel="stylesheet" href="<%= css %>">

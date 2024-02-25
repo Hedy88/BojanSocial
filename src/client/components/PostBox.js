@@ -49,6 +49,8 @@ export class PostBox extends LitElement {
       addAlert("error", "You can't just post nothing.");
       return;
     }
+
+
   }
 
   render() {
