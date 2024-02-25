@@ -41,3 +41,9 @@ audio {
   display: block;
   max-width: 100%;
 }
+
+::selection {
+  color: #FFF;
+  background-color: #3399FF;
+  text-shadow: none;
+}

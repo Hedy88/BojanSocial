@@ -1,7 +1,6 @@
 <%- include("templates/base.ejs", { normalHeader: true }) %>
   <div class="site-content">
     <div class="side-panel homepage-panel">
-      <p>user info here??? maybe</p>
       <div id="feeds-panel" class="panel">
         <h2 class="panel-header">
           feeds
@@ -16,19 +15,10 @@
       </div>
     </div>
     <div class="main-panel">
-      <div class="post-box">
-        <div class="pfp-container">
-          <img class="pfp" src="/@<%= currentUser.username %>/pfp" alt="Avatar" width="54" height="54">
-        </div>
-        <div class="post-box-content">
-          <textarea class="post-box-textarea" autocomplete="off" placeholder="what are you doing today?"></textarea>
-          <div class="post-box-actions">
-            <div class="post-box-options"></div>
-            <button class="button button-blue post-button">Post!</button>
-          </div>
-        </div>
+      <post-box currentUser="<%= currentUser.username %>"></post-box>
+      <div class="posts-container">
+        <post-preview username="rgb" displayName="rgb" content="sjhqkuhsdaHSBDKAGSDHKASHDikajshdakjz"></post-preview>
       </div>
-      <span>insert timeline here</span>
     </div>
     <div class="side-panel homepage-panel">
       <div id="featured-panel" class="panel">
