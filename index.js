@@ -1,6 +1,5 @@
 import "dotenv/config";
 import mongoose from "mongoose";
-import md from "markdown-it";
 
 import express from "express";
 import expressSession from "express-session";
@@ -54,12 +53,6 @@ app.use(express.static("assets"));
 
 app.locals.formatDistanceToNow = formatDistanceToNow;
 app.locals.format = format;
-app.locals.md = md({
-    html: false,
-    breaks: false,
-    linkify: true,
-    typographer: false,
-});
 
 app.use(async (req, res, next) => {
     res.setHeader("X-Powered-By", "GaySexEnterpriseWebFramework");

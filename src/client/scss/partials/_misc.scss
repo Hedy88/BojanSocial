@@ -1,0 +1,17 @@
+code {
+  font-family: Consolas, monaco, monospace;
+  font-size: 13px;
+}
+
+pre {
+  max-width: 100%;
+  min-width: 100px;
+  padding: 5px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
+
+  margin-top: 5px;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+}

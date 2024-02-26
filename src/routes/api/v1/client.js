@@ -168,6 +168,7 @@ router.get("/client/get_all_posts", ...middleware.api, async (req, res, next) =>
               username: post.author.username,
               displayName: post.author.displayName,
               content: post.content,
+              createdOn: post.createdOn,
               reactions: [
                 ...post.reactions.map((reaction) => {
                   return {

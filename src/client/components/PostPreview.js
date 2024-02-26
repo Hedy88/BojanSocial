@@ -1,4 +1,12 @@
 import { html, LitElement } from "lit";
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+
+import { marked } from "marked";
+import { mdRules } from "../utils";
+
+import domPurify from "dompurify";
+
+marked.use(mdRules);
 
 export class PostPreview extends LitElement {
   static properties = {
@@ -21,6 +29,14 @@ export class PostPreview extends LitElement {
     this._replied = false;
   }
 
+  _renderPostContent() {
+    const content = domPurify.sanitize(marked.parse(this.postData.content));
+
+    return html`
+      ${unsafeHTML(content)}
+    `;
+  }
+
   render() {
     return html`
       <div class="post-preview">
@@ -36,7 +52,7 @@ export class PostPreview extends LitElement {
             <span class="post-timestamp">wip</span>
           </div>
           <div class="post-text">
-            <p>${this.postData.content}</p>
+            ${this._renderPostContent()}
           </div>
           <div class="post-actions">
             <div class="post-action like-post">

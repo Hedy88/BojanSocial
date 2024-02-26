@@ -63,7 +63,6 @@ export class Posts extends LitElement {
         <div class="posts-container">${map(posts, (post) => html` <post-preview .postData=${post}></post-preview> `)}</div>
         <div class="posts-footer">
           <div class="paginator">
-            <p>Page ${this.page + 1} of ${this._maxPages + 1}.</p>
             ${this._checkPages()}
           </div>
           <div class="posts-footer-extra">

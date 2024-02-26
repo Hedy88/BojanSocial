@@ -30,4 +30,23 @@ const fetchPostCatagory = async (feed, page, signal) => {
   return { posts: data.posts, pages: data.pages };
 };
 
-export { fetchPost, fetchPostCatagory };
+const mdRules = {
+  hooks: {
+    preprocess: (markdown) => {
+      // hack for disabling HTML
+      return markdown
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    },
+  },
+  tokenizer: {
+    heading() {},
+    html() {},
+    link() {},
+    table() {},
+    hr() {}
+  }
+};
+
+export { fetchPost, fetchPostCatagory, mdRules };
