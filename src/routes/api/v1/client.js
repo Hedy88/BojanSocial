@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import * as middleware from "../../../utils/middleware.js";
 import { User, getNewUsers, getUserByUsername } from "../../../models/user.js";
 import { getAUserFriends } from "../../../models/friend.js";
-import { getAUserPosts, Post, fetchPost } from "../../../models/post.js";
+import { getAUserPosts, Post, fetchPost, createPost } from "../../../models/post.js";
+import { isLessThen10SecondsAgo } from "../../../utils/time.js";
 
 const router = express.Router();
 
@@ -168,7 +169,7 @@ router.get("/client/get_all_posts", ...middleware.api, async (req, res, next) =>
               username: post.author.username,
               displayName: post.author.displayName,
               content: post.content,
-              createdOn: post.createdOn,
+              createdOn: (Math.floor(post.createdOn / 1000)),
               reactions: [
                 ...post.reactions.map((reaction) => {
                   return {
@@ -220,6 +221,7 @@ router.get("/client/get_post/:id", ...middleware.api, async (req, res, next) => 
           username: post.author.username,
           displayName: post.author.displayName,
           content: post.content,
+          createdOn: (Math.floor(post.createdOn / 1000)),
           reactions: [
             ...post.reactions.map((reaction) => {
               return {
@@ -242,5 +244,51 @@ router.get("/client/get_post/:id", ...middleware.api, async (req, res, next) => 
       next(error);
   }
 });
+
+router.post("/client/post", ...middleware.userNoCSRF, async (req, res, next) => {
+  try {
+    let { content } = req.body;
+
+    if (typeof content == "undefined") {
+      res.status(500);
+
+      return res.json({
+        ok: false,
+        error: "Malformed request"
+      });
+    } else {
+      content = content.trim();
+    }
+
+    try {
+      if (req.currentUser.ratelimits.lastPostCreation != null) {
+        const ratelimitCheck = isLessThen10SecondsAgo(req.currentUser.ratelimits.lastPostCreation);
+
+        if (ratelimitCheck) {
+          return res.json({
+            ok: false,
+            error: "Please wait 10 seconds before posting again.",
+          });
+        }
+      }
+
+      await createPost(req.currentUser._id, content);
+
+      req.currentUser.ratelimits.lastPostCreation = new Date();
+      await req.currentUser.save();
+
+      return res.json({ ok: true });
+    } catch (error) {
+      return res.json({
+        ok: false,
+        error: Object.values(error.errors)[0].properties.message
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 
 export default router;

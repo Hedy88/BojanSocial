@@ -1,46 +1,10 @@
 import express from "express";
 import * as middleware from "../utils/middleware.js";
 import mongoose from "mongoose";
-import { createPost, fetchPost, getLatestPosts } from "../models/post.js";
+import { fetchPost, getLatestPosts } from "../models/post.js";
 import xml from "xml";
-import { isLessThen10SecondsAgo } from "../utils/time.js";
-import { logger } from "../utils/logger.js";
 
 const router = express.Router();
-
-/*
-    error 1 = "your post needs to be less then 255 characters"
-    error 2 = "you can't just post nothing!"
-*/
-router.post("/actions/post", ...middleware.user, async (req, res, next) => {
-  try {
-    let { content } = req.body;
-    content = content.trim();
-
-    try {
-      if (req.currentUser.ratelimits.lastPostCreation != null) {
-        const ratelimitCheck = isLessThen10SecondsAgo(req.currentUser.ratelimits.lastPostCreation);
-
-        if (ratelimitCheck) {
-          return res.redirect(`/home?postError=Please wait 10 seconds before posting again.`);
-        }
-      }
-
-      await createPost(req.currentUser._id, content);
-
-      req.currentUser.ratelimits.lastPostCreation = new Date();
-      await req.currentUser.save();
-
-      return res.redirect("/home");
-    } catch (error) {
-      logger.error(error);
-
-      return res.redirect(`/home?postError=${Object.values(error.errors)[0].properties.message}`);
-    }
-  } catch (error) {
-    next(error);
-  }
-});
 
 router.post("/actions/posts/like", ...middleware.userNoCSRF, async (req, res, next) => {
   try {
@@ -130,17 +94,6 @@ router.get("/posts/all.rss", ...middleware.any, async (req, res, next) => {
     res.status(200);
     res.set("Content-Type", "application/rss+xml");
     res.end(xmlText);
-  } catch (error) {
-    next(error);
-  }
-});
-
-
-router.post("/posts/ajax/get_all_posts", ...middleware.userNoCSRF, async (req, res, next) => {
-  try {
-    const posts = await getLatestPosts();
-
-    res.render("ajax/get_posts", { posts });
   } catch (error) {
     next(error);
   }

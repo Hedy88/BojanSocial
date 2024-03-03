@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.masthead-container {
+  position: sticky;
+  top: 0px;
+  z-index: 3;
+}
+
 .header,
 .normal-header,
 .ataturk-cocksucker-header,

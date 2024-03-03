@@ -1,0 +1,66 @@
+.auth-page {
+  gap: 0px;
+  align-content: space-between;
+
+  .auth-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+.general-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  margin-top: 5px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+
+  label {
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+
+  .username-input {
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 100%;
+
+    margin-bottom: 10px;
+    min-height: 26px;
+
+    span {
+      padding: 0 6px;
+      padding-top: 1px;
+    }
+
+    .form-input {
+      border: none;
+      margin-bottom: 0px;
+      padding-top: 1px;
+
+      width: 100%;
+      border-left: 1px solid rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .form-input {
+    font-family: inherit;
+    font-size: 12px;
+    padding: 0 6px;
+    padding-top: 2px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    min-height: 26px;
+
+    margin-bottom: 10px;
+
+    &::placeholder {
+      color: #969696;
+      text-transform: lowercase;
+    }
+  }
+}

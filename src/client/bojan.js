@@ -6,6 +6,9 @@ import { addAlert } from "./alerts.js";
 import { PostPreview } from "./components/PostPreview.js";
 import { PostBox } from "./components/PostBox.js";
 import { Posts } from "./components/Posts.js";
+import { FeedsPanel } from "./components/FeedsPanel.js";
+import { FriendsPanel } from "./components/FriendsPanel.js";
+import { FeaturedPanel } from "./components/FeaturedPanel.js";
 
 window.addEventListener("load", () => {
   // anti asshole design
@@ -15,9 +18,14 @@ window.addEventListener("load", () => {
   if (!("customElements" in window)) {
     addAlert("error", "bojanSocial needs a browser that supports WebComponents");
   } else {
-    customElements.define("post-preview", PostPreview);
-    customElements.define("post-box", PostBox);
+    customElements.define("bs-post-preview", PostPreview);
+    customElements.define("bs-post-box", PostBox);
     customElements.define("bs-posts", Posts);
+
+    // homepage panels
+    customElements.define("bs-feeds-panel", FeedsPanel);
+    customElements.define("bs-featured-panel", FeaturedPanel);
+    customElements.define("bs-friends-panel", FriendsPanel);
   }
 });
 

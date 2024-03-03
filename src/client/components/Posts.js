@@ -48,6 +48,8 @@ export class Posts extends LitElement {
       return html`<button class="button button-blue" @click="${this._goBackAPage}">« go back</button> `;
     } else if (this.page == 0) {
       return html`<button class="button button-blue" @click="${this._getNextPage}">next »</button>`;
+    } else if (this.page == this._maxPages) {
+      return html``;
     } else {
       return html`
         <button class="button button-blue" @click="${this._goBackAPage}">« go back</button>
@@ -60,7 +62,7 @@ export class Posts extends LitElement {
     return this._fetchPostsTask.render({
       pending: () => html`<p>fetching posts...</p>`,
       complete: (posts) => html`
-        <div class="posts-container">${map(posts, (post) => html` <post-preview .postData=${post}></post-preview> `)}</div>
+        <div class="posts-container">${map(posts, (post) => html` <bs-post-preview .postData=${post}></bs-post-preview> `)}</div>
         <div class="posts-footer">
           <div class="paginator">
             ${this._checkPages()}

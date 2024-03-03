@@ -7,8 +7,6 @@ import expressSessionStore from "connect-mongo";
 import expressCookie from "cookie-parser";
 import expressCompression from "compression";
 
-import { formatDistanceToNow, format } from "date-fns";
-
 import { User } from "./src/models/user.js";
 import { logger } from "./src/utils/logger.js";
 
@@ -50,9 +48,6 @@ app.use(express.urlencoded({
 }));
 app.use(expressCompression());
 app.use(express.static("assets"));
-
-app.locals.formatDistanceToNow = formatDistanceToNow;
-app.locals.format = format;
 
 app.use(async (req, res, next) => {
     res.setHeader("X-Powered-By", "GaySexEnterpriseWebFramework");

@@ -1,0 +1,29 @@
+<%- include("templates/base.ejs") %>
+  <div class="site-content auth-page">
+    <div class="auth-box">
+      <h2>sign up</h2>
+      <form action="/signup" class="general-form">
+        <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+
+        <label for="username">Username</label>
+        <div class="username-input">
+          <span>@</span>
+          <input type="text" name="username" class="form-input" id="username" required>
+        </div>
+
+        <label for="email">E-mail</label>
+        <input type="email" name="email" class="form-input" id="email" placeholder="example@example.com" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-input" id="password" required>
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" name="confirmPassword" class="form-input" id="confirmPassword" required>
+
+        <input type="submit" value="Create Account!" class="button-yellow button large sign-up">
+      </form>
+    </div>
+  </div>
+<%- include("./templates/footer.ejs") %>
+</body>
+</html>

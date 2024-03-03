@@ -43,14 +43,34 @@ export class PostBox extends LitElement {
       postButton.disabled = true;
     }
   }
-
-  _postContent() {
+  async _postContent() {
     if (this._content.length == 0) {
       addAlert("error", "You can't just post nothing.");
       return;
     }
 
+    const content = new FormData();
+    content.append("content", this._content);
 
+    const response = await fetch(`/api/v1/client/post`, {
+      credentials: "same-origin",
+      method: "POST",
+      body: new URLSearchParams(content)
+    });
+
+    if (!response.ok) {
+      throw new Error("couldn't fetch posts from the server :(");
+    }
+
+    const data = await response.json();
+
+    if (data.ok != true) {
+      addAlert("error", data.error);
+      return;
+    } else {
+      // todo: replace this later.
+      location.reload();
+    }
   }
 
   render() {

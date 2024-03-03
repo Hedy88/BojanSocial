@@ -3,6 +3,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 import { marked } from "marked";
 import { mdRules } from "../utils";
+import { formatDistanceToNow } from "date-fns";
 
 import domPurify from "dompurify";
 
@@ -37,6 +38,21 @@ export class PostPreview extends LitElement {
     `;
   }
 
+  _renderTimestamp() {
+    const date = new Date(this.postData.createdOn * 1000);
+    const formatedDate = formatDistanceToNow(date, { includeSeconds: true });
+
+    return html`
+      <span class="post-timestamp">${formatedDate} ago...</span>
+    `;
+  }
+
+  _likePost() {
+    // todo: Make this a thing
+    console.log("liked post " + this.postData._id);
+    this._liked = true;
+  }
+
   render() {
     return html`
       <div class="post-preview">
@@ -47,15 +63,15 @@ export class PostPreview extends LitElement {
           <div class="post-info">
             <a href="/@${this.postData.username}" class="post-username">
               <span class="nickname">${this.postData.displayName}</span>
-              <span class="username">${this.postData.username}</span>
+              <span class="username">@${this.postData.username}</span>
             </a>
-            <span class="post-timestamp">wip</span>
+            ${this._renderTimestamp()}
           </div>
           <div class="post-text">
             ${this._renderPostContent()}
           </div>
           <div class="post-actions">
-            <div class="post-action like-post">
+            <div class="post-action like-post" @click="${this._likePost}">
               <div class="post-actions-icon"></div>
               <div class="post-actions-label">${this.postData.reactions.length}</div>
             </div>
