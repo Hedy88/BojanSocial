@@ -14,7 +14,7 @@ const addAlert = (type, content) => {
 };
 
 const removeAllAlerts = () => {
-  const alerts = document.querySelectorAll("alert-container");
+  const alerts = document.querySelectorAll(".alert-container");
 
   Array.from(alerts.forEach((alert) => {
     alert.remove();

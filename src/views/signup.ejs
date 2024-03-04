@@ -1,8 +1,22 @@
 <%- include("templates/base.ejs") %>
   <div class="site-content auth-page">
+    <div class="auth-content-info">
+      <img class="troll" src="/img/troll.png" alt="troll" width="150" height="110">
+      <h2>the most retarded social media site is nearly at your door</h2>
+      <div class="auth-content-description">
+        <p>just look on what you could do:</p>
+        <ul>
+          <li>talk about how much you want the Republika Srpska to die</li>
+          <li>show your hatred of the Turkish government by posting Greek propaganda</li>
+          <li>how much you love taking cocaine</li>
+          <li>and so much more!</li>
+        </ul>
+      </div>
+      <a href="/login">Have an account?</a>
+    </div>
     <div class="auth-box">
       <h2>sign up</h2>
-      <form action="/signup" class="general-form">
+      <form action="/signup" method="post" class="general-form">
         <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
 
         <label for="username">Username</label>

@@ -1,11 +1,38 @@
 .auth-page {
   gap: 0px;
-  align-content: space-between;
+  justify-content: space-between;
 
   .auth-box {
     display: flex;
     flex-direction: column;
     gap: 5px;
+  }
+
+  .auth-content-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    justify-content: center;
+    align-items: center;
+
+    .troll {
+      margin-bottom: 10px;
+    }
+
+    .auth-content-description {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    ul {
+      padding-left: 10px;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
   }
 }
 

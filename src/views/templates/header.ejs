@@ -45,5 +45,12 @@
         <a href="/signup" class="button button-yellow large sign-up">Sign Up</a>
       </div>
     </div>
+    <% if (typeof error != "undefined") { %>
+    <div class="alert-container alert-error">
+      <div class="alert-content">
+        <%= error %>
+      </div>
+    </div>
+    <% } %>
   </div>
 </div>
