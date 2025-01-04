@@ -46,7 +46,7 @@ export class Posts extends LitElement {
   _checkPages() {
     if (this.page + 1 == this._maxPages) {
       return html`<button class="button button-blue" @click="${this._goBackAPage}">« go back</button> `;
-    } else if (this.page == 0) {
+    } else if (this.page == 0 && this.page !== this._maxPages) {
       return html`<button class="button button-blue" @click="${this._getNextPage}">next »</button>`;
     } else if (this.page == this._maxPages) {
       return html``;
